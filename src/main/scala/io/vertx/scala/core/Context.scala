@@ -90,24 +90,35 @@ class Context(private val _asJava: io.vertx.core.Context) {
   }
 
   /**
-    * @return true if this is an event loop context, false otherwise
+    * Is the current context an event loop context?
+    * 
+    * NOTE! when running blocking code using [[io.vertx.scala.core.Vertx#executeBlocking]] from a
+    * standard (not worker) verticle, the context will still an event loop context and this 
+    * will return true.
+    * @return true if false otherwise
     */
   def isEventLoopContext(): Boolean = {
     _asJava.isEventLoopContext()
   }
 
   /**
-    * @return true if this is an worker context, false otherwise
+    * Is the current context a worker context?
+    * 
+    * NOTE! when running blocking code using [[io.vertx.scala.core.Vertx#executeBlocking]] from a
+    * standard (not worker) verticle, the context will still an event loop context and this 
+    * will return false.
+    * @return true if the current context is a worker context, false otherwise
     */
-  def isWorker(): Boolean = {
-    _asJava.isWorker()
+  def isWorkerContext(): Boolean = {
+    _asJava.isWorkerContext()
   }
 
   /**
-    * @return true if this is a multi-threaded worker context, false otherwise
+    * Is the current context a multi-threaded worker context?
+    * @return true if the current context is a multi-threaded worker context, false otherwise
     */
-  def isMultiThreaded(): Boolean = {
-    _asJava.isMultiThreaded()
+  def isMultiThreadedWorkerContext(): Boolean = {
+    _asJava.isMultiThreadedWorkerContext()
   }
 
   /**
@@ -152,4 +163,16 @@ object Context {
 
   def apply(_asJava: io.vertx.core.Context): io.vertx.scala.core.Context =
     new io.vertx.scala.core.Context(_asJava)
+
+  def isOnWorkerThread(): Boolean = {
+    io.vertx.core.Context.isOnWorkerThread()
+  }
+
+  def isOnEventLoopThread(): Boolean = {
+    io.vertx.core.Context.isOnEventLoopThread()
+  }
+
+  def isOnVertxThread(): Boolean = {
+    io.vertx.core.Context.isOnVertxThread()
+  }
 }

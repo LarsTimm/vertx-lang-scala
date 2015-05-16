@@ -205,7 +205,7 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     * @param handler the handler that will be called with the timer ID when the timer fires
     * @return the unique ID of the timer
     */
-  def setTimer(delay: Long)(handler: Long => Unit): Long = {
+  def setTimer(delay: Long, handler: Long => Unit): Long = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.setTimer(delay, funcToMappedHandler[java.lang.Long, Long](x => x)(handler))
   }
@@ -227,7 +227,7 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     * @param handler the handler that will be called with the timer ID when the timer fires
     * @return the unique ID of the timer
     */
-  def setPeriodic(delay: Long)(handler: Long => Unit): Long = {
+  def setPeriodic(delay: Long, handler: Long => Unit): Long = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.setPeriodic(delay, funcToMappedHandler[java.lang.Long, Long](x => x)(handler))
   }

@@ -151,12 +151,12 @@
     }
   }
 
-  def methodParams(method) {
-    var paramList = '';
+
+  def multiMethodParams(method, instanceMethods) {
+    var paramList = '(';
     var first = true;
     for (param : method.params) {
-      if (!isParamHandler(param) &&
-          !isAsyncResult(param)) {
+      if (!isAsyncResult(param)) {
         if (first) {
           first = false;
         } else {
@@ -174,32 +174,8 @@
         paramList += toScalaType(param.type);
       }
     }
+    paramList += ')';
     paramList;
-  }
-
-  def multiMethodParams(method) {
-    params = methodParams(method);
-    if (isMethodHandler(method)) {
-      if (params.isEmpty()) {
-        params = '';
-      } else {
-        params = '(' + params + ')';
-      }
-      params += handlerLambda(method);
-      params;
-    } else {
-       '(' + params + ')';
-    }
-  }
-
-  def handlerLambda(method) {
-    var params = '';
-    for (param : method.params) {
-      if (isParamHandler(param)) {
-        params += '(' + param.name + ': ' + toScalaType(param.type) + ')';
-      }
-    }
-    params;
   }
 
   def methodInvocationHandlerCollection(type, method) {
