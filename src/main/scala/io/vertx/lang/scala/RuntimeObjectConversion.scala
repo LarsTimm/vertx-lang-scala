@@ -1,11 +1,5 @@
 package io.vertx.lang.scala
 
-/*import scala.language.implicitConversions
-import scala.concurrent.Promise
-import scala.collection.JavaConverters._
-import io.vertx.core.Handler
-import io.vertx.core.AsyncResult*/
-
 object RuntimeObjectConversion {
 
   def asJava(obj: Any): java.lang.Object = {
