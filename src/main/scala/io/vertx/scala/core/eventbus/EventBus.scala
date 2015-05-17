@@ -50,10 +50,11 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * @param message the message, may be {@code null}
     * @return reply handler will be called when any reply from the recipient is received, may be {@code null}
     */
-  def send[T](address: String, message: AnyRef): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
+  def send[T](address: String, message: Any): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
     import io.vertx.lang.scala.HandlerOps._
+    import io.vertx.lang.scala.RuntimeObjectConversion
     val promise = scala.concurrent.Promise[io.vertx.scala.core.eventbus.Message[T]]()
-    _asJava.send(address, message, promiseToMappedAsyncResultHandler(Message.apply[T])(promise))
+    _asJava.send(address, RuntimeObjectConversion.asJava(message), promiseToMappedAsyncResultHandler(Message.apply[T])(promise))
     promise.future
   }
 
@@ -65,10 +66,11 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * @param options delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
     * @return reply handler will be called when any reply from the recipient is received, may be {@code null}
     */
-  def send[T](address: String, message: AnyRef, options: io.vertx.core.eventbus.DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
+  def send[T](address: String, message: Any, options: io.vertx.core.eventbus.DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
     import io.vertx.lang.scala.HandlerOps._
+    import io.vertx.lang.scala.RuntimeObjectConversion
     val promise = scala.concurrent.Promise[io.vertx.scala.core.eventbus.Message[T]]()
-    _asJava.send(address, message, options, promiseToMappedAsyncResultHandler(Message.apply[T])(promise))
+    _asJava.send(address, RuntimeObjectConversion.asJava(message), options, promiseToMappedAsyncResultHandler(Message.apply[T])(promise))
     promise.future
   }
 
@@ -79,8 +81,9 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * @param message the message, may be {@code null}
     * @return a reference to this, so the API can be used fluently
     */
-  def publish(address: String, message: AnyRef): io.vertx.scala.core.eventbus.EventBus = {
-    _asJava.publish(address, message)
+  def publish(address: String, message: Any): io.vertx.scala.core.eventbus.EventBus = {
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    _asJava.publish(address, RuntimeObjectConversion.asJava(message))
     this
   }
 
@@ -91,8 +94,9 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
     * @return a reference to this, so the API can be used fluently
     */
-  def publish(address: String, message: AnyRef, options: io.vertx.core.eventbus.DeliveryOptions): io.vertx.scala.core.eventbus.EventBus = {
-    _asJava.publish(address, message, options)
+  def publish(address: String, message: Any, options: io.vertx.core.eventbus.DeliveryOptions): io.vertx.scala.core.eventbus.EventBus = {
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    _asJava.publish(address, RuntimeObjectConversion.asJava(message), options)
     this
   }
 

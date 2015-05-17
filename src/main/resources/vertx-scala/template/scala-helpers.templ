@@ -1,11 +1,11 @@
 @code{
 
   def toScalaType(type) {
-    if (type.name == 'void' || type.name == 'java.lang.Void') {
+    if (type.kind == CLASS_VOID) {
       return 'Unit';
     } else if (type.name == 'Object' || type.name == 'java.lang.Object') {
-      return 'AnyRef';
-    } else if (type.name == 'Throwable' || type.name == 'java.lang.Throwable') {
+      return 'Any';
+    } else if (type.kind == CLASS_THROWABLE) {
       return 'Throwable';
     } else if (type.kind == CLASS_STRING) {
       return 'String';
@@ -139,6 +139,15 @@
     return method.returnType.kind.collection;
   }
 
+	def importRuntimeObjectConversions(method) {
+    for (param : method.params) {
+      if (param.type.name == 'Object' || param.type.name == 'java.lang.Object') {
+        return true;
+      }
+    }
+    return method.returnType.kind == CLASS_OBJECT;
+	}
+
   def returnTypeOf(method) {
     if (isFuture(method)) {
       'scala.concurrent.Future[' + futureType(method) + ']';
@@ -245,6 +254,10 @@
       invocation += 'import scala.collection.JavaConverters._\n';
       invocation += indentation;
     }
+    if (importRuntimeObjectConversions(method)) {
+      invocation += 'import io.vertx.lang.scala.RuntimeObjectConversion\n';
+      invocation += indentation;
+    }
 
     if (isFuture(method)) {
       invocation += 'val promise = scala.concurrent.Promise[' + futureType(method) + ']()\n';
@@ -254,6 +267,9 @@
     if (!fluent and method.returnType.kind == CLASS_API) {
       wrap = true;
       invocation += toScalaApply(method.returnType.getSimpleName()) + '(';
+    } else if (method.returnType.kind == CLASS_OBJECT) {
+      wrap = true;
+      invocation += 'RuntimeObjectConversion.asScala[' + method.returnType.getSimpleName() +']('
     }
 
     invocation += target + '.' + method.name + '(';
@@ -279,29 +295,29 @@
         invocation += '`'
       } else if (isAsyncResult(param)) {
         invocation += 'promise';
-      } else {
-        if (param.type.kind == CLASS_LIST ||
-            param.type.kind == CLASS_SET) {
-          if (param.type.args[0].kind == CLASS_API) {
-            invocation += param.name + '.map(x => x.asJava.asInstanceOf[' + toJavaType(param.type.args[0]) + ']).asJava';
-          } else {
-            invocation += param.name + '.map(x => x:' + param.type.args[0].name + ').asJava';
-          }
-        } else if (param.type.kind == CLASS_MAP) {
-          if (param.type.args[0].kind == CLASS_API &&
-              param.type.args[1].kind == CLASS_API)
-          {
-            invocation += param.name + '.map(kv => (kv._1.asJava.asInstanceOf[' + toJavaType(param.type.args[0]) + '], kv._2.asJava.asInstanceOf[' + toJavaType(param.type.args[1]) + '])).asJava';
-          } else if (param.type.args[0].kind == CLASS_API) {
-            invocation += param.name + '.map(kv => (kv._1.asJava.asInstanceOf[' + toJavaType(param.type.args[0]) + '], kv._2:' + param.type.args[1].name + ')).asJava';
-          } else if (param.type.args[1].kind == CLASS_API) {
-            invocation += param.name + '.map(kv => (kv._1:' + param.type.args[0].name + ', kv._2.asJava.asInstanceOf[' + toJavaType(param.type.args[1]) + '])).asJava';
-          } else {
-            invocation += param.name + '.map(kv => (kv._1:' + param.type.args[0].name + ', kv._2:' + param.type.args[1].name + ')).asJava';
-          }
+      } else if (param.type.kind == CLASS_LIST ||
+                 param.type.kind == CLASS_SET) {
+        if (param.type.args[0].kind == CLASS_API) {
+          invocation += param.name + '.map(x => x.asJava.asInstanceOf[' + toJavaType(param.type.args[0]) + ']).asJava';
         } else {
-          invocation += param.name;
+          invocation += param.name + '.map(x => x:' + param.type.args[0].name + ').asJava';
         }
+      } else if (param.type.kind == CLASS_MAP) {
+        if (param.type.args[0].kind == CLASS_API &&
+            param.type.args[1].kind == CLASS_API)
+        {
+          invocation += param.name + '.map(kv => (kv._1.asJava.asInstanceOf[' + toJavaType(param.type.args[0]) + '], kv._2.asJava.asInstanceOf[' + toJavaType(param.type.args[1]) + '])).asJava';
+        } else if (param.type.args[0].kind == CLASS_API) {
+          invocation += param.name + '.map(kv => (kv._1.asJava.asInstanceOf[' + toJavaType(param.type.args[0]) + '], kv._2:' + param.type.args[1].name + ')).asJava';
+        } else if (param.type.args[1].kind == CLASS_API) {
+          invocation += param.name + '.map(kv => (kv._1:' + param.type.args[0].name + ', kv._2.asJava.asInstanceOf[' + toJavaType(param.type.args[1]) + '])).asJava';
+        } else {
+          invocation += param.name + '.map(kv => (kv._1:' + param.type.args[0].name + ', kv._2:' + param.type.args[1].name + ')).asJava';
+        }
+      } else if (param.type.name == 'Object' || param.type.name == 'java.lang.Object') {
+        invocation += 'RuntimeObjectConversion.asJava(' + param.name + ')';
+      } else {
+        invocation += param.name;
       }
 
       if (param.type.kind == CLASS_API) {

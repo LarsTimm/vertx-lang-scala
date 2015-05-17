@@ -36,7 +36,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     * @return the value, or null if none
     */
   def get(key: K): V = {
-    _asJava.get(key)
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    RuntimeObjectConversion.asScala[V](_asJava.get(key))
   }
 
   /**
@@ -46,7 +47,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     * @return return the old value, or null if none
     */
   def put(key: K, value: V): V = {
-    _asJava.put(key, value)
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    RuntimeObjectConversion.asScala[V](_asJava.put(key, value))
   }
 
   /**
@@ -55,7 +57,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     * @return the old value
     */
   def remove(key: K): V = {
-    _asJava.remove(key)
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    RuntimeObjectConversion.asScala[V](_asJava.remove(key))
   }
 
   /**
@@ -87,7 +90,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     * @return the old value or null, if none
     */
   def putIfAbsent(key: K, value: V): V = {
-    _asJava.putIfAbsent(key, value)
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    RuntimeObjectConversion.asScala[V](_asJava.putIfAbsent(key, value))
   }
 
   /**
@@ -118,7 +122,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     * @return the old value
     */
   def replace(key: K, value: V): V = {
-    _asJava.replace(key, value)
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    RuntimeObjectConversion.asScala[V](_asJava.replace(key, value))
   }
 
   /**

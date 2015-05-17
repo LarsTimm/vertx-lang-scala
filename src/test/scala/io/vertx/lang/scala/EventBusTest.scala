@@ -34,7 +34,6 @@ class EventBusTest extends VertxTestBase {
     _vertx = new Vertx(vertx);
   }
 
-  /* TODO: Needs conversion between objects
   @Test
   def BufferTest() = {
     val eventBus = _vertx.eventBus()
@@ -46,13 +45,13 @@ class EventBusTest extends VertxTestBase {
         fail()
       }
     }
-    eventBus.send("the_address", Buffer.buffer("the_message").asJava)
+    eventBus.send("the_address", Buffer.buffer("the_message"))
     await()
   }
-*/
-  
+
   @Test
   def StringTest() = {
+    val test: java.lang.Double = 1.234
     val eventBus = _vertx.eventBus()
     eventBus.consumer[String]("the_address").handler { message =>
       val body = message.body()
@@ -66,4 +65,21 @@ class EventBusTest extends VertxTestBase {
     eventBus.send("the_address", value)
     await()
   }
+  
+  @Test
+  def DoubleTest() = {
+    val eventBus = _vertx.eventBus()
+    eventBus.consumer[Double]("the_address").handler { message =>
+      val body = message.body()
+      if (body.equals(1.234)) {
+        testComplete()
+      } else {
+        fail()
+      }
+    }
+    val value = 1.234
+    eventBus.send("the_address", value)
+    await()
+  }
+
 }
