@@ -5,7 +5,7 @@ import io.vertx.lang.scala.ScalaVerticle
 
 class HelloWorldHttpVerticle extends ScalaVerticle {
 
-  override def start(startFuture: Future[Void]): Unit = {
+  override def start(promise: scala.concurrent.Promise[Unit]): Unit = {
     val server = vertx.createHttpServer()
     server.requestHandler { request =>
       println("Got request")
@@ -16,6 +16,6 @@ class HelloWorldHttpVerticle extends ScalaVerticle {
       response.end()
     }
     server.listen(8080)
-    startFuture.complete()
+    promise.success(Unit)
   }
 }

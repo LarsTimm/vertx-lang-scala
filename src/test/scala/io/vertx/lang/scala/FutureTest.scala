@@ -16,8 +16,6 @@
 
 package io.vertx.lang.scala
 
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.impl.LoggerFactory;
 import io.vertx.lang.scala.VertxExecutionContext._
 import io.vertx.scala.core.Vertx
 import io.vertx.test.core.VertxTestBase
@@ -32,8 +30,7 @@ class FutureTest extends VertxTestBase {
   var _vertx: Vertx = null;
 
   // We need to manually create the execution context for the futures
-  private val logger: Logger = LoggerFactory.getLogger(classOf[FutureTest])
-  private implicit val executionContext: ExecutionContext = VertxExecutionContext(logger)
+  private implicit val executionContext = VertxExecutionContext()
 
   override def setUp() = {
     super.setUp()

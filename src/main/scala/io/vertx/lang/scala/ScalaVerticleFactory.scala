@@ -39,17 +39,17 @@ class ScalaVerticleFactory extends VerticleFactory {
   override def createVerticle(verticleName: String, classLoader: ClassLoader): Verticle = {
     val name = VerticleFactory.removePrefix(verticleName);
     if (name.endsWith(".scala")) {
-      verticleFromSource(name, classLoader).get
+      verticleFromSource(name, classLoader).get.asJava()
     } else {
-      verticleFromClass(name, classLoader).get
+      verticleFromClass(name, classLoader).get.asJava()
     }
   }
 
-  private def verticleFromClass(verticleName: String, classLoader: ClassLoader): Try[Verticle] = {
+  private def verticleFromClass(verticleName: String, classLoader: ClassLoader): Try[ScalaVerticle] = {
     ClassLoaders.newInstance(verticleName, classLoader)
   }
   
-  private def verticleFromSource(verticleName: String, classLoader: ClassLoader): Try[Verticle] = {
+  private def verticleFromSource(verticleName: String, classLoader: ClassLoader): Try[ScalaVerticle] = {
     val settings = interpreterSettings(classLoader)
     val interpreter = new ScalaInterpreter(
       settings.get, vertx, new LogPrintWriter(logger))
@@ -90,7 +90,7 @@ class ScalaVerticleFactory extends VerticleFactory {
     }
   }      
 
-  private def runAsScript(verticleName: String, interpreter: ScalaInterpreter, classLoader: ClassLoader): Try[Verticle] = {
+  private def runAsScript(verticleName: String, interpreter: ScalaInterpreter, classLoader: ClassLoader): Try[ScalaVerticle] = {
     logger.info(s"Compiling $verticleName as Scala script")
     // Try running it as a script
     for {
@@ -147,11 +147,11 @@ class ScalaVerticleFactory extends VerticleFactory {
     }
   }
 
-  private def newVerticleInstance(className: String, classLoader: ClassLoader): Try[Verticle] = {
+  private def newVerticleInstance(className: String, classLoader: ClassLoader): Try[ScalaVerticle] = {
     // If class not found, try to deduce a shorter name in case a system path was passed
     // Could have used recoverWith but you lose tail recursion, so using pattern matching
     @tailrec
-    def searchVerticleInstance(className: String, classLoader: ClassLoader): Try[Verticle] = {
+    def searchVerticleInstance(className: String, classLoader: ClassLoader): Try[ScalaVerticle] = {
       val instanceTry = ClassLoaders.newInstance(className, classLoader)
       instanceTry match {
         case Success(verticle) => instanceTry
