@@ -1,8 +1,12 @@
 package io.vertx.lang.scala
 
-import io.vertx.core.{DeploymentOptions, Vertx, Verticle}
+
+import io.vertx.core.{ Vertx => JVertx }
+import io.vertx.core.Verticle
 import io.vertx.core.Future;
 import io.vertx.core.spi.VerticleFactory
+
+import io.vertx.scala.core.Vertx
 
 import java.io.{PrintWriter, Writer, File, FilenameFilter}
 
@@ -11,9 +15,7 @@ import scala.util.matching.Regex
 
 import io.vertx.core.logging.Logger
 import io.vertx.core.logging.impl.LoggerFactory
-//import org.vertx.java.platform.{ Container => JContainer, Verticle => JVerticle, VerticleFactory }
 import io.vertx.lang.scala.interpreter.{ClassLoaders, ScalaInterpreter}
-//import org.vertx.scala.platform.{Container, Verticle}
 import java.net.URL
 import java.security.{PrivilegedAction, AccessController}
 import scala.util.{Success, Failure, Try}
@@ -21,13 +23,14 @@ import scala.annotation.tailrec
 
 /**
  * @author <a href="http://www.campudus.com/">Joern Bernhardt</a>
+ * @author <a href="mailto:larsdtimm@gmail.com">Lars Timm</a>
  */
 class ScalaVerticleFactory extends VerticleFactory {
   import ScalaVerticleFactory._
 
   private var vertx: Vertx = null
 
-  override def init(vertx: Vertx): Unit = this.vertx = vertx
+  override def init(vertx: JVertx): Unit = this.vertx = new Vertx(vertx)
 
   override def prefix(): String = "scala"
 
@@ -44,15 +47,12 @@ class ScalaVerticleFactory extends VerticleFactory {
 
   private def verticleFromClass(verticleName: String, classLoader: ClassLoader): Try[Verticle] = {
     ClassLoaders.newInstance(verticleName, classLoader)
-/*    val clazz = classLoader.loadClass(verticleName)
-      val instance = clazz.newInstance().asInstanceOf[ScalaVerticle]
-        instance.asJava*/
   }
   
   private def verticleFromSource(verticleName: String, classLoader: ClassLoader): Try[Verticle] = {
     val settings = interpreterSettings(classLoader)
     val interpreter = new ScalaInterpreter(
-      settings.get, /*vertx, container,*/ new LogPrintWriter(logger))
+      settings.get, vertx, new LogPrintWriter(logger))
 
     try {
       runAsScript(verticleName, interpreter, classLoader).recoverWith { case _ =>
@@ -173,13 +173,7 @@ class ScalaVerticleFactory extends VerticleFactory {
     }
   }
 
-  private case object DummyVerticle extends Verticle {
-    def getVertx(): io.vertx.core.Vertx = ???
-    def init(vertx: io.vertx.core.Vertx, context: io.vertx.core.Context): Unit = ???
-    def start(startFuture: io.vertx.core.Future[Void]): Unit = ???
-    def stop(stopFuture: io.vertx.core.Future[Void]): Unit = ???
-  }                   
-
+  private case object DummyVerticle extends ScalaVerticle
 }
 
 object ScalaVerticleFactory {

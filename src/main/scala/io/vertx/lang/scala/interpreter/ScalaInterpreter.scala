@@ -22,11 +22,11 @@ import scala.util.{Success, Failure, Try}
  * Scala interpreter
  *
  * @author Galder Zamarreño
+ * @author <a href="mailto:larsdtimm@gmail.com">Lars Timm</a>
  */
 class ScalaInterpreter(
     settings: Settings,
-    //vertx: Vertx,
-    //container: Container,
+    vertx: Vertx,
     out: PrintWriter = new NewLinePrintWriter(new ConsoleWriter, true)) {
 
   private val interpreter = new IMain(settings, out)
@@ -40,19 +40,20 @@ class ScalaInterpreter(
   def runScript(script: URL): Try[Unit] = {
     val content = Source.fromURL(script).mkString
     val ops = List(
-      /* TODO
-      () => addImport("org.vertx.scala._"),
-      () => addImport("org.vertx.scala.core._"),
-      () => addImport("org.vertx.scala.core.buffer._"),
-      () => addImport("org.vertx.scala.core.dns._"),
-      () => addImport("org.vertx.scala.core.eventbus._"),
-      () => addImport("org.vertx.scala.core.file._"),
-      () => addImport("org.vertx.scala.core.http._"),
-      () => addImport("org.vertx.scala.core.json._"),
-      () => addImport("org.vertx.scala.core.net._"),
-      () => addImport("org.vertx.scala.core.streams._"),
-      () => bind("vertx", "org.vertx.scala.core.Vertx", vertx),
-      () => bind("container", "org.vertx.scala.platform.Container", container),*/
+      () => addImport("io.vertx.core.json._"),
+      () => addImport("io.vertx.lang.scala._"),
+      () => addImport("io.vertx.lang.scala.json._"),
+      () => addImport("io.vertx.scala.core._"),
+      () => addImport("io.vertx.scala.core.buffer._"),
+      () => addImport("io.vertx.scala.core.datagram._"),
+      () => addImport("io.vertx.scala.core.dns._"),
+      () => addImport("io.vertx.scala.core.eventbus._"),
+      () => addImport("io.vertx.scala.core.file._"),
+      () => addImport("io.vertx.scala.core.http._"),
+      () => addImport("io.vertx.scala.core.net._"),
+      () => addImport("io.vertx.scala.core.shareddata._"),
+      () => addImport("io.vertx.scala.core.streams._"),
+      () => bind("vertx", "io.vertx.scala.core.Vertx", vertx),
       () => interpret(content)
     )
     val result = interpret(ops, InterpreterIncomplete)
