@@ -5,7 +5,7 @@
 @foreach{method : instanceMethods}
 @if{includeMethod(method, instanceMethods)}
 @if{method.doc != null}@{methodDoc(method, indentation + '  ');}@end{}
-@{indentation}  def @{method.name}@includeNamed{'writeTypeParamsWithVariance';typeParams=method.typeParams}@{multiMethodParams(method);}: @{returnTypeOf(method);} = {\n
+@{indentation}  def @{method.name}@includeNamed{'writeTypeParamsWithVariance';typeParams=method.typeParams}@{multiMethodParams(method, instanceMethods);}: @{returnTypeOf(method);} = {\n
 @{methodInvocation('_asJava', method, indentation + '    ');}
 @{indentation}  }\n\n
 @end{}

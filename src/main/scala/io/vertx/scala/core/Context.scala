@@ -127,7 +127,8 @@ class Context(private val _asJava: io.vertx.core.Context) {
     * @return the data
     */
   def get[T](key: String): T = {
-    _asJava.get(key)
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    RuntimeObjectConversion.asScala[T](_asJava.get(key))
   }
 
   /**
@@ -137,8 +138,9 @@ class Context(private val _asJava: io.vertx.core.Context) {
     * @param key the key of the data
     * @param value the data
     */
-  def put(key: String, value: AnyRef): Unit = {
-    _asJava.put(key, value)
+  def put(key: String, value: Any): Unit = {
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    _asJava.put(key, RuntimeObjectConversion.asJava(value))
   }
 
   /**

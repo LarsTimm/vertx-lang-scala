@@ -54,7 +54,8 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     * @return the body, or null.
     */
   def body(): T = {
-    _asJava.body()
+    import io.vertx.lang.scala.RuntimeObjectConversion
+    RuntimeObjectConversion.asScala[T](_asJava.body())
   }
 
   /**
@@ -71,10 +72,11 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     * @param message the message to reply with.
     * @return the reply handler for the reply.
     */
-  def reply[R](message: AnyRef): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[R]] = {
+  def reply[R](message: Any): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[R]] = {
     import io.vertx.lang.scala.HandlerOps._
+    import io.vertx.lang.scala.RuntimeObjectConversion
     val promise = scala.concurrent.Promise[io.vertx.scala.core.eventbus.Message[R]]()
-    _asJava.reply(message, promiseToMappedAsyncResultHandler(Message.apply[R])(promise))
+    _asJava.reply(RuntimeObjectConversion.asJava(message), promiseToMappedAsyncResultHandler(Message.apply[R])(promise))
     promise.future
   }
 
@@ -85,10 +87,11 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
     * @return the reply handler for the reply.
     */
-  def reply[R](message: AnyRef, options: io.vertx.core.eventbus.DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[R]] = {
+  def reply[R](message: Any, options: io.vertx.core.eventbus.DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[R]] = {
     import io.vertx.lang.scala.HandlerOps._
+    import io.vertx.lang.scala.RuntimeObjectConversion
     val promise = scala.concurrent.Promise[io.vertx.scala.core.eventbus.Message[R]]()
-    _asJava.reply(message, options, promiseToMappedAsyncResultHandler(Message.apply[R])(promise))
+    _asJava.reply(RuntimeObjectConversion.asJava(message), options, promiseToMappedAsyncResultHandler(Message.apply[R])(promise))
     promise.future
   }
 
