@@ -117,7 +117,8 @@ class HttpClientResponse(private val _asJava: io.vertx.core.http.HttpClientRespo
     * This saves you having to manually set a dataHandler and an endHandler and append the chunks of the body until
     * the whole body received. Don't use this if your request body is large - you could potentially run out of RAM.
     *
-    * @param bodyHandler This handler will be called after all the body has been received/
+    * @param bodyHandler This handler will be called after all the body has been received
+    */
   def bodyHandler(bodyHandler: io.vertx.scala.core.buffer.Buffer => Unit): io.vertx.scala.core.http.HttpClientResponse = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.bodyHandler(funcToMappedHandler(Buffer.apply)(bodyHandler))

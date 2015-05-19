@@ -99,7 +99,8 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     * the handler will be called with a failure corresponding to the failure code and message specified here.
     *
     * @param failureCode A failure code to pass back to the sender
-    * @param message A message to pass back to the sender/
+    * @param message A message to pass back to the sender
+    */
   def fail(failureCode: Int, message: String): Unit = {
     _asJava.fail(failureCode, message)
   }

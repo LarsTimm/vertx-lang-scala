@@ -57,7 +57,8 @@ class HttpServerFileUpload(private val _asJava: io.vertx.core.http.HttpServerFil
 
   /** Stream the content of this upload to the given file on storage.
     *
-    * @param filename the name of the file/
+    * @param filename the name of the file
+    */
   def streamToFileSystem(filename: String): io.vertx.scala.core.http.HttpServerFileUpload = {
     _asJava.streamToFileSystem(filename)
     this

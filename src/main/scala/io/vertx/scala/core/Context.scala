@@ -56,7 +56,8 @@ class Context(private val _asJava: io.vertx.core.Context) {
 
   /** Run the specified action asynchronously on the same context, some time after the current execution has completed.
     *
-    * @param action the action to run/
+    * @param action the action to run
+    */
   def runOnContext(action: => Unit): Unit = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.runOnContext(funcToMappedHandler[java.lang.Void, Unit](x => x.asInstanceOf[Unit])(_ =>action))
@@ -133,7 +134,8 @@ class Context(private val _asJava: io.vertx.core.Context) {
     * This can be used to share data between different handlers that share a context
     *
     * @param key the key of the data
-    * @param value the data/
+    * @param value the data
+    */
   def put(key: String, value: Any): Unit = {
     import io.vertx.lang.scala.RuntimeObjectConversion
     _asJava.put(key, RuntimeObjectConversion.asJava(value))

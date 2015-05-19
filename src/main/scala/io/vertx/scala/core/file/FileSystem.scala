@@ -547,7 +547,8 @@ class FileSystem(private val _asJava: io.vertx.core.file.FileSystem) {
     * The file is opened for both reading and writing. If the file does not already exist it will be created.
     *
     * @param path path to the file
-    * @param options options describing how the file should be openedsee <a href="../../../../../../../cheatsheet/OpenOptions.html">OpenOptions</a>/
+    * @param options options describing how the file should be openedsee <a href="../../../../../../../cheatsheet/OpenOptions.html">OpenOptions</a>
+    */
   def open(path: String, options: io.vertx.core.file.OpenOptions): scala.concurrent.Future[io.vertx.scala.core.file.AsyncFile] = {
     import io.vertx.lang.scala.HandlerOps._
     val promise = scala.concurrent.Promise[io.vertx.scala.core.file.AsyncFile]()

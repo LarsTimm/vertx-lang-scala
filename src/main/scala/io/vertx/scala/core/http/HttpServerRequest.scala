@@ -158,7 +158,8 @@ class HttpServerRequest(private val _asJava: io.vertx.core.http.HttpServerReques
     * This saves the user having to manually setting a data and end handler and append the chunks of the body until
     * the whole body received. Don't use this if your request body is large - you could potentially run out of RAM.
     *
-    * @param bodyHandler This handler will be called after all the body has been received/
+    * @param bodyHandler This handler will be called after all the body has been received
+    */
   def bodyHandler(bodyHandler: io.vertx.scala.core.buffer.Buffer => Unit): io.vertx.scala.core.http.HttpServerRequest = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.bodyHandler(funcToMappedHandler(Buffer.apply)(bodyHandler))

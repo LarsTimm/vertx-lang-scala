@@ -51,7 +51,8 @@ class Future[T](private val _asJava: io.vertx.core.Future[T]) {
 
   /** Set the result. Any handler will be called, if there is one, and the future will be marked as completed.
     *
-    * @param result the result/
+    * @param result the result
+    */
   def complete(result: T): Unit = {
     _asJava.complete(result)
   }
@@ -64,7 +65,8 @@ class Future[T](private val _asJava: io.vertx.core.Future[T]) {
 
   /** Set the failure. Any handler will be called, if there is one, and the future will be marked as completed.
     *
-    * @param failureMessage the failure message/
+    * @param failureMessage the failure message
+    */
   def fail(failureMessage: String): Unit = {
     _asJava.fail(failureMessage)
   }

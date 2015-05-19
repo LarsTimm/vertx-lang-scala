@@ -253,7 +253,8 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
   /** Puts the handler on the event queue for the current context so it will be run asynchronously ASAP after all
     * preceeding events have been handled.
     *
-    * @param action - a handler representing the action to execute/
+    * @param action - a handler representing the action to execute
+    */
   def runOnContext(action: => Unit): Unit = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.runOnContext(funcToMappedHandler[java.lang.Void, Unit](x => x.asInstanceOf[Unit])(_ =>action))

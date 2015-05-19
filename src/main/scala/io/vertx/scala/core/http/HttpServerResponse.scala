@@ -201,7 +201,8 @@ class HttpServerResponse(private val _asJava: io.vertx.core.http.HttpServerRespo
 
   /** Same as [[io.vertx.scala.core.http.HttpServerResponse#end]] but writes a String in UTF-8 encoding before ending the response.
     *
-    * @param chunk the string to write before ending the response/
+    * @param chunk the string to write before ending the response
+    */
   def end(chunk: String): Unit = {
     _asJava.end(chunk)
   }
@@ -209,7 +210,8 @@ class HttpServerResponse(private val _asJava: io.vertx.core.http.HttpServerRespo
   /** Same as [[io.vertx.scala.core.http.HttpServerResponse#end]] but writes a String with the specified encoding before ending the response.
     *
     * @param chunk the string to write before ending the response
-    * @param enc the encoding to use/
+    * @param enc the encoding to use
+    */
   def end(chunk: String, enc: String): Unit = {
     _asJava.end(chunk, enc)
   }
@@ -217,7 +219,8 @@ class HttpServerResponse(private val _asJava: io.vertx.core.http.HttpServerRespo
   /** Same as [[io.vertx.scala.core.http.HttpServerResponse#end]] but writes some data to the response body before ending. If the response is not chunked and
     * no other data has been written then the @code{Content-Length} header will be automatically set.
     *
-    * @param chunk the buffer to write before ending the response/
+    * @param chunk the buffer to write before ending the response
+    */
   def end(chunk: io.vertx.scala.core.buffer.Buffer): Unit = {
     _asJava.end(chunk.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
   }

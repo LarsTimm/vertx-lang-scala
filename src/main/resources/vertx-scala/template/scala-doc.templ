@@ -14,9 +14,11 @@
       doc += "/**";
       doc += renderDoc(commentedIndentation, method.doc, renderDocLink);
       doc += commentedIndentation;
+      var returnParamWritten = false;
       for (param : method.params) {
         if (!isAsyncResult(param)) {
           if (param.description != null) {
+            returnParamWritten = true;
             doc += "\n";
             doc += commentedIndentation;
             doc += " @param " + param.name + " ";
@@ -32,10 +34,9 @@
            returnDescription = param.description;
          }
       }
-      var returnWritten = false;
       if (!returnType.name.equals("void")) {
         if (returnDescription != null) {
-          returnWritten = true;
+          returnParamWritten = true;
           doc += "\n";
           doc += commentedIndentation;
           doc += " @return ";
@@ -45,10 +46,10 @@
           }
         }
       }
-      if (returnWritten) {
+      if (returnParamWritten) {
         doc += "\n";
-        doc += commentedIndentation;
-      }
+	      doc += commentedIndentation;
+      } 
       doc += "/\n";
     }
     doc;

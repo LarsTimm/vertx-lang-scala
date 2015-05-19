@@ -45,7 +45,8 @@ class NetClient(private val _asJava: io.vertx.core.net.NetClient)
     * [[io.vertx.scala.core.net.NetSocket]] instance is supplied via the `connectHandler` instance
     *
     * @param port the port
-    * @param host the host/
+    * @param host the host
+    */
   def connect(port: Int, host: String): scala.concurrent.Future[io.vertx.scala.core.net.NetSocket] = {
     import io.vertx.lang.scala.HandlerOps._
     val promise = scala.concurrent.Promise[io.vertx.scala.core.net.NetSocket]()
