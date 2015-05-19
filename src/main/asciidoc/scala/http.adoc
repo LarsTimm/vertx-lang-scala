@@ -8,7 +8,7 @@ The simplest way to create an HTTP server, using all default options is as follo
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Configuring an HTTP server
@@ -18,7 +18,7 @@ instance when creating it:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Start the Server Listening
@@ -30,14 +30,14 @@ To tell the server to listen at the host and port as specified in the options:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Or to specify the host and port in the call to listen, ignoring what is configured in the options:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The default host is `0.0.0.0` which means 'listen on all available addresses' and the default port is `80`.
@@ -50,7 +50,7 @@ For example:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Getting notified of incoming requests
@@ -59,7 +59,7 @@ To be notified when a request arrives you need to set a `link:scaladocs/io/vertx
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Handling requests
@@ -83,7 +83,7 @@ Here's a simple example of a server handling a request and replying with "hello 
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Request version
@@ -138,7 +138,7 @@ It also has case-insensitive keys, that means you can do the following:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Request parameters
@@ -190,7 +190,7 @@ this will get called every time a chunk of the request body arrives. Here's an e
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The object passed into the handler is a `link:scaladocs/io/vertx/scala/core/buffer/Buffer.html[Buffer]`, and the handler can be called
@@ -201,7 +201,7 @@ the aggregation yourself as follows:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 This is such a common case, that Vert.x provides a `link:scaladocs/io/vertx/scala/core/http/HttpServerRequest.html#bodyHandler(io.vertx.core.Handler)[bodyHandler]` to do this
@@ -209,7 +209,7 @@ for you. The body handler is called once when all the body has been received:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Pumping requests
@@ -237,7 +237,7 @@ once the entire body has been read:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Handling form file uploads
@@ -254,7 +254,7 @@ The object passed into the handler is a `link:scaladocs/io/vertx/scala/core/http
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 File uploads can be large we don't provide the entire upload in a single buffer as that might result in memory
@@ -262,7 +262,7 @@ exhaustion, instead, the upload data is received in chunks:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The upload object is a `link:scaladocs/io/vertx/scala/core/streams/ReadStream.html[ReadStream]` so you can pump the request body to any
@@ -273,7 +273,7 @@ If you just want to upload the file to disk somewhere you can use `link:scaladoc
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 WARNING: Make sure you check the filename in a production system to avoid malicious clients uploading files
@@ -306,14 +306,14 @@ With a single buffer:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 With a string. In this case the string will encoded using UTF-8 and the result written to the wire.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 With a string and an encoding. In this case the string will encoded using the specified encoding and the
@@ -321,7 +321,7 @@ result written to the wire.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Writing to a response is asynchronous and always returns immediately after the write has been queued.
@@ -343,7 +343,7 @@ With no arguments, the response is simply ended.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 It can also be called with a string or buffer in the same way `write` is called. In this case it's just the same as
@@ -351,7 +351,7 @@ calling write with a string or buffer followed by calling end with no arguments.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Closing the underlying connection
@@ -370,14 +370,14 @@ HTTP response headers can be added to the response by adding them directly to th
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Or you can use `link:scaladocs/io/vertx/scala/core/http/HttpServerResponse.html#putHeader(java.lang.String,%20java.lang.String)[putHeader]`
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Headers must all be added before any parts of the response body are written.
@@ -393,7 +393,7 @@ You put the HTTP response into chunked mode as follows:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Default is non-chunked. When in chunked mode, each call to one of the `link:scaladocs/io/vertx/scala/core/http/HttpServerResponse.html#write(io.vertx.core.buffer.Buffer)[write]`
@@ -406,14 +406,14 @@ To add trailers to the response, add them directly to the `link:scaladocs/io/ver
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Or use `link:scaladocs/io/vertx/scala/core/http/HttpServerResponse.html#putTrailer(java.lang.String,%20java.lang.String)[putTrailer]`.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Serving files directly from disk
@@ -434,7 +434,7 @@ Here's a very simple web server that serves files from the file system using sen
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Sending a file is asynchronous and may not complete until some time after the call has returned. If you want to
@@ -459,7 +459,7 @@ at any one time:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === HTTP Compression
@@ -490,14 +490,14 @@ You create an `link:scaladocs/io/vertx/scala/core/http/HttpClient.html[HttpClien
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 If you want to configure options for the client, you create it as follows:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Making requests
@@ -510,7 +510,7 @@ every time you make a request you can configure the client with a default host/p
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Alternatively if you find yourself making lots of requests to different host/ports with the same client you can
@@ -518,7 +518,7 @@ simply specify the host/port when doing the request.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Both methods of specifying host/port are supported for all the different ways of making requests with the client.
@@ -536,7 +536,7 @@ called with the http response when it comes back.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Writing general requests
@@ -547,7 +547,7 @@ the HTTP method at run-time:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Writing request bodies
@@ -565,14 +565,14 @@ Here are some examples of writing a POST request with a body:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Methods exist to write strings in UTF-8 encoding and in any specific encoding and to write buffers:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 If you are just writing a single string or buffer to the HTTP request you can write it and end the request in a
@@ -580,7 +580,7 @@ single call to the `end` function.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 When you're writing to a request, the first call to `write` will result in the request headers being written
@@ -605,7 +605,7 @@ You can write headers to a request using the `link:scaladocs/io/vertx/scala/core
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The headers are an instance of `link:scaladocs/io/vertx/scala/core/MultiMap.html[MultiMap]` which provides operations for adding, setting and removing
@@ -615,7 +615,7 @@ You can also write headers using `link:scaladocs/io/vertx/scala/core/http/HttpCl
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 If you wish to write headers to the request you must do so before any part of the request body is written.
@@ -632,7 +632,7 @@ Requests can be ended in several ways. With no arguments the request is simply e
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Or a string or buffer can be provided in the call to `end`. This is like calling `write` with the string or buffer
@@ -640,7 +640,7 @@ before calling `end` with no arguments
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Chunked HTTP requests
@@ -657,7 +657,7 @@ no need to set the `Content-Length` of the request up-front.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Request timeouts
@@ -674,7 +674,7 @@ instance:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 TODO - what about exceptions in the getNow methods where no exception handler can be provided??
@@ -689,7 +689,7 @@ not provide a handler when the request is created and set it later on the reques
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Using the request as a stream
@@ -701,7 +701,7 @@ For, example, you could pump a file on disk to a http request body as follows:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Handling http responses
@@ -714,7 +714,7 @@ and `link:scaladocs/io/vertx/scala/core/http/HttpClientResponse.html#statusMessa
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Using the response as a stream
@@ -730,7 +730,7 @@ The object returned is a `link:scaladocs/io/vertx/scala/core/MultiMap.html[Multi
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Chunked HTTP responses can also contain trailers - these are sent in the last chunk of the response body.
@@ -750,7 +750,7 @@ a `link:scaladocs/io/vertx/scala/core/buffer/Buffer.html[Buffer]` representing t
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 If you know the response body is not very large and want to aggregate it all in memory before handling it, you can
@@ -758,7 +758,7 @@ either aggregate it yourself:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Or you can use the convenience `link:scaladocs/io/vertx/scala/core/http/HttpClientResponse.html#bodyHandler(io.vertx.core.Handler)[bodyHandler]` which
@@ -766,7 +766,7 @@ is called with the entire body when the response has been fully read:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Response end handler
@@ -805,7 +805,7 @@ Here's an example:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Enabling compression on the client
@@ -906,14 +906,14 @@ When a WebSocket connection is made to the server, the handler will be called, p
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 You can choose to reject the WebSocket by calling `link:scaladocs/io/vertx/scala/core/http/ServerWebSocket.html#reject()[reject]`.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ===== Upgrading to WebSocket
@@ -923,7 +923,7 @@ call `link:scaladocs/io/vertx/scala/core/http/HttpServerRequest.html#upgrade()[u
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ===== The server WebSocket
@@ -943,7 +943,7 @@ The handler will be called with an instance of `link:scaladocs/io/vertx/scala/co
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Writing messages to WebSockets
@@ -953,7 +953,7 @@ common case) the simplest way to do this is to use `link:scaladocs/io/vertx/scal
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 If the websocket message is larger than the maximum websocket frame size as configured with
@@ -977,7 +977,7 @@ Here's an example for binary frames:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Reading frames from WebSockets
@@ -989,7 +989,7 @@ for example:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Closing WebSockets

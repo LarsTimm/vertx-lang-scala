@@ -12,7 +12,7 @@ Here's an example of asynchronously copying a file:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The blocking versions are named  and return the results or throw exceptions directly.
@@ -26,7 +26,7 @@ Here's the copy using the blocking API:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Many operations exist to copy, move, truncate, chmod and many other file operations.
@@ -41,7 +41,7 @@ You open an `link:scaladocs/io/vertx/scala/core/file/AsyncFile.html[AsyncFile]` 
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 

@@ -8,7 +8,7 @@ The simplest way to create a TCP server, using all default options is as follows
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Configuring a TCP server
@@ -18,7 +18,7 @@ instance when creating it:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Start the Server Listening
@@ -30,14 +30,14 @@ To tell the server to listen at the host and port as specified in the options:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Or to specify the host and port in the call to listen, ignoring what is configured in the options:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The default host is `0.0.0.0` which means 'listen on all available addresses' and the default port is `0`, which is a
@@ -51,7 +51,7 @@ For example:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Listening on a random port
@@ -62,7 +62,7 @@ To find out the real port the server is listening on you can call `link:scaladoc
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Getting notified of incoming connections
@@ -71,7 +71,7 @@ To be notified when a connection is made you need to set a `link:scaladocs/io/ve
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 When a connection is made the handler will be called with an instance of `link:scaladocs/io/vertx/scala/core/net/NetSocket.html[NetSocket]`.
@@ -89,7 +89,7 @@ the socket.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Writing data to a socket
@@ -98,7 +98,7 @@ You write to a socket using one of `link:scaladocs/io/vertx/scala/core/net/NetSo
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Write operations are asynchronous and may not occur until some time after the call to write has returned.
@@ -110,7 +110,7 @@ on it:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Handling exceptions
@@ -142,7 +142,7 @@ efficient way to send files, as it can be handled by the OS kernel directly wher
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Streaming sockets
@@ -172,7 +172,7 @@ This handler will then be called when the close has fully completed.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Automatic clean-up in verticles
@@ -193,7 +193,7 @@ You can instantiate more instances programmatically in your code:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 or, if you are using verticles you can simply deploy more instances of your server verticle by using the `-instances` option
@@ -205,7 +205,7 @@ or when programmatically deploying your verticle
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Once you do this you will find the echo server works functionally identically to before, but all your cores on your
@@ -230,7 +230,7 @@ The simplest way to create a TCP client, using all default options is as follows
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Configuring a TCP client
@@ -240,7 +240,7 @@ instance when creating it:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Making connections
@@ -251,7 +251,7 @@ specifying the port and host of the server and a handler that will be called wit
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Configuring connection attempts
@@ -265,7 +265,7 @@ only apply to creating initial connections.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 By default, multiple connection attempts are disabled.
@@ -301,14 +301,14 @@ The password for the key store should also be provided:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Alternatively you can read the key store yourself as a buffer and provide that directly:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Key/certificate in PKCS#12 format (http://en.wikipedia.org/wiki/PKCS_12), usually with the `.pfx`  or the `.p12`
@@ -316,28 +316,28 @@ extension can also be loaded in a similar fashion than JKS key stores:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Another way of providing server private key and certificate separately using `.pem` files.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Keep in mind that pem configuration, the private key is not crypted.
@@ -355,14 +355,14 @@ The password for the trust store should also be provided:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Alternatively you can read the trust store yourself as a buffer and provide that directly:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Certificate authority in PKCS#12 format (http://en.wikipedia.org/wiki/PKCS_12), usually with the `.pfx`  or the `.p12`
@@ -370,28 +370,28 @@ extension can also be loaded in a similar fashion than JKS trust stores:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Another way of providing server certificate authority using a list `.pem` files.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Enabling SSL/TLS on the client
@@ -408,7 +408,7 @@ be sure who you are connecting to. Use this with caution. Default value is false
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 If `trustAll` is not set then a client trust store must be
@@ -425,14 +425,14 @@ in the client trust store, the connection attempt will not succeed.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Certificate authority in PKCS#12 format (http://en.wikipedia.org/wiki/PKCS_12), usually with the `.pfx`  or the `.p12`
@@ -440,28 +440,28 @@ extension can also be loaded in a similar fashion than JKS trust stores:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Another way of providing server certificate authority using a list `.pem` files.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Specifying key/certificate for the client
@@ -476,14 +476,14 @@ Again it's just a regular Java key store. The client keystore location is set by
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Key/certificate in PKCS#12 format (http://en.wikipedia.org/wiki/PKCS_12), usually with the `.pfx`  or the `.p12`
@@ -491,28 +491,28 @@ extension can also be loaded in a similar fashion than JKS key stores:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Another way of providing server private key and certificate separately using `.pem` files.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Keep in mind that pem configuration, the private key is not crypted.
@@ -525,12 +525,12 @@ the crl list to use:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Buffer configuration is also supported:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----

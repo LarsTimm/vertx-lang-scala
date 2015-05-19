@@ -166,14 +166,32 @@ object Context {
   def apply(_asJava: io.vertx.core.Context): io.vertx.scala.core.Context =
     new io.vertx.scala.core.Context(_asJava)
 
+  /**
+    * Is the current thread a worker thread?
+    * 
+    * NOTE! This is not always the same as calling [[io.vertx.scala.core.Context#isWorkerContext]]. If you are running blocking code
+    * from an event loop context, then this will return true but [[io.vertx.scala.core.Context#isWorkerContext]] will return false.
+    * @return true if current thread is a worker thread, false otherwise
+    */
   def isOnWorkerThread(): Boolean = {
     io.vertx.core.Context.isOnWorkerThread()
   }
 
+  /**
+    * Is the current thread an event thread?
+    * 
+    * NOTE! This is not always the same as calling [[io.vertx.scala.core.Context#isEventLoopContext]]. If you are running blocking code
+    * from an event loop context, then this will return false but [[io.vertx.scala.core.Context#isEventLoopContext]] will return true.
+    * @return true if current thread is a worker thread, false otherwise
+    */
   def isOnEventLoopThread(): Boolean = {
     io.vertx.core.Context.isOnEventLoopThread()
   }
 
+  /**
+    * Is the current thread a Vert.x thread? That's either a worker thread or an event loop thread
+    * @return true if current thread is a Vert.x thread, false otherwise
+    */
   def isOnVertxThread(): Boolean = {
     io.vertx.core.Context.isOnVertxThread()
   }

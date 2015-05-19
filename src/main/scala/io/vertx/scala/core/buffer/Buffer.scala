@@ -327,18 +327,41 @@ object Buffer {
   def apply(_asJava: io.vertx.core.buffer.Buffer): io.vertx.scala.core.buffer.Buffer =
     new io.vertx.scala.core.buffer.Buffer(_asJava)
 
+  /**
+    * Create a new, empty buffer.
+    * @return the buffer
+    */
   def buffer(): io.vertx.scala.core.buffer.Buffer = {
     Buffer.apply(io.vertx.core.buffer.Buffer.buffer())
   }
 
+  /**
+    * Create a new buffer given the initial size hint.
+    * 
+    * If you know the buffer will require a certain size, providing the hint can prevent unnecessary re-allocations
+    * as the buffer is written to and resized.
+    * @param initialSizeHint the hint, in bytes
+    * @return the buffer
+    */
   def buffer(initialSizeHint: Int): io.vertx.scala.core.buffer.Buffer = {
     Buffer.apply(io.vertx.core.buffer.Buffer.buffer(initialSizeHint))
   }
 
+  /**
+    * Create a new buffer from a string. The string will be UTF-8 encoded into the buffer.
+    * @param string the string
+    * @return the buffer
+    */
   def buffer(string: String): io.vertx.scala.core.buffer.Buffer = {
     Buffer.apply(io.vertx.core.buffer.Buffer.buffer(string))
   }
 
+  /**
+    * Create a new buffer from a string and using the specified encoding.
+    * The string will be encoded into the buffer using the specified encoding.
+    * @param string the string
+    * @return the buffer
+    */
   def buffer(string: String, enc: String): io.vertx.scala.core.buffer.Buffer = {
     Buffer.apply(io.vertx.core.buffer.Buffer.buffer(string, enc))
   }

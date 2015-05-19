@@ -360,14 +360,30 @@ object Vertx {
   def apply(_asJava: io.vertx.core.Vertx): io.vertx.scala.core.Vertx =
     new io.vertx.scala.core.Vertx(_asJava)
 
+  /**
+    * Creates a non clustered instance using default options.
+    * @return the instance
+    */
   def vertx(): io.vertx.scala.core.Vertx = {
     Vertx.apply(io.vertx.core.Vertx.vertx())
   }
 
+  /**
+    * Creates a non clustered instance using the specified options
+    * @param options the options to usesee <a href="../../../../../../cheatsheet/VertxOptions.html">VertxOptions</a>
+    * @return the instance
+    */
   def vertx(options: io.vertx.core.VertxOptions): io.vertx.scala.core.Vertx = {
     Vertx.apply(io.vertx.core.Vertx.vertx(options))
   }
 
+  /**
+    * Creates a clustered instance using the specified options.
+    * 
+    * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
+    * @param options the options to usesee <a href="../../../../../../cheatsheet/VertxOptions.html">VertxOptions</a>
+    * @return the result handler that will receive the result
+    */
   def clusteredVertx(options: io.vertx.core.VertxOptions): scala.concurrent.Future[io.vertx.scala.core.Vertx] = {
     import io.vertx.lang.scala.HandlerOps._
     val promise = scala.concurrent.Promise[io.vertx.scala.core.Vertx]()
@@ -375,6 +391,10 @@ object Vertx {
     promise.future
   }
 
+  /**
+    * Gets the current context
+    * @return The current context or null if no current context
+    */
   def currentContext(): io.vertx.scala.core.Context = {
     Context.apply(io.vertx.core.Vertx.currentContext())
   }

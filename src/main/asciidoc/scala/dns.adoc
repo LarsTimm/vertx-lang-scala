@@ -9,7 +9,7 @@ To obtain a DnsClient instance you will create a new via the Vertx instance.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Be aware that you can pass in a varargs of InetSocketAddress arguments to specifiy more then one DNS Server to try
@@ -25,7 +25,7 @@ To lookup the A / AAAA record for "vertx.io" you would typically use it like:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === lookup4
@@ -37,7 +37,7 @@ To lookup the A record for "vertx.io" you would typically use it like:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === lookup6
@@ -49,7 +49,7 @@ To lookup the A record for "vertx.io" you would typically use it like:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === resolveA
@@ -61,7 +61,7 @@ To lookup all the A records for "vertx.io" you would typically do:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === resolveAAAA
@@ -73,7 +73,7 @@ To lookup all the AAAAA records for "vertx.io" you would typically do:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === resolveCNAME
@@ -85,7 +85,7 @@ To lookup all the CNAME records for "vertx.io" you would typically do:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === resolveMX
@@ -97,7 +97,7 @@ To lookup all the MX records for "vertx.io" you would typically do:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Be aware that the List will contain the `link:scaladocs/io/vertx/scala/core/dns/MxRecord.html[MxRecord]` sorted by the priority of them, which
@@ -107,7 +107,7 @@ The `link:scaladocs/io/vertx/scala/core/dns/MxRecord.html[MxRecord]` allows you 
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === resolveTXT
@@ -118,7 +118,7 @@ To resolve all the TXT records for "vertx.io" you could use something along thes
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === resolveNS
@@ -130,7 +130,7 @@ To resolve all the NS records for "vertx.io" you could use something along these
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === resolveSRV
@@ -142,7 +142,7 @@ To lookup all the SRV records for "vertx.io" you would typically do:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Be aware that the List will contain the SrvRecords sorted by the priority of them, which means SrvRecords
@@ -152,7 +152,7 @@ The `link:scaladocs/io/vertx/scala/core/dns/SrvRecord.html[SrvRecord]` allows yo
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Please refer to the API docs for the exact details.
@@ -165,7 +165,7 @@ To resolve the PTR record for the ipaddress 10.0.0.1 you would use the PTR notio
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === reverseLookup
@@ -177,7 +177,7 @@ To do a reverse lookup for the ipaddress 10.0.0.1 do something similar like this
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 include::override/dns.adoc[]

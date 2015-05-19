@@ -18,21 +18,21 @@ Create a new empty buffer:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Create a buffer from a String. The String will be encoded in the buffer using UTF-8.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Create a buffer from a String: The String will be encoded using the specified encoding, e.g:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 include::override/buffer_from_bytes.adoc[]
@@ -45,7 +45,7 @@ Note that buffers created this way *are empty*. It does not create a buffer fill
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Writing to a Buffer
@@ -63,7 +63,7 @@ The return value of the  methods is the buffer itself, so these can be chained:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Random access buffer writes
@@ -76,7 +76,7 @@ The buffer will always expand as necessary to accommodate the data.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Reading from a Buffer
@@ -86,7 +86,7 @@ The first argument to these methods is an index in the buffer from where to get 
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Buffer length

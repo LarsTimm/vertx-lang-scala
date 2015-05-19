@@ -6,8 +6,7 @@ import io.vertx.scala.core.{Context, Vertx}
 import scala.concurrent.Promise
 import scala.util.{Success, Failure}
 
-/**
-  * A verticle is a piece of code that can be deployed by Vert.x.
+/** A verticle is a piece of code that can be deployed by Vert.x.
   *
   * Use of verticles with Vert.x is entirely optional, but if you use them they provide an <i>actor-like</i>
   * deployment and concurrency model, out of the box.

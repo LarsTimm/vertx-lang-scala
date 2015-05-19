@@ -22,7 +22,7 @@ Here's an example of using a shared local map:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Cluster-wide asynchronous maps
@@ -40,7 +40,7 @@ Getting the map is asynchronous and the result is returned to you in the handler
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Putting data in a map
@@ -51,7 +51,7 @@ The actual put is asynchronous and the handler is notified once it is complete:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Getting data from a map
@@ -62,7 +62,7 @@ The actual get is asynchronous and the handler is notified with the result some 
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ===== Other map operations
@@ -91,7 +91,7 @@ another caller can obtain it.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 You can also get a lock with a timeout. If it fails to obtain the lock within the timeout the handler will be called
@@ -99,7 +99,7 @@ with a failure:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Cluster-wide counters
@@ -112,7 +112,7 @@ You obtain an instance with `link:scaladocs/io/vertx/scala/core/shareddata/Share
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Once you have an instance you can retrieve the current count, atomically increment it, decrement and add a value to

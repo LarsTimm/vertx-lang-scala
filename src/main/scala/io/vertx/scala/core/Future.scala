@@ -80,18 +80,36 @@ object Future {
   def apply[T](_asJava: io.vertx.core.Future[T]): io.vertx.scala.core.Future[T] =
     new io.vertx.scala.core.Future[T](_asJava)
 
+  /**
+    * Create a future that hasn't completed yet
+    * @return the future
+    */
   def future[T](): io.vertx.scala.core.Future[T] = {
     Future.apply[T](io.vertx.core.Future.future())
   }
 
+  /**
+    * Create a succeeded future with a null result
+    * @return the future
+    */
   def succeededFuture[T](): io.vertx.scala.core.Future[T] = {
     Future.apply[T](io.vertx.core.Future.succeededFuture())
   }
 
+  /**
+    * Created a succeeded future with the specified result.
+    * @param result the result
+    * @return the future
+    */
   def succeededFuture[T](result: T): io.vertx.scala.core.Future[T] = {
     Future.apply[T](io.vertx.core.Future.succeededFuture(result))
   }
 
+  /**
+    * Create a failed future with the specified failure message.
+    * @param failureMessage the failure message
+    * @return the future
+    */
   def failedFuture[T](failureMessage: String): io.vertx.scala.core.Future[T] = {
     Future.apply[T](io.vertx.core.Future.failedFuture(failureMessage))
   }

@@ -31,7 +31,7 @@ and receive.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The returned `link:scaladocs/io/vertx/scala/core/datagram/DatagramSocket.html[DatagramSocket]` will not be bound to a specific port. This is not a
@@ -48,7 +48,7 @@ Sending packets is as easy as shown here:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 === Receiving Datagram packets
@@ -70,7 +70,7 @@ So to listen on a specific address and port you would do something like shown he
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Be aware that even if the {code AsyncResult} is successed it only means it might be written on the network
@@ -95,7 +95,7 @@ This is show here:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 All sockets that have joined the multicast group 230.0.0.1 will receive the packet.
@@ -120,7 +120,7 @@ would do something like shown here:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ===== Unlisten / leave a Multicast group
@@ -133,7 +133,7 @@ This is shown here:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ===== Blocking multicast
@@ -150,7 +150,7 @@ like shown here:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== DatagramSocket properties

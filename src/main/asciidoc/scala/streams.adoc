@@ -28,7 +28,7 @@ to the `NetSocket`, for example:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 There's a problem with the above example: If data is read from the socket faster than it can be
@@ -41,7 +41,7 @@ writing to it:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 This example won't run out of RAM but we'll end up losing data if the write queue gets full. What we
@@ -49,7 +49,7 @@ really want to do is pause the `NetSocket` when the write queue is full. Let's d
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 We're almost there, but not quite. The `NetSocket` now gets paused when the file is full, but we also need to unpause
@@ -57,7 +57,7 @@ it when the write queue has processed its backlog:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 And there we have it. The `link:scaladocs/io/vertx/scala/core/streams/WriteStream.html#drainHandler(io.vertx.core.Handler)[drainHandler]` event handler will
@@ -70,7 +70,7 @@ the `WriteStream` and it tell it to start:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 Which does exactly the same thing as the more verbose example.

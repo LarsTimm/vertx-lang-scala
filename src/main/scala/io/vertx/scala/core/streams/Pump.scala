@@ -83,10 +83,24 @@ object Pump {
   def apply(_asJava: io.vertx.core.streams.Pump): io.vertx.scala.core.streams.Pump =
     new io.vertx.scala.core.streams.Pump(_asJava)
 
+  /**
+    * Create a new `Pump` with the given `ReadStream` and `WriteStream`
+    * @param rs the read stream
+    * @param ws the write stream
+    * @return the pump
+    */
   def pump[T](rs: io.vertx.scala.core.streams.ReadStream[T], ws: io.vertx.scala.core.streams.WriteStream[T]): io.vertx.scala.core.streams.Pump = {
     Pump.apply(io.vertx.core.streams.Pump.pump(rs.asJava.asInstanceOf[io.vertx.core.streams.ReadStream[T]], ws.asJava.asInstanceOf[io.vertx.core.streams.WriteStream[T]]))
   }
 
+  /**
+    * Create a new `Pump` with the given `ReadStream` and `WriteStream` and
+    * `writeQueueMaxSize`
+    * @param rs the read stream
+    * @param ws the write stream
+    * @param writeQueueMaxSize the max size of the write queue
+    * @return the pump
+    */
   def pump[T](rs: io.vertx.scala.core.streams.ReadStream[T], ws: io.vertx.scala.core.streams.WriteStream[T], writeQueueMaxSize: Int): io.vertx.scala.core.streams.Pump = {
     Pump.apply(io.vertx.core.streams.Pump.pump(rs.asJava.asInstanceOf[io.vertx.core.streams.ReadStream[T]], ws.asJava.asInstanceOf[io.vertx.core.streams.WriteStream[T]], writeQueueMaxSize))
   }

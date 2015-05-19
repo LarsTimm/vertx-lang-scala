@@ -104,6 +104,7 @@ import @{importedType}\n
 	@foreach{method : staticMethods}
 	@if{includeMethod(method, staticMethods)}
 	\n
+		@if{method.doc != null}@{methodDoc(method, indentation + '  ');}@end{}
 	  def @{method.name}@includeNamed{'writeTypeParamsWithVariance';typeParams=method.typeParams}@{multiMethodParams(method, staticMethods);}: @{returnTypeOf(method);} = {\n
 			@{methodInvocation(type.raw.name, method, '    ');}
 	  }\n

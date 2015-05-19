@@ -100,7 +100,7 @@ You get a reference to the event bus as follows:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 There is a single instance of the event bus per Vert.x instance.
@@ -112,7 +112,7 @@ Here's an example:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 When a message arrives for your handler, your handler will be called, passing in the `link:scaladocs/io/vertx/scala/core/eventbus/Message.html[message]`.
@@ -126,7 +126,7 @@ to return a +MessageConsumer+ with no handler set, and then set the handler on t
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 When registering a handler on a clustered event bus, it can take some time for the registration to reach all
@@ -137,7 +137,7 @@ on the +MessageConsumer+ object.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Un-registering Handlers
@@ -149,7 +149,7 @@ be notified when this is complete use `link:scaladocs/io/vertx/scala/core/eventb
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Publishing messages
@@ -159,7 +159,7 @@ address to publish it to.
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 That message will then be delivered to all handlers registered against the address +news.uk.sport+.
@@ -173,7 +173,7 @@ You can send a message with `link:scaladocs/io/vertx/scala/core/eventbus/EventBu
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== Setting headers on messages
@@ -183,7 +183,7 @@ Messages sent over the event bus can also contain headers. This can be specified
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 ==== The Message object
@@ -211,14 +211,14 @@ The receiver:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The sender:
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 The replies themselves can also be replied to so you can create a dialog between two different parties
@@ -255,7 +255,7 @@ instance as clustered;
 
 [source,scala]
 ----
-// Codetrans not implemented
+Codetrans not implemented
 ----
 
 You should also make sure you have a `ClusterManager` implementation on your classpath,
