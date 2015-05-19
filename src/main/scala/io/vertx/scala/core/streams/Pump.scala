@@ -17,8 +17,7 @@
 package io.vertx.scala.core.streams;
 
 
-/**
-  * Pumps data from a [[io.vertx.scala.core.streams.ReadStream]] to a [[io.vertx.scala.core.streams.WriteStream]] and performs flow control where necessary to
+/** Pumps data from a [[io.vertx.scala.core.streams.ReadStream]] to a [[io.vertx.scala.core.streams.WriteStream]] and performs flow control where necessary to
   * prevent the write stream buffer from getting overfull.
   * 
   * Instances of this class read items from a [[io.vertx.scala.core.streams.ReadStream]] and write them to a [[io.vertx.scala.core.streams.WriteStream]]. If data
@@ -41,8 +40,8 @@ class Pump(private val _asJava: io.vertx.core.streams.Pump) {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Set the write queue max size to `maxSize`
+  /** Set the write queue max size to `maxSize`
+    *
     * @param maxSize the max size
     * @return a reference to this, so the API can be used fluently
     */
@@ -51,8 +50,8 @@ class Pump(private val _asJava: io.vertx.core.streams.Pump) {
     this
   }
 
-  /**
-    * Start the Pump. The Pump can be started and stopped multiple times.
+  /** Start the Pump. The Pump can be started and stopped multiple times.
+    *
     * @return a reference to this, so the API can be used fluently
     */
   def start(): io.vertx.scala.core.streams.Pump = {
@@ -60,8 +59,8 @@ class Pump(private val _asJava: io.vertx.core.streams.Pump) {
     this
   }
 
-  /**
-    * Stop the Pump. The Pump can be started and stopped multiple times.
+  /** Stop the Pump. The Pump can be started and stopped multiple times.
+    *
     * @return a reference to this, so the API can be used fluently
     */
   def stop(): io.vertx.scala.core.streams.Pump = {
@@ -69,8 +68,7 @@ class Pump(private val _asJava: io.vertx.core.streams.Pump) {
     this
   }
 
-  /**
-    * Return the total number of items pumped by this pump.
+  /** Return the total number of items pumped by this pump.
     */
   def numberPumped(): Int = {
     _asJava.numberPumped()
@@ -83,8 +81,8 @@ object Pump {
   def apply(_asJava: io.vertx.core.streams.Pump): io.vertx.scala.core.streams.Pump =
     new io.vertx.scala.core.streams.Pump(_asJava)
 
-  /**
-    * Create a new `Pump` with the given `ReadStream` and `WriteStream`
+  /** Create a new `Pump` with the given `ReadStream` and `WriteStream`
+    *
     * @param rs the read stream
     * @param ws the write stream
     * @return the pump
@@ -93,9 +91,9 @@ object Pump {
     Pump.apply(io.vertx.core.streams.Pump.pump(rs.asJava.asInstanceOf[io.vertx.core.streams.ReadStream[T]], ws.asJava.asInstanceOf[io.vertx.core.streams.WriteStream[T]]))
   }
 
-  /**
-    * Create a new `Pump` with the given `ReadStream` and `WriteStream` and
+  /** Create a new `Pump` with the given `ReadStream` and `WriteStream` and
     * `writeQueueMaxSize`
+    *
     * @param rs the read stream
     * @param ws the write stream
     * @param writeQueueMaxSize the max size of the write queue

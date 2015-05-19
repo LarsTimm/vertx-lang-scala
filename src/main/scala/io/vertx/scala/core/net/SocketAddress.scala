@@ -17,8 +17,7 @@
 package io.vertx.scala.core.net;
 
 
-/**
-  * The address of a socket
+/** The address of a socket
   */
 class SocketAddress(private val _asJava: io.vertx.core.net.SocketAddress) {
 

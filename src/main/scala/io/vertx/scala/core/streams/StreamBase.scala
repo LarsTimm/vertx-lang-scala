@@ -18,15 +18,14 @@ package io.vertx.scala.core.streams;
 
 import io.vertx.core.Handler
 
-/**
-  * Base interface for a stream.
+/** Base interface for a stream.
   */
 trait StreamBase {
 
   def asJava: java.lang.Object
 
-  /**
-  * Set an exception handler.
+  /** Set an exception handler.
+  *
   * @param handler the handler
   * @return a reference to this, so the API can be used fluently
   */
@@ -43,8 +42,8 @@ object StreamBase {
 
     def asJava: java.lang.Object = _asJava
 
-    /**
-      * Set an exception handler.
+    /** Set an exception handler.
+      *
       * @param handler the handler
       * @return a reference to this, so the API can be used fluently
       */

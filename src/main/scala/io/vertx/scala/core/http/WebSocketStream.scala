@@ -19,8 +19,7 @@ package io.vertx.scala.core.http;
 import io.vertx.scala.core.streams.ReadStream
 import io.vertx.core.Handler
 
-/**
-  * A stream for [[io.vertx.scala.core.http.HttpClient]] WebSocket connection.
+/** A stream for [[io.vertx.scala.core.http.HttpClient]] WebSocket connection.
   * 
   * When the connection attempt is successful, the stream handler is called back with the [[io.vertx.scala.core.http.WebSocket]]
   * argument, immediately followed by a call to the end handler. When the connection attempt fails, the exception handler is invoked.

@@ -22,8 +22,7 @@ import io.vertx.scala.core.MultiMap
 import io.vertx.core.http.WebsocketVersion
 import io.vertx.core.Handler
 
-/**
-  * An asynchronous HTTP client.
+/** An asynchronous HTTP client.
   * 
   * It allows you to make requests to HTTP servers, and a single client can make requests to any server.
   * 
@@ -53,16 +52,16 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Whether the metrics are enabled for this measured object
+  /** Whether the metrics are enabled for this measured object
+    *
     * @return true if the metrics are enabled
     */
   def isMetricsEnabled(): Boolean = {
     _asJava.isMetricsEnabled()
   }
 
-  /**
-    * Create an HTTP request to send to the server at the specified host and port.
+  /** Create an HTTP request to send to the server at the specified host and port.
+    *
     * @param method the HTTP method
     * @param port the port
     * @param host the host
@@ -73,8 +72,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.request(method, port, host, requestURI))
   }
 
-  /**
-    * Create an HTTP request to send to the server at the specified host and default port.
+  /** Create an HTTP request to send to the server at the specified host and default port.
+    *
     * @param method the HTTP method
     * @param host the host
     * @param requestURI the relative URI
@@ -84,9 +83,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.request(method, host, requestURI))
   }
 
-  /**
-    * Create an HTTP request to send to the server at the specified host and port, specifying a response handler to receive
+  /** Create an HTTP request to send to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param method the HTTP method
     * @param port the port
     * @param host the host
@@ -99,9 +98,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.request(method, port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP request to send to the server at the specified host and default port, specifying a response handler to receive
+  /** Create an HTTP request to send to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param method the HTTP method
     * @param host the host
     * @param requestURI the relative URI
@@ -113,8 +112,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.request(method, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP request to send to the server at the default host and port.
+  /** Create an HTTP request to send to the server at the default host and port.
+    *
     * @param method the HTTP method
     * @param requestURI the relative URI
     * @return an HTTP client request object
@@ -123,9 +122,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.request(method, requestURI))
   }
 
-  /**
-    * Create an HTTP request to send to the server at the default host and port, specifying a response handler to receive
+  /** Create an HTTP request to send to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param method the HTTP method
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -136,8 +135,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.request(method, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP request to send to the server using an absolute URI
+  /** Create an HTTP request to send to the server using an absolute URI
+    *
     * @param method the HTTP method
     * @param absoluteURI the absolute URI
     * @return an HTTP client request object
@@ -146,9 +145,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.requestAbs(method, absoluteURI))
   }
 
-  /**
-    * Create an HTTP request to send to the server using an absolute URI, specifying a response handler to receive
+  /** Create an HTTP request to send to the server using an absolute URI, specifying a response handler to receive
     * the response
+    *
     * @param method the HTTP method
     * @param absoluteURI the absolute URI
     * @param responseHandler the response handler
@@ -159,8 +158,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.requestAbs(method, absoluteURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server at the specified host and port.
+  /** Create an HTTP GET request to send to the server at the specified host and port.
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -170,8 +169,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.get(port, host, requestURI))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server at the specified host and default port.
+  /** Create an HTTP GET request to send to the server at the specified host and default port.
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @return an HTTP client request object
@@ -180,9 +179,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.get(host, requestURI))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server at the specified host and port, specifying a response handler to receive
+  /** Create an HTTP GET request to send to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -194,9 +193,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.get(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server at the specified host and default port, specifying a response handler to receive
+  /** Create an HTTP GET request to send to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -207,8 +206,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.get(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server at the default host and port.
+  /** Create an HTTP GET request to send to the server at the default host and port.
+    *
     * @param requestURI the relative URI
     * @return an HTTP client request object
     */
@@ -216,9 +215,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.get(requestURI))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server at the default host and port, specifying a response handler to receive
+  /** Create an HTTP GET request to send to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -228,8 +227,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.get(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server using an absolute URI
+  /** Create an HTTP GET request to send to the server using an absolute URI
+    *
     * @param absoluteURI the absolute URI
     * @return an HTTP client request object
     */
@@ -237,9 +236,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.getAbs(absoluteURI))
   }
 
-  /**
-    * Create an HTTP GET request to send to the server using an absolute URI, specifying a response handler to receive
+  /** Create an HTTP GET request to send to the server using an absolute URI, specifying a response handler to receive
     * the response
+    *
     * @param absoluteURI the absolute URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -249,9 +248,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.getAbs(absoluteURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP GET request to the server at the specified host and port, specifying a response handler to receive
+  /** Sends an HTTP GET request to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -263,9 +262,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.getNow(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP GET request to the server at the specified host and default port, specifying a response handler to receive
+  /** Sends an HTTP GET request to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -276,9 +275,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.getNow(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP GET request  to the server at the default host and port, specifying a response handler to receive
+  /** Sends an HTTP GET request  to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return a reference to this, so the API can be used fluently
@@ -288,8 +287,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.getNow(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server at the specified host and port.
+  /** Create an HTTP POST request to send to the server at the specified host and port.
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -299,8 +298,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.post(port, host, requestURI))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server at the specified host and default port.
+  /** Create an HTTP POST request to send to the server at the specified host and default port.
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @return an HTTP client request object
@@ -309,9 +308,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.post(host, requestURI))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server at the specified host and port, specifying a response handler to receive
+  /** Create an HTTP POST request to send to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -323,9 +322,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.post(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server at the specified host and default port, specifying a response handler to receive
+  /** Create an HTTP POST request to send to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -336,8 +335,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.post(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server at the default host and port.
+  /** Create an HTTP POST request to send to the server at the default host and port.
+    *
     * @param requestURI the relative URI
     * @return an HTTP client request object
     */
@@ -345,9 +344,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.post(requestURI))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server at the default host and port, specifying a response handler to receive
+  /** Create an HTTP POST request to send to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -357,8 +356,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.post(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server using an absolute URI
+  /** Create an HTTP POST request to send to the server using an absolute URI
+    *
     * @param absoluteURI the absolute URI
     * @return an HTTP client request object
     */
@@ -366,9 +365,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.postAbs(absoluteURI))
   }
 
-  /**
-    * Create an HTTP POST request to send to the server using an absolute URI, specifying a response handler to receive
+  /** Create an HTTP POST request to send to the server using an absolute URI, specifying a response handler to receive
     * the response
+    *
     * @param absoluteURI the absolute URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -378,8 +377,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.postAbs(absoluteURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server at the specified host and port.
+  /** Create an HTTP HEAD request to send to the server at the specified host and port.
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -389,8 +388,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.head(port, host, requestURI))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server at the specified host and default port.
+  /** Create an HTTP HEAD request to send to the server at the specified host and default port.
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @return an HTTP client request object
@@ -399,9 +398,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.head(host, requestURI))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server at the specified host and port, specifying a response handler to receive
+  /** Create an HTTP HEAD request to send to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -413,9 +412,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.head(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server at the specified host and default port, specifying a response handler to receive
+  /** Create an HTTP HEAD request to send to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -426,8 +425,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.head(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server at the default host and port.
+  /** Create an HTTP HEAD request to send to the server at the default host and port.
+    *
     * @param requestURI the relative URI
     * @return an HTTP client request object
     */
@@ -435,9 +434,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.head(requestURI))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server at the default host and port, specifying a response handler to receive
+  /** Create an HTTP HEAD request to send to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -447,8 +446,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.head(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server using an absolute URI
+  /** Create an HTTP HEAD request to send to the server using an absolute URI
+    *
     * @param absoluteURI the absolute URI
     * @return an HTTP client request object
     */
@@ -456,9 +455,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.headAbs(absoluteURI))
   }
 
-  /**
-    * Create an HTTP HEAD request to send to the server using an absolute URI, specifying a response handler to receive
+  /** Create an HTTP HEAD request to send to the server using an absolute URI, specifying a response handler to receive
     * the response
+    *
     * @param absoluteURI the absolute URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -468,9 +467,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.headAbs(absoluteURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP HEAD request to the server at the specified host and port, specifying a response handler to receive
+  /** Sends an HTTP HEAD request to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -482,9 +481,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.headNow(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP HEAD request to the server at the specified host and default port, specifying a response handler to receive
+  /** Sends an HTTP HEAD request to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -495,9 +494,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.headNow(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP HEAD request  to the server at the default host and port, specifying a response handler to receive
+  /** Sends an HTTP HEAD request  to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return a reference to this, so the API can be used fluently
@@ -507,8 +506,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.headNow(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server at the specified host and port.
+  /** Create an HTTP OPTIONS request to send to the server at the specified host and port.
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -518,8 +517,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.options(port, host, requestURI))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server at the specified host and default port.
+  /** Create an HTTP OPTIONS request to send to the server at the specified host and default port.
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @return an HTTP client request object
@@ -528,9 +527,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.options(host, requestURI))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server at the specified host and port, specifying a response handler to receive
+  /** Create an HTTP OPTIONS request to send to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -542,9 +541,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.options(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server at the specified host and default port, specifying a response handler to receive
+  /** Create an HTTP OPTIONS request to send to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -555,8 +554,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.options(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server at the default host and port.
+  /** Create an HTTP OPTIONS request to send to the server at the default host and port.
+    *
     * @param requestURI the relative URI
     * @return an HTTP client request object
     */
@@ -564,9 +563,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.options(requestURI))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server at the default host and port, specifying a response handler to receive
+  /** Create an HTTP OPTIONS request to send to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -576,8 +575,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.options(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server using an absolute URI
+  /** Create an HTTP OPTIONS request to send to the server using an absolute URI
+    *
     * @param absoluteURI the absolute URI
     * @return an HTTP client request object
     */
@@ -585,9 +584,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.optionsAbs(absoluteURI))
   }
 
-  /**
-    * Create an HTTP OPTIONS request to send to the server using an absolute URI, specifying a response handler to receive
+  /** Create an HTTP OPTIONS request to send to the server using an absolute URI, specifying a response handler to receive
     * the response
+    *
     * @param absoluteURI the absolute URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -597,9 +596,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.optionsAbs(absoluteURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP OPTIONS request to the server at the specified host and port, specifying a response handler to receive
+  /** Sends an HTTP OPTIONS request to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -611,9 +610,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.optionsNow(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP OPTIONS request to the server at the specified host and default port, specifying a response handler to receive
+  /** Sends an HTTP OPTIONS request to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -624,9 +623,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.optionsNow(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Sends an HTTP OPTIONS request  to the server at the default host and port, specifying a response handler to receive
+  /** Sends an HTTP OPTIONS request  to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return a reference to this, so the API can be used fluently
@@ -636,8 +635,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.optionsNow(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server at the specified host and port.
+  /** Create an HTTP PUT request to send to the server at the specified host and port.
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -647,8 +646,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.put(port, host, requestURI))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server at the specified host and default port.
+  /** Create an HTTP PUT request to send to the server at the specified host and default port.
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @return an HTTP client request object
@@ -657,9 +656,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.put(host, requestURI))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server at the specified host and port, specifying a response handler to receive
+  /** Create an HTTP PUT request to send to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -671,9 +670,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.put(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server at the specified host and default port, specifying a response handler to receive
+  /** Create an HTTP PUT request to send to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -684,8 +683,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.put(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server at the default host and port.
+  /** Create an HTTP PUT request to send to the server at the default host and port.
+    *
     * @param requestURI the relative URI
     * @return an HTTP client request object
     */
@@ -693,9 +692,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.put(requestURI))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server at the default host and port, specifying a response handler to receive
+  /** Create an HTTP PUT request to send to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -705,8 +704,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.put(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server using an absolute URI
+  /** Create an HTTP PUT request to send to the server using an absolute URI
+    *
     * @param absoluteURI the absolute URI
     * @return an HTTP client request object
     */
@@ -714,9 +713,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.putAbs(absoluteURI))
   }
 
-  /**
-    * Create an HTTP PUT request to send to the server using an absolute URI, specifying a response handler to receive
+  /** Create an HTTP PUT request to send to the server using an absolute URI, specifying a response handler to receive
     * the response
+    *
     * @param absoluteURI the absolute URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -726,8 +725,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.putAbs(absoluteURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server at the specified host and port.
+  /** Create an HTTP DELETE request to send to the server at the specified host and port.
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -737,8 +736,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.delete(port, host, requestURI))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server at the specified host and default port.
+  /** Create an HTTP DELETE request to send to the server at the specified host and default port.
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @return an HTTP client request object
@@ -747,9 +746,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.delete(host, requestURI))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server at the specified host and port, specifying a response handler to receive
+  /** Create an HTTP DELETE request to send to the server at the specified host and port, specifying a response handler to receive
     * the response
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -761,9 +760,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.delete(port, host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server at the specified host and default port, specifying a response handler to receive
+  /** Create an HTTP DELETE request to send to the server at the specified host and default port, specifying a response handler to receive
     * the response
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param responseHandler the response handler
@@ -774,8 +773,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.delete(host, requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server at the default host and port.
+  /** Create an HTTP DELETE request to send to the server at the default host and port.
+    *
     * @param requestURI the relative URI
     * @return an HTTP client request object
     */
@@ -783,9 +782,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.delete(requestURI))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server at the default host and port, specifying a response handler to receive
+  /** Create an HTTP DELETE request to send to the server at the default host and port, specifying a response handler to receive
     * the response
+    *
     * @param requestURI the relative URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -795,8 +794,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.delete(requestURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server using an absolute URI
+  /** Create an HTTP DELETE request to send to the server using an absolute URI
+    *
     * @param absoluteURI the absolute URI
     * @return an HTTP client request object
     */
@@ -804,9 +803,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.deleteAbs(absoluteURI))
   }
 
-  /**
-    * Create an HTTP DELETE request to send to the server using an absolute URI, specifying a response handler to receive
+  /** Create an HTTP DELETE request to send to the server using an absolute URI, specifying a response handler to receive
     * the response
+    *
     * @param absoluteURI the absolute URI
     * @param responseHandler the response handler
     * @return an HTTP client request object
@@ -816,8 +815,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClientRequest.apply(_asJava.deleteAbs(absoluteURI, funcToMappedHandler(HttpClientResponse.apply)(responseHandler)))
   }
 
-  /**
-    * Connect a WebSocket to the specified port, host and relative request URI
+  /** Connect a WebSocket to the specified port, host and relative request URI
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -829,8 +828,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(port, host, requestURI, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket to the host and relative request URI and default port
+  /** Connect a WebSocket to the host and relative request URI and default port
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param wsConnect handler that will be called with the websocket when connected
@@ -841,8 +840,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(host, requestURI, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket to the specified port, host and relative request URI, and with the specified headers
+  /** Connect a WebSocket to the specified port, host and relative request URI, and with the specified headers
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -855,8 +854,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(port, host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket to the specified host,relative request UR, and default port and with the specified headers
+  /** Connect a WebSocket to the specified host,relative request UR, and default port and with the specified headers
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param headers the headers
@@ -868,9 +867,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket to the specified port, host and relative request URI, with the specified headers and using
+  /** Connect a WebSocket to the specified port, host and relative request URI, with the specified headers and using
     * the specified version of WebSockets
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -884,9 +883,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(port, host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket to the specified host, relative request URI and default port with the specified headers and using
+  /** Connect a WebSocket to the specified host, relative request URI and default port with the specified headers and using
     * the specified version of WebSockets
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param headers the headers
@@ -899,9 +898,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket to the specified port, host and relative request URI, with the specified headers, using
+  /** Connect a WebSocket to the specified port, host and relative request URI, with the specified headers, using
     * the specified version of WebSockets, and the specified websocket sub protocols
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -916,9 +915,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(port, host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, subProtocols, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket to the specified host, relative request URI and default port, with the specified headers, using
+  /** Connect a WebSocket to the specified host, relative request URI and default port, with the specified headers, using
     * the specified version of WebSockets, and the specified websocket sub protocols
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param headers the headers
@@ -932,8 +931,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, subProtocols, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket at the relative request URI using the default host and port
+  /** Connect a WebSocket at the relative request URI using the default host and port
+    *
     * @param requestURI the relative URI
     * @param wsConnect handler that will be called with the websocket when connected
     * @return a reference to this, so the API can be used fluently
@@ -943,8 +942,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(requestURI, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket at the relative request URI using the default host and port and the specified headers
+  /** Connect a WebSocket at the relative request URI using the default host and port and the specified headers
+    *
     * @param requestURI the relative URI
     * @param headers the headers
     * @param wsConnect handler that will be called with the websocket when connected
@@ -955,9 +954,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket at the relative request URI using the default host and port, the specified headers and the
+  /** Connect a WebSocket at the relative request URI using the default host and port, the specified headers and the
     * specified version of WebSockets
+    *
     * @param requestURI the relative URI
     * @param headers the headers
     * @param version the websocket version
@@ -969,9 +968,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Connect a WebSocket at the relative request URI using the default host and port, the specified headers, the
+  /** Connect a WebSocket at the relative request URI using the default host and port, the specified headers, the
     * specified version of WebSockets and the specified sub protocols
+    *
     * @param requestURI the relative URI
     * @param headers the headers
     * @param version the websocket version
@@ -984,8 +983,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     HttpClient.apply(_asJava.websocket(requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, subProtocols, funcToMappedHandler(WebSocket.apply)(wsConnect)))
   }
 
-  /**
-    * Create a WebSocket stream to the specified port, host and relative request URI
+  /** Create a WebSocket stream to the specified port, host and relative request URI
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -995,8 +994,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(port, host, requestURI))
   }
 
-  /**
-    * Create a WebSocket stream to the specified host, relative request URI and default port
+  /** Create a WebSocket stream to the specified host, relative request URI and default port
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @return a reference to this, so the API can be used fluently
@@ -1005,8 +1004,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(host, requestURI))
   }
 
-  /**
-    * Create a WebSocket stream to the specified port, host and relative request URI, and with the specified headers
+  /** Create a WebSocket stream to the specified port, host and relative request URI, and with the specified headers
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -1017,8 +1016,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(port, host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap]))
   }
 
-  /**
-    * Create a WebSocket stream to the specified host, relative request URI and default port and with the specified headers
+  /** Create a WebSocket stream to the specified host, relative request URI and default port and with the specified headers
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param headers the headers
@@ -1028,9 +1027,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap]))
   }
 
-  /**
-    * Create a WebSocket stream to the specified port, host and relative request URI, with the specified headers and using
+  /** Create a WebSocket stream to the specified port, host and relative request URI, with the specified headers and using
     * the specified version of WebSockets
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -1042,9 +1041,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(port, host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version))
   }
 
-  /**
-    * Create a WebSocket stream to the specified host, relative request URI and default port and with the specified headers and using
+  /** Create a WebSocket stream to the specified host, relative request URI and default port and with the specified headers and using
     * the specified version of WebSockets
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param headers the headers
@@ -1055,9 +1054,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version))
   }
 
-  /**
-    * Create a WebSocket stream to the specified port, host and relative request URI, with the specified headers, using
+  /** Create a WebSocket stream to the specified port, host and relative request URI, with the specified headers, using
     * the specified version of WebSockets, and the specified websocket sub protocols
+    *
     * @param port the port
     * @param host the host
     * @param requestURI the relative URI
@@ -1070,9 +1069,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(port, host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, subProtocols))
   }
 
-  /**
-    * Create a WebSocket stream to the specified host, relative request URI and default port, with the specified headers, using
+  /** Create a WebSocket stream to the specified host, relative request URI and default port, with the specified headers, using
     * the specified version of WebSockets, and the specified websocket sub protocols
+    *
     * @param host the host
     * @param requestURI the relative URI
     * @param headers the headers
@@ -1084,8 +1083,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(host, requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, subProtocols))
   }
 
-  /**
-    * Create a WebSocket stream at the relative request URI using the default host and port and the specified headers
+  /** Create a WebSocket stream at the relative request URI using the default host and port and the specified headers
+    *
     * @param requestURI the relative URI
     * @return a reference to this, so the API can be used fluently
     */
@@ -1093,8 +1092,8 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(requestURI))
   }
 
-  /**
-    * Create a WebSocket stream at the relative request URI using the default host and port and the specified headers
+  /** Create a WebSocket stream at the relative request URI using the default host and port and the specified headers
+    *
     * @param requestURI the relative URI
     * @param headers the headers
     * @return a reference to this, so the API can be used fluently
@@ -1103,9 +1102,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap]))
   }
 
-  /**
-    * Create a WebSocket stream at the relative request URI using the default host and port, the specified headers and the
+  /** Create a WebSocket stream at the relative request URI using the default host and port, the specified headers and the
     * specified version of WebSockets
+    *
     * @param requestURI the relative URI
     * @param headers the headers
     * @param version the websocket version
@@ -1115,9 +1114,9 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version))
   }
 
-  /**
-    * Create a WebSocket stream at the relative request URI using the default host and port, the specified headers, the
+  /** Create a WebSocket stream at the relative request URI using the default host and port, the specified headers, the
     * specified version of WebSockets and the specified sub protocols
+    *
     * @param requestURI the relative URI
     * @param headers the headers
     * @param version the websocket version
@@ -1128,8 +1127,7 @@ class HttpClient(private val _asJava: io.vertx.core.http.HttpClient)
     WebSocketStream.apply(_asJava.websocketStream(requestURI, headers.asJava.asInstanceOf[io.vertx.core.MultiMap], version, subProtocols))
   }
 
-  /**
-    * Close the client. Closing will close down any pooled connections.
+  /** Close the client. Closing will close down any pooled connections.
     * Clients should always be closed after use.
     */
   def close(): Unit = {

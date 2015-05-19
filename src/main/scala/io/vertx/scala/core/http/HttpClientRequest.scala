@@ -23,8 +23,7 @@ import io.vertx.scala.core.streams.ReadStream
 import io.vertx.scala.core.MultiMap
 import io.vertx.core.Handler
 
-/**
-  * Represents a client-side HTTP request.
+/** Represents a client-side HTTP request.
   * 
   * Instances are created by an [[io.vertx.scala.core.http.HttpClient]] instance, via one of the methods corresponding to the
   * specific HTTP methods, or the generic request methods. On creation the request will not have been written to the
@@ -56,8 +55,8 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.http.HttpClientRequest#setWriteQueueMaxSize]]
+  /** This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.http.HttpClientRequest#setWriteQueueMaxSize]]
+    *
     * @return true if write queue is full
     */
   def writeQueueFull(): Boolean = {
@@ -70,8 +69,7 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * @throws java.lang.IllegalStateException when no response handler is set
+  /** @throws java.lang.IllegalStateException when no response handler is set
     */
   def write(data: io.vertx.scala.core.buffer.Buffer): io.vertx.scala.core.http.HttpClientRequest = {
     _asJava.write(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
@@ -111,8 +109,8 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * If chunked is true then the request will be set into HTTP chunked mode
+  /** If chunked is true then the request will be set into HTTP chunked mode
+    *
     * @param chunked true if chunked encoding
     * @return a reference to this, so the API can be used fluently
     */
@@ -121,36 +119,32 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * @return Is the request chunked?
+  /** @return Is the request chunked?
     */
   def isChunked(): Boolean = {
     _asJava.isChunked()
   }
 
-  /**
-    * The HTTP method for the request.
+  /** The HTTP method for the request.
     */
   def method(): io.vertx.core.http.HttpMethod = {
     _asJava.method()
   }
 
-  /**
-    * @return The URI of the request.
+  /** @return The URI of the request.
     */
   def uri(): String = {
     _asJava.uri()
   }
 
-  /**
-    * @return The HTTP headers
+  /** @return The HTTP headers
     */
   def headers(): io.vertx.scala.core.MultiMap = {
     MultiMap.apply(_asJava.headers())
   }
 
-  /**
-    * Put an HTTP header
+  /** Put an HTTP header
+    *
     * @param name The header name
     * @param value The header value
     * @return a reference to this, so the API can be used fluently
@@ -160,8 +154,8 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * Write a  to the request body, encoded as UTF-8.
+  /** Write a  to the request body, encoded as UTF-8.
+    *
     * @return @return a reference to this, so the API can be used fluently
     */
   def write(chunk: String): io.vertx.scala.core.http.HttpClientRequest = {
@@ -169,8 +163,8 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * Write a  to the request body, encoded using the encoding `enc`.
+  /** Write a  to the request body, encoded using the encoding `enc`.
+    *
     * @return @return a reference to this, so the API can be used fluently
     */
   def write(chunk: String, enc: String): io.vertx.scala.core.http.HttpClientRequest = {
@@ -178,13 +172,13 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * If you send an HTTP request with the header `Expect` set to the value `100-continue`
+  /** If you send an HTTP request with the header `Expect` set to the value `100-continue`
     * and the server responds with an interim HTTP response with a status code of `100` and a continue handler
     * has been set using this method, then the `handler` will be called.
     * 
     * You can then continue to write data to the request body and later end it. This is normally used in conjunction with
     * the [[io.vertx.scala.core.http.HttpClientRequest#sendHead]] method to force the request header to be written before the request has ended.
+    *
     * @return a reference to this, so the API can be used fluently
     */
   def continueHandler(handler: => Unit): io.vertx.scala.core.http.HttpClientRequest = {
@@ -193,12 +187,12 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * Forces the head of the request to be written before [[io.vertx.scala.core.http.HttpClientRequest#end]] is called on the request or any data is
+  /** Forces the head of the request to be written before [[io.vertx.scala.core.http.HttpClientRequest#end]] is called on the request or any data is
     * written to it.
     * 
     * This is normally used to implement HTTP 100-continue handling, see [[io.vertx.scala.core.http.HttpClientRequest#continueHandler]] for
     * more information.
+    *
     * @return a reference to this, so the API can be used fluently
     */
   def sendHead(): io.vertx.scala.core.http.HttpClientRequest = {
@@ -206,30 +200,26 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     this
   }
 
-  /**
-    * Same as [[io.vertx.scala.core.http.HttpClientRequest#end]] but writes a String in UTF-8 encoding
+  /** Same as [[io.vertx.scala.core.http.HttpClientRequest#end]] but writes a String in UTF-8 encoding
     */
   def end(chunk: String): Unit = {
     _asJava.end(chunk)
   }
 
-  /**
-    * Same as [[io.vertx.scala.core.http.HttpClientRequest#end]] but writes a String with the specified encoding
+  /** Same as [[io.vertx.scala.core.http.HttpClientRequest#end]] but writes a String with the specified encoding
     */
   def end(chunk: String, enc: String): Unit = {
     _asJava.end(chunk, enc)
   }
 
-  /**
-    * Same as [[io.vertx.scala.core.http.HttpClientRequest#end]] but writes some data to the request body before ending. If the request is not chunked and
+  /** Same as [[io.vertx.scala.core.http.HttpClientRequest#end]] but writes some data to the request body before ending. If the request is not chunked and
     * no other data has been written then the `Content-Length` header will be automatically set
     */
   def end(chunk: io.vertx.scala.core.buffer.Buffer): Unit = {
     _asJava.end(chunk.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
   }
 
-  /**
-    * Ends the request. If no data has been written to the request body, and [[io.vertx.scala.core.http.HttpClientRequest#sendHead]] has not been called then
+  /** Ends the request. If no data has been written to the request body, and [[io.vertx.scala.core.http.HttpClientRequest#sendHead]] has not been called then
     * the actual request won't get written until this method gets called.
     * 
     * Once the request has ended, it cannot be used any more,
@@ -238,12 +228,12 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
     _asJava.end()
   }
 
-  /**
-    * Set's the amount of time after which if a response is not received TimeoutException
+  /** Set's the amount of time after which if a response is not received TimeoutException
     * will be sent to the exception handler of this request.
     * 
     *  Calling this method more than once
     * has the effect of canceling any existing timeout and starting the timeout from scratch.
+    *
     * @param timeoutMs The quantity of time in milliseconds.
     * @return a reference to this, so the API can be used fluently
     */

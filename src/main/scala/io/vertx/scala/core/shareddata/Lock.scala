@@ -17,8 +17,7 @@
 package io.vertx.scala.core.shareddata;
 
 
-/**
-  * An asynchronous exclusive lock which can be obtained from any node in the cluster.
+/** An asynchronous exclusive lock which can be obtained from any node in the cluster.
   * 
   * When the lock is obtained, no-one else in the cluster can obtain the lock with the same name until the lock
   * is released.
@@ -27,8 +26,7 @@ class Lock(private val _asJava: io.vertx.core.shareddata.Lock) {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Release the lock. Once the lock is released another will be able to obtain the lock.
+  /** Release the lock. Once the lock is released another will be able to obtain the lock.
     */
   def release(): Unit = {
     _asJava.release()

@@ -35,8 +35,7 @@ import io.vertx.core.http.HttpServerOptions
 import io.vertx.core.Handler
 import io.vertx.scala.core.http.HttpClient
 
-/**
-  * The entry point into the Vert.x Core API.
+/** The entry point into the Vert.x Core API.
   * 
   * You use an instance of this class for functionality including:
   * <ul>
@@ -63,24 +62,24 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Whether the metrics are enabled for this measured object
+  /** Whether the metrics are enabled for this measured object
+    *
     * @return true if the metrics are enabled
     */
   def isMetricsEnabled(): Boolean = {
     _asJava.isMetricsEnabled()
   }
 
-  /**
-    * Gets the current context, or creates one if there isn't one
+  /** Gets the current context, or creates one if there isn't one
+    *
     * @return The current context (created if didn't exist)
     */
   def getOrCreateContext(): io.vertx.scala.core.Context = {
     Context.apply(_asJava.getOrCreateContext())
   }
 
-  /**
-    * Create a TCP/SSL server using the specified options
+  /** Create a TCP/SSL server using the specified options
+    *
     * @param options the options to usesee <a href="../../../../../../cheatsheet/NetServerOptions.html">NetServerOptions</a>
     * @return the server
     */
@@ -88,16 +87,16 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     NetServer.apply(_asJava.createNetServer(options))
   }
 
-  /**
-    * Create a TCP/SSL server using default options
+  /** Create a TCP/SSL server using default options
+    *
     * @return the server
     */
   def createNetServer(): io.vertx.scala.core.net.NetServer = {
     NetServer.apply(_asJava.createNetServer())
   }
 
-  /**
-    * Create a TCP/SSL client using the specified options
+  /** Create a TCP/SSL client using the specified options
+    *
     * @param options the options to usesee <a href="../../../../../../cheatsheet/NetClientOptions.html">NetClientOptions</a>
     * @return the client
     */
@@ -105,16 +104,16 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     NetClient.apply(_asJava.createNetClient(options))
   }
 
-  /**
-    * Create a TCP/SSL client using default options
+  /** Create a TCP/SSL client using default options
+    *
     * @return the client
     */
   def createNetClient(): io.vertx.scala.core.net.NetClient = {
     NetClient.apply(_asJava.createNetClient())
   }
 
-  /**
-    * Create an HTTP/HTTPS server using the specified options
+  /** Create an HTTP/HTTPS server using the specified options
+    *
     * @param options the options to usesee <a href="../../../../../../cheatsheet/HttpServerOptions.html">HttpServerOptions</a>
     * @return the server
     */
@@ -122,16 +121,16 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     HttpServer.apply(_asJava.createHttpServer(options))
   }
 
-  /**
-    * Create an HTTP/HTTPS server using default options
+  /** Create an HTTP/HTTPS server using default options
+    *
     * @return the server
     */
   def createHttpServer(): io.vertx.scala.core.http.HttpServer = {
     HttpServer.apply(_asJava.createHttpServer())
   }
 
-  /**
-    * Create a HTTP/HTTPS client using the specified options
+  /** Create a HTTP/HTTPS client using the specified options
+    *
     * @param options the options to usesee <a href="../../../../../../cheatsheet/HttpClientOptions.html">HttpClientOptions</a>
     * @return the client
     */
@@ -139,16 +138,16 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     HttpClient.apply(_asJava.createHttpClient(options))
   }
 
-  /**
-    * Create a HTTP/HTTPS client using default options
+  /** Create a HTTP/HTTPS client using default options
+    *
     * @return the client
     */
   def createHttpClient(): io.vertx.scala.core.http.HttpClient = {
     HttpClient.apply(_asJava.createHttpClient())
   }
 
-  /**
-    * Create a datagram socket using the specified options
+  /** Create a datagram socket using the specified options
+    *
     * @param options the options to usesee <a href="../../../../../../cheatsheet/DatagramSocketOptions.html">DatagramSocketOptions</a>
     * @return the socket
     */
@@ -156,32 +155,32 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     DatagramSocket.apply(_asJava.createDatagramSocket(options))
   }
 
-  /**
-    * Create a datagram socket using default options
+  /** Create a datagram socket using default options
+    *
     * @return the socket
     */
   def createDatagramSocket(): io.vertx.scala.core.datagram.DatagramSocket = {
     DatagramSocket.apply(_asJava.createDatagramSocket())
   }
 
-  /**
-    * Get the filesystem object. There is a single instance of FileSystem per Vertx instance.
+  /** Get the filesystem object. There is a single instance of FileSystem per Vertx instance.
+    *
     * @return the filesystem object
     */
   def fileSystem(): io.vertx.scala.core.file.FileSystem = {
     FileSystem.apply(_asJava.fileSystem())
   }
 
-  /**
-    * Get the event bus object. There is a single instance of EventBus per Vertx instance.
+  /** Get the event bus object. There is a single instance of EventBus per Vertx instance.
+    *
     * @return the event bus object
     */
   def eventBus(): io.vertx.scala.core.eventbus.EventBus = {
     EventBus.apply(_asJava.eventBus())
   }
 
-  /**
-    * Create a DNS client to connect to a DNS server at the specified host and port
+  /** Create a DNS client to connect to a DNS server at the specified host and port
+    *
     * @param port the port
     * @param host the host
     * @return the DNS client
@@ -190,17 +189,17 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     DnsClient.apply(_asJava.createDnsClient(port, host))
   }
 
-  /**
-    * Get the shared data object. There is a single instance of SharedData per Vertx instance.
+  /** Get the shared data object. There is a single instance of SharedData per Vertx instance.
+    *
     * @return the shared data object
     */
   def sharedData(): io.vertx.scala.core.shareddata.SharedData = {
     SharedData.apply(_asJava.sharedData())
   }
 
-  /**
-    * Set a one-shot timer to fire after `delay` milliseconds, at which point `handler` will be called with
+  /** Set a one-shot timer to fire after `delay` milliseconds, at which point `handler` will be called with
     * the id of the timer.
+    *
     * @param delay the delay in milliseconds, after which the timer will fire
     * @param handler the handler that will be called with the timer ID when the timer fires
     * @return the unique ID of the timer
@@ -210,9 +209,9 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     _asJava.setTimer(delay, funcToMappedHandler[java.lang.Long, Long](x => x)(handler))
   }
 
-  /**
-    * Returns a one-shot timer as a read stream. The timer will be fired after `delay` milliseconds after
+  /** Returns a one-shot timer as a read stream. The timer will be fired after `delay` milliseconds after
     * the  has been called.
+    *
     * @param delay the delay in milliseconds, after which the timer will fire
     * @return the timer stream
     */
@@ -220,9 +219,9 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     TimeoutStream.apply(_asJava.timerStream(delay))
   }
 
-  /**
-    * Set a periodic timer to fire every `delay` milliseconds, at which point `handler` will be called with
+  /** Set a periodic timer to fire every `delay` milliseconds, at which point `handler` will be called with
     * the id of the timer.
+    *
     * @param delay the delay in milliseconds, after which the timer will fire
     * @param handler the handler that will be called with the timer ID when the timer fires
     * @return the unique ID of the timer
@@ -232,9 +231,9 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     _asJava.setPeriodic(delay, funcToMappedHandler[java.lang.Long, Long](x => x)(handler))
   }
 
-  /**
-    * Returns a periodic timer as a read stream. The timer will be fired every `delay` milliseconds after
+  /** Returns a periodic timer as a read stream. The timer will be fired every `delay` milliseconds after
     * the  has been called.
+    *
     * @param delay the delay in milliseconds, after which the timer will fire
     * @return the periodic stream
     */
@@ -242,8 +241,8 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     TimeoutStream.apply(_asJava.periodicStream(delay))
   }
 
-  /**
-    * Cancels the timer with the specified `id`.
+  /** Cancels the timer with the specified `id`.
+    *
     * @param id The id of the timer to cancel
     * @return true if the timer was successfully cancelled, or false if the timer does not exist.
     */
@@ -251,18 +250,17 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     _asJava.cancelTimer(id)
   }
 
-  /**
-    * Puts the handler on the event queue for the current context so it will be run asynchronously ASAP after all
+  /** Puts the handler on the event queue for the current context so it will be run asynchronously ASAP after all
     * preceeding events have been handled.
-    * @param action - a handler representing the action to execute
-    */
+    *
+    * @param action - a handler representing the action to execute/
   def runOnContext(action: => Unit): Unit = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.runOnContext(funcToMappedHandler[java.lang.Void, Unit](x => x.asInstanceOf[Unit])(_ =>action))
   }
 
-  /**
-    * Like [[io.vertx.scala.core.Vertx#close]] but the completionHandler will be called when the close is complete
+  /** Like [[io.vertx.scala.core.Vertx#close]] but the completionHandler will be called when the close is complete
+    *
     * @return The handler will be notified when the close is complete.
     */
   def close(): scala.concurrent.Future[Unit] = {
@@ -272,13 +270,13 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.Vertx#deployVerticle]] but the completionHandler will be notified when the deployment is complete.
+  /** Like [[io.vertx.scala.core.Vertx#deployVerticle]] but the completionHandler will be notified when the deployment is complete.
     * 
     * If the deployment is successful the result will contain a String representing the unique deployment ID of the
     * deployment.
     * 
     * This deployment ID can subsequently be used to undeploy the verticle.
+    *
     * @param name The identifier
     * @return a handler which will be notified when the deployment is complete
     */
@@ -289,9 +287,9 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.Vertx#deployVerticle]] but <a href="../../../../../../cheatsheet/DeploymentOptions.html">DeploymentOptions</a> are provided to configure the
+  /** Like [[io.vertx.scala.core.Vertx#deployVerticle]] but <a href="../../../../../../cheatsheet/DeploymentOptions.html">DeploymentOptions</a> are provided to configure the
     * deployment.
+    *
     * @param name the name
     * @param options the deployment options.see <a href="../../../../../../cheatsheet/DeploymentOptions.html">DeploymentOptions</a>
     * @return a handler which will be notified when the deployment is complete
@@ -303,8 +301,8 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.Vertx #undeploy(String)]] but the completionHandler will be notified when the undeployment is complete.
+  /** Like [[io.vertx.scala.core.Vertx #undeploy(String)]] but the completionHandler will be notified when the undeployment is complete.
+    *
     * @param deploymentID the deployment ID
     * @return a handler which will be notified when the undeployment is complete
     */
@@ -315,8 +313,8 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     promise.future
   }
 
-  /**
-    * Return a Set of deployment IDs for the currently deployed deploymentIDs.
+  /** Return a Set of deployment IDs for the currently deployed deploymentIDs.
+    *
     * @return Set of deployment IDs
     */
   def deploymentIDs(): Set[String] = {
@@ -324,16 +322,15 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     _asJava.deploymentIDs().asScala.map(x => x:String).toSet
   }
 
-  /**
-    * Is this Vert.x instance clustered?
+  /** Is this Vert.x instance clustered?
+    *
     * @return true if clustered
     */
   def isClustered(): Boolean = {
     _asJava.isClustered()
   }
 
-  /**
-    * Safely execute some blocking code.
+  /** Safely execute some blocking code.
     * 
     * Executes the blocking code in the handler `blockingCodeHandler` using a thread from the worker pool.
     * 
@@ -343,6 +340,7 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     * A `Future` instance is passed into `blockingCodeHandler`. When the blocking code successfully completes,
     * the handler should call the [[io.vertx.scala.core.Future#complete]] or [[io.vertx.scala.core.Future#complete]] method, or the [[io.vertx.scala.core.Future#fail]]
     * method if it failed.
+    *
     * @param blockingCodeHandler handler representing the blocking code to run
     * @return handler that will be called when the blocking code is complete
     */
@@ -360,16 +358,16 @@ object Vertx {
   def apply(_asJava: io.vertx.core.Vertx): io.vertx.scala.core.Vertx =
     new io.vertx.scala.core.Vertx(_asJava)
 
-  /**
-    * Creates a non clustered instance using default options.
+  /** Creates a non clustered instance using default options.
+    *
     * @return the instance
     */
   def vertx(): io.vertx.scala.core.Vertx = {
     Vertx.apply(io.vertx.core.Vertx.vertx())
   }
 
-  /**
-    * Creates a non clustered instance using the specified options
+  /** Creates a non clustered instance using the specified options
+    *
     * @param options the options to usesee <a href="../../../../../../cheatsheet/VertxOptions.html">VertxOptions</a>
     * @return the instance
     */
@@ -377,10 +375,10 @@ object Vertx {
     Vertx.apply(io.vertx.core.Vertx.vertx(options))
   }
 
-  /**
-    * Creates a clustered instance using the specified options.
+  /** Creates a clustered instance using the specified options.
     * 
     * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
+    *
     * @param options the options to usesee <a href="../../../../../../cheatsheet/VertxOptions.html">VertxOptions</a>
     * @return the result handler that will receive the result
     */
@@ -391,8 +389,8 @@ object Vertx {
     promise.future
   }
 
-  /**
-    * Gets the current context
+  /** Gets the current context
+    *
     * @return The current context or null if no current context
     */
   def currentContext(): io.vertx.scala.core.Context = {

@@ -18,8 +18,7 @@ package io.vertx.scala.core.http;
 
 import io.vertx.scala.core.buffer.Buffer
 
-/**
-  * A WebSocket frame that represents either text or binary data.
+/** A WebSocket frame that represents either text or binary data.
   * 
   * A WebSocket message is composed of one or more WebSocket frames.
   * 
@@ -32,44 +31,38 @@ class WebSocketFrame(private val _asJava: io.vertx.core.http.WebSocketFrame) {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * @return true if it's a text frame
+  /** @return true if it's a text frame
     */
   def isText(): Boolean = {
     _asJava.isText()
   }
 
-  /**
-    * @return true if it's a binary frame
+  /** @return true if it's a binary frame
     */
   def isBinary(): Boolean = {
     _asJava.isBinary()
   }
 
-  /**
-    * @return true if it's a continuation frame
+  /** @return true if it's a continuation frame
     */
   def isContinuation(): Boolean = {
     _asJava.isContinuation()
   }
 
-  /**
-    * @return the content of this frame as a UTF-8 string and returns the
+  /** @return the content of this frame as a UTF-8 string and returns the
     * converted string. Only use this for text frames.
     */
   def textData(): String = {
     _asJava.textData()
   }
 
-  /**
-    * @return the data of the frame
+  /** @return the data of the frame
     */
   def binaryData(): io.vertx.scala.core.buffer.Buffer = {
     Buffer.apply(_asJava.binaryData())
   }
 
-  /**
-    * @return true if this is the final frame.
+  /** @return true if this is the final frame.
     */
   def isFinal(): Boolean = {
     _asJava.isFinal()
@@ -82,8 +75,8 @@ object WebSocketFrame {
   def apply(_asJava: io.vertx.core.http.WebSocketFrame): io.vertx.scala.core.http.WebSocketFrame =
     new io.vertx.scala.core.http.WebSocketFrame(_asJava)
 
-  /**
-    * Create a binary WebSocket frame.
+  /** Create a binary WebSocket frame.
+    *
     * @param data the data for the frame
     * @param isFinal true if it's the final frame in the WebSocket message
     * @return the frame
@@ -92,8 +85,8 @@ object WebSocketFrame {
     WebSocketFrame.apply(io.vertx.core.http.WebSocketFrame.binaryFrame(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer], isFinal))
   }
 
-  /**
-    * Create a text WebSocket frame.
+  /** Create a text WebSocket frame.
+    *
     * @param str the string for the frame
     * @param isFinal true if it's the final frame in the WebSocket message
     * @return the frame
@@ -102,8 +95,8 @@ object WebSocketFrame {
     WebSocketFrame.apply(io.vertx.core.http.WebSocketFrame.textFrame(str, isFinal))
   }
 
-  /**
-    * Create a continuation frame
+  /** Create a continuation frame
+    *
     * @param data the data for the frame
     * @param isFinal true if it's the final frame in the WebSocket message
     * @return the frame

@@ -19,7 +19,6 @@ package io.vertx.scala.core.streams;
 import io.vertx.core.Handler
 
 /**
-  *
   * Represents a stream of data that can be written to.
   * 
   * Any class that implements this interface can be used by a [[io.vertx.scala.core.streams.Pump]] to pump data from a `ReadStream`
@@ -30,40 +29,40 @@ trait WriteStream[T]
 
   def asJava: java.lang.Object
 
-  /**
-  * Set an exception handler on the write stream.
+  /** Set an exception handler on the write stream.
+  *
   * @param handler the exception handler
   * @return a reference to this, so the API can be used fluently
   */
   def exceptionHandler(handler: Throwable => Unit): io.vertx.scala.core.streams.WriteStream[T]
 
-  /**
-  * Write some data to the stream. The data is put on an internal write queue, and the write actually happens
+  /** Write some data to the stream. The data is put on an internal write queue, and the write actually happens
   * asynchronously. To avoid running out of memory by putting too much on the write queue,
   * check the [[io.vertx.scala.core.streams.WriteStream#writeQueueFull]] method before writing. This is done automatically if using a [[io.vertx.scala.core.streams.Pump]].
+  *
   * @param data the data to write
   * @return a reference to this, so the API can be used fluently
   */
   def write(data: T): io.vertx.scala.core.streams.WriteStream[T]
 
-  /**
-  * Set the maximum size of the write queue to `maxSize`. You will still be able to write to the stream even
+  /** Set the maximum size of the write queue to `maxSize`. You will still be able to write to the stream even
   * if there is more than `maxSize` bytes in the write queue. This is used as an indicator by classes such as
   * `Pump` to provide flow control.
+  *
   * @param maxSize the max size of the write stream
   * @return a reference to this, so the API can be used fluently
   */
   def setWriteQueueMaxSize(maxSize: Int): io.vertx.scala.core.streams.WriteStream[T]
 
-  /**
-  * This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize]]
+  /** This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize]]
+  *
   * @return true if write queue is full
   */
   def writeQueueFull(): Boolean
 
-  /**
-  * Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
+  /** Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
   * queue has been reduced to maxSize / 2. See [[io.vertx.scala.core.streams.Pump]] for an example of this being used.
+  *
   * @param handler the handler
   * @return a reference to this, so the API can be used fluently
   */
@@ -80,8 +79,8 @@ object WriteStream {
 
     def asJava: java.lang.Object = _asJava
 
-    /**
-      * Set an exception handler on the write stream.
+    /** Set an exception handler on the write stream.
+      *
       * @param handler the exception handler
       * @return a reference to this, so the API can be used fluently
       */
@@ -91,10 +90,10 @@ object WriteStream {
       this
     }
 
-    /**
-      * Write some data to the stream. The data is put on an internal write queue, and the write actually happens
+    /** Write some data to the stream. The data is put on an internal write queue, and the write actually happens
       * asynchronously. To avoid running out of memory by putting too much on the write queue,
       * check the [[io.vertx.scala.core.streams.WriteStream#writeQueueFull]] method before writing. This is done automatically if using a [[io.vertx.scala.core.streams.Pump]].
+      *
       * @param data the data to write
       * @return a reference to this, so the API can be used fluently
       */
@@ -103,10 +102,10 @@ object WriteStream {
       this
     }
 
-    /**
-      * Set the maximum size of the write queue to `maxSize`. You will still be able to write to the stream even
+    /** Set the maximum size of the write queue to `maxSize`. You will still be able to write to the stream even
       * if there is more than `maxSize` bytes in the write queue. This is used as an indicator by classes such as
       * `Pump` to provide flow control.
+      *
       * @param maxSize the max size of the write stream
       * @return a reference to this, so the API can be used fluently
       */
@@ -115,17 +114,17 @@ object WriteStream {
       this
     }
 
-    /**
-      * This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize]]
+    /** This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.streams.WriteStream#setWriteQueueMaxSize]]
+      *
       * @return true if write queue is full
       */
     def writeQueueFull(): Boolean = {
       _asJava.writeQueueFull()
     }
 
-    /**
-      * Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
+    /** Set a drain handler on the stream. If the write queue is full, then the handler will be called when the write
       * queue has been reduced to maxSize / 2. See [[io.vertx.scala.core.streams.Pump]] for an example of this being used.
+      *
       * @param handler the handler
       * @return a reference to this, so the API can be used fluently
       */

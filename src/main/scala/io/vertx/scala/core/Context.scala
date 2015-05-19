@@ -19,8 +19,7 @@ package io.vertx.scala.core;
 import io.vertx.core.json.JsonObject
 import io.vertx.core.Handler
 
-/**
-  * The execution context of a [[io.vertx.core.Handler]] execution.
+/** The execution context of a [[io.vertx.core.Handler]] execution.
   * 
   * When Vert.x provides an event to a handler or calls the start or stop methods of a [[io.vertx.core.Verticle]],
   * the execution is associated with a `Context`.
@@ -55,74 +54,72 @@ class Context(private val _asJava: io.vertx.core.Context) {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Run the specified action asynchronously on the same context, some time after the current execution has completed.
-    * @param action the action to run
-    */
+  /** Run the specified action asynchronously on the same context, some time after the current execution has completed.
+    *
+    * @param action the action to run/
   def runOnContext(action: => Unit): Unit = {
     import io.vertx.lang.scala.HandlerOps._
     _asJava.runOnContext(funcToMappedHandler[java.lang.Void, Unit](x => x.asInstanceOf[Unit])(_ =>action))
   }
 
-  /**
-    * If the context is associated with a Verticle deployment, this returns the deployment ID of that deployment.
+  /** If the context is associated with a Verticle deployment, this returns the deployment ID of that deployment.
+    *
     * @return the deployment ID of the deployment or null if not a Verticle deployment
     */
   def deploymentID(): String = {
     _asJava.deploymentID()
   }
 
-  /**
-    * If the context is associated with a Verticle deployment, this returns the configuration that was specified when
+  /** If the context is associated with a Verticle deployment, this returns the configuration that was specified when
     * the verticle was deployed.
+    *
     * @return the configuration of the deployment or null if not a Verticle deployment
     */
   def config(): io.vertx.core.json.JsonObject = {
     _asJava.config()
   }
 
-  /**
-    * The process args
+  /** The process args
     */
   def processArgs(): List[String] = {
     import scala.collection.JavaConverters._
     _asJava.processArgs().asScala.map(x => x:String).toList
   }
 
-  /**
-    * Is the current context an event loop context?
+  /** Is the current context an event loop context?
     * 
     * NOTE! when running blocking code using [[io.vertx.scala.core.Vertx#executeBlocking]] from a
     * standard (not worker) verticle, the context will still an event loop context and this 
     * will return true.
+    *
     * @return true if false otherwise
     */
   def isEventLoopContext(): Boolean = {
     _asJava.isEventLoopContext()
   }
 
-  /**
-    * Is the current context a worker context?
+  /** Is the current context a worker context?
     * 
     * NOTE! when running blocking code using [[io.vertx.scala.core.Vertx#executeBlocking]] from a
     * standard (not worker) verticle, the context will still an event loop context and this 
     * will return false.
+    *
     * @return true if the current context is a worker context, false otherwise
     */
   def isWorkerContext(): Boolean = {
     _asJava.isWorkerContext()
   }
 
-  /**
-    * Is the current context a multi-threaded worker context?
+  /** Is the current context a multi-threaded worker context?
+    *
     * @return true if the current context is a multi-threaded worker context, false otherwise
     */
   def isMultiThreadedWorkerContext(): Boolean = {
     _asJava.isMultiThreadedWorkerContext()
   }
 
-  /**
-    * Get some data from the context.
+  /** Get some data from the context.
+    *
     * @param key the key of the data
     * @return the data
     */
@@ -131,20 +128,19 @@ class Context(private val _asJava: io.vertx.core.Context) {
     RuntimeObjectConversion.asScala[T](_asJava.get(key))
   }
 
-  /**
-    * Put some data in the context.
+  /** Put some data in the context.
     * 
     * This can be used to share data between different handlers that share a context
+    *
     * @param key the key of the data
-    * @param value the data
-    */
+    * @param value the data/
   def put(key: String, value: Any): Unit = {
     import io.vertx.lang.scala.RuntimeObjectConversion
     _asJava.put(key, RuntimeObjectConversion.asJava(value))
   }
 
-  /**
-    * Remove some data from the context.
+  /** Remove some data from the context.
+    *
     * @param key the key to remove
     * @return true if removed successfully, false otherwise
     */
@@ -152,8 +148,7 @@ class Context(private val _asJava: io.vertx.core.Context) {
     _asJava.remove(key)
   }
 
-  /**
-    * @return The Vertx instance that created the context
+  /** @return The Vertx instance that created the context
     */
   def owner(): io.vertx.scala.core.Vertx = {
     Vertx.apply(_asJava.owner())
@@ -166,30 +161,30 @@ object Context {
   def apply(_asJava: io.vertx.core.Context): io.vertx.scala.core.Context =
     new io.vertx.scala.core.Context(_asJava)
 
-  /**
-    * Is the current thread a worker thread?
+  /** Is the current thread a worker thread?
     * 
     * NOTE! This is not always the same as calling [[io.vertx.scala.core.Context#isWorkerContext]]. If you are running blocking code
     * from an event loop context, then this will return true but [[io.vertx.scala.core.Context#isWorkerContext]] will return false.
+    *
     * @return true if current thread is a worker thread, false otherwise
     */
   def isOnWorkerThread(): Boolean = {
     io.vertx.core.Context.isOnWorkerThread()
   }
 
-  /**
-    * Is the current thread an event thread?
+  /** Is the current thread an event thread?
     * 
     * NOTE! This is not always the same as calling [[io.vertx.scala.core.Context#isEventLoopContext]]. If you are running blocking code
     * from an event loop context, then this will return false but [[io.vertx.scala.core.Context#isEventLoopContext]] will return true.
+    *
     * @return true if current thread is a worker thread, false otherwise
     */
   def isOnEventLoopThread(): Boolean = {
     io.vertx.core.Context.isOnEventLoopThread()
   }
 
-  /**
-    * Is the current thread a Vert.x thread? That's either a worker thread or an event loop thread
+  /** Is the current thread a Vert.x thread? That's either a worker thread or an event loop thread
+    *
     * @return true if current thread is a Vert.x thread, false otherwise
     */
   def isOnVertxThread(): Boolean = {

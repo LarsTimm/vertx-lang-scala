@@ -19,15 +19,14 @@ package io.vertx.scala.core.shareddata;
 import io.vertx.core.Handler
 
 /**
-  *
   * An asynchronous map.
   */
 class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V]) {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Get a value from the map, asynchronously.
+  /** Get a value from the map, asynchronously.
+    *
     * @param k the key
     * @return - this will be called some time later with the async result.
     */
@@ -38,8 +37,8 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Put a value in the map, asynchronously.
+  /** Put a value in the map, asynchronously.
+    *
     * @param k the key
     * @param v the value
     * @return - this will be called some time later to signify the value has been put
@@ -51,9 +50,9 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.shareddata.AsyncMap#put]] but specifying a timeout. If the value cannot be put within the timeout a
+  /** Like [[io.vertx.scala.core.shareddata.AsyncMap#put]] but specifying a timeout. If the value cannot be put within the timeout a
     * failure will be passed to the handler
+    *
     * @param k the key
     * @param v the value
     * @param timeout the timoeout, in ms
@@ -66,9 +65,9 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Put the entry only if there is no entry with the key already present. If key already present then the existing
+  /** Put the entry only if there is no entry with the key already present. If key already present then the existing
     * value will be returned to the handler, otherwise null.
+    *
     * @param k the key
     * @param v the value
     * @return the handler
@@ -80,9 +79,9 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Link [[io.vertx.scala.core.shareddata.AsyncMap#putIfAbsent]] but specifying a timeout. If the value cannot be put within the timeout a
+  /** Link [[io.vertx.scala.core.shareddata.AsyncMap#putIfAbsent]] but specifying a timeout. If the value cannot be put within the timeout a
     * failure will be passed to the handler
+    *
     * @param k the key
     * @param v the value
     * @param timeout the timeout, in ms
@@ -95,8 +94,8 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Remove a value from the map, asynchronously.
+  /** Remove a value from the map, asynchronously.
+    *
     * @param k the key
     * @return - this will be called some time later to signify the value has been removed
     */
@@ -107,8 +106,8 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Remove a value from the map, only if entry already exists with same value.
+  /** Remove a value from the map, only if entry already exists with same value.
+    *
     * @param k the key
     * @param v the value
     * @return - this will be called some time later to signify the value has been removed
@@ -120,8 +119,8 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Replace the entry only if it is currently mapped to some value
+  /** Replace the entry only if it is currently mapped to some value
+    *
     * @param k the key
     * @param v the new value
     * @return the result handler will be passed the previous value
@@ -133,8 +132,8 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Replace the entry only if it is currently mapped to a specific value
+  /** Replace the entry only if it is currently mapped to a specific value
+    *
     * @param k the key
     * @param oldValue the existing value
     * @param newValue the new value
@@ -147,8 +146,8 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Clear all entries in the map
+  /** Clear all entries in the map
+    *
     * @return called on completion
     */
   def clear(): scala.concurrent.Future[Unit] = {
@@ -158,8 +157,8 @@ class AsyncMap[K, V](private val _asJava: io.vertx.core.shareddata.AsyncMap[K, V
     promise.future
   }
 
-  /**
-    * Provide the number of entries in the map
+  /** Provide the number of entries in the map
+    *
     * @return handler which will receive the number of entries
     */
   def size(): scala.concurrent.Future[Int] = {

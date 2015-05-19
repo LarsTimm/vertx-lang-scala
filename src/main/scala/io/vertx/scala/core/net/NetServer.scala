@@ -19,36 +19,35 @@ package io.vertx.scala.core.net;
 import io.vertx.scala.core.metrics.Measured
 import io.vertx.core.Handler
 
-/**
-  * Represents a TCP server
+/** Represents a TCP server
   */
 class NetServer(private val _asJava: io.vertx.core.net.NetServer) 
     extends io.vertx.scala.core.metrics.Measured {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Whether the metrics are enabled for this measured object
+  /** Whether the metrics are enabled for this measured object
+    *
     * @return true if the metrics are enabled
     */
   def isMetricsEnabled(): Boolean = {
     _asJava.isMetricsEnabled()
   }
 
-  /**
-    * Return the connect stream for this server. The server can only have at most one handler at any one time.
+  /** Return the connect stream for this server. The server can only have at most one handler at any one time.
     * As the server accepts TCP or SSL connections it creates an instance of [[io.vertx.scala.core.net.NetSocket]] and passes it to the
     * connect stream .
+    *
     * @return the connect stream
     */
   def connectStream(): io.vertx.scala.core.net.NetSocketStream = {
     NetSocketStream.apply(_asJava.connectStream())
   }
 
-  /**
-    * Supply a connect handler for this server. The server can only have at most one connect handler at any one time.
+  /** Supply a connect handler for this server. The server can only have at most one connect handler at any one time.
     * As the server accepts TCP or SSL connections it creates an instance of [[io.vertx.scala.core.net.NetSocket]] and passes it to the
     * connect handler.
+    *
     * @return a reference to this, so the API can be used fluently
     */
   def connectHandler(handler: io.vertx.scala.core.net.NetSocket => Unit): io.vertx.scala.core.net.NetServer = {
@@ -56,8 +55,8 @@ class NetServer(private val _asJava: io.vertx.core.net.NetServer)
     NetServer.apply(_asJava.connectHandler(funcToMappedHandler(NetSocket.apply)(handler)))
   }
 
-  /**
-    * Like [[io.vertx.scala.core.net.NetServer#listen]] but providing a handler that will be notified when the server is listening, or fails.
+  /** Like [[io.vertx.scala.core.net.NetServer#listen]] but providing a handler that will be notified when the server is listening, or fails.
+    *
     * @return handler that will be notified when listening or failed
     */
   def listen(): scala.concurrent.Future[io.vertx.scala.core.net.NetServer] = {
@@ -67,8 +66,8 @@ class NetServer(private val _asJava: io.vertx.core.net.NetServer)
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.net.NetServer#listen]] but providing a handler that will be notified when the server is listening, or fails.
+  /** Like [[io.vertx.scala.core.net.NetServer#listen]] but providing a handler that will be notified when the server is listening, or fails.
+    *
     * @param port the port to listen on
     * @param host the host to listen on
     * @return handler that will be notified when listening or failed
@@ -80,8 +79,8 @@ class NetServer(private val _asJava: io.vertx.core.net.NetServer)
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.net.NetServer#listen]] but providing a handler that will be notified when the server is listening, or fails.
+  /** Like [[io.vertx.scala.core.net.NetServer#listen]] but providing a handler that will be notified when the server is listening, or fails.
+    *
     * @param port the port to listen on
     * @return handler that will be notified when listening or failed
     */
@@ -92,8 +91,8 @@ class NetServer(private val _asJava: io.vertx.core.net.NetServer)
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.net.NetServer#close]] but supplying a handler that will be notified when close is complete.
+  /** Like [[io.vertx.scala.core.net.NetServer#close]] but supplying a handler that will be notified when close is complete.
+    *
     * @return the handler
     */
   def close(): scala.concurrent.Future[Unit] = {
@@ -103,9 +102,9 @@ class NetServer(private val _asJava: io.vertx.core.net.NetServer)
     promise.future
   }
 
-  /**
-    * The actual port the server is listening on. This is useful if you bound the server specifying 0 as port number
+  /** The actual port the server is listening on. This is useful if you bound the server specifying 0 as port number
     * signifying an ephemeral port
+    *
     * @return the actual port the server is listening on.
     */
   def actualPort(): Int = {

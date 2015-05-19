@@ -17,15 +17,14 @@
 package io.vertx.scala.core.metrics;
 
 
-/**
-  * @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
+/** @author <a href="mailto:nscavell@redhat.com">Nick Scavelli</a>
   */
 trait Measured {
 
   def asJava: java.lang.Object
 
-  /**
-  * Whether the metrics are enabled for this measured object
+  /** Whether the metrics are enabled for this measured object
+  *
   * @return true if the metrics are enabled
   */
   def isMetricsEnabled(): Boolean
@@ -41,8 +40,8 @@ object Measured {
 
     def asJava: java.lang.Object = _asJava
 
-    /**
-      * Whether the metrics are enabled for this measured object
+    /** Whether the metrics are enabled for this measured object
+      *
       * @return true if the metrics are enabled
       */
     def isMetricsEnabled(): Boolean = {

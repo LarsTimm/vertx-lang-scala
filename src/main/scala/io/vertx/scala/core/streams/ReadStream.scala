@@ -18,8 +18,7 @@ package io.vertx.scala.core.streams;
 
 import io.vertx.core.Handler
 
-/**
-  * Represents a stream of items that can be read from.
+/** Represents a stream of items that can be read from.
   * 
   * Any class that implements this interface can be used by a [[io.vertx.scala.core.streams.Pump]] to pump data from it
   * to a [[io.vertx.scala.core.streams.WriteStream]].
@@ -29,33 +28,33 @@ trait ReadStream[T]
 
   def asJava: java.lang.Object
 
-  /**
-  * Set an exception handler on the read stream.
+  /** Set an exception handler on the read stream.
+  *
   * @param handler the exception handler
   * @return a reference to this, so the API can be used fluently
   */
   def exceptionHandler(handler: Throwable => Unit): io.vertx.scala.core.streams.ReadStream[T]
 
-  /**
-  * Set a data handler. As data is read, the handler will be called with the data.
+  /** Set a data handler. As data is read, the handler will be called with the data.
+  *
   * @return a reference to this, so the API can be used fluently
   */
   def handler(handler: T => Unit): io.vertx.scala.core.streams.ReadStream[T]
 
-  /**
-  * Pause the `ReadSupport`. While it's paused, no data will be sent to the `dataHandler`
+  /** Pause the `ReadSupport`. While it's paused, no data will be sent to the `dataHandler`
+  *
   * @return a reference to this, so the API can be used fluently
   */
   def pause(): io.vertx.scala.core.streams.ReadStream[T]
 
-  /**
-  * Resume reading. If the `ReadSupport` has been paused, reading will recommence on it.
+  /** Resume reading. If the `ReadSupport` has been paused, reading will recommence on it.
+  *
   * @return a reference to this, so the API can be used fluently
   */
   def resume(): io.vertx.scala.core.streams.ReadStream[T]
 
-  /**
-  * Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
+  /** Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
+  *
   * @return a reference to this, so the API can be used fluently
   */
   def endHandler(endHandler: => Unit): io.vertx.scala.core.streams.ReadStream[T]
@@ -71,8 +70,8 @@ object ReadStream {
 
     def asJava: java.lang.Object = _asJava
 
-    /**
-      * Set an exception handler on the read stream.
+    /** Set an exception handler on the read stream.
+      *
       * @param handler the exception handler
       * @return a reference to this, so the API can be used fluently
       */
@@ -82,8 +81,8 @@ object ReadStream {
       this
     }
 
-    /**
-      * Set a data handler. As data is read, the handler will be called with the data.
+    /** Set a data handler. As data is read, the handler will be called with the data.
+      *
       * @return a reference to this, so the API can be used fluently
       */
     def handler(handler: T => Unit): io.vertx.scala.core.streams.ReadStream[T] = {
@@ -92,8 +91,8 @@ object ReadStream {
       this
     }
 
-    /**
-      * Pause the `ReadSupport`. While it's paused, no data will be sent to the `dataHandler`
+    /** Pause the `ReadSupport`. While it's paused, no data will be sent to the `dataHandler`
+      *
       * @return a reference to this, so the API can be used fluently
       */
     def pause(): io.vertx.scala.core.streams.ReadStream[T] = {
@@ -101,8 +100,8 @@ object ReadStream {
       this
     }
 
-    /**
-      * Resume reading. If the `ReadSupport` has been paused, reading will recommence on it.
+    /** Resume reading. If the `ReadSupport` has been paused, reading will recommence on it.
+      *
       * @return a reference to this, so the API can be used fluently
       */
     def resume(): io.vertx.scala.core.streams.ReadStream[T] = {
@@ -110,8 +109,8 @@ object ReadStream {
       this
     }
 
-    /**
-      * Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
+    /** Set an end handler. Once the stream has ended, and there is no more data to be read, this handler will be called.
+      *
       * @return a reference to this, so the API can be used fluently
       */
     def endHandler(endHandler: => Unit): io.vertx.scala.core.streams.ReadStream[T] = {

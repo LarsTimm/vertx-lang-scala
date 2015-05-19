@@ -20,8 +20,7 @@ import io.vertx.core.eventbus.DeliveryOptions
 import io.vertx.scala.core.MultiMap
 import io.vertx.core.Handler
 
-/**
-  * Represents a message that is received from the event bus in a handler.
+/** Represents a message that is received from the event bus in a handler.
   * 
   * Messages have a [[io.vertx.scala.core.eventbus.Message#body]], which can be null, and also [[io.vertx.scala.core.eventbus.Message#headers]], which can be empty.
   * 
@@ -34,23 +33,22 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * The address the message was sent to
+  /** The address the message was sent to
     */
   def address(): String = {
     _asJava.address()
   }
 
-  /**
-    * Multi-map of message headers. Can be empty
+  /** Multi-map of message headers. Can be empty
+    *
     * @return the headers
     */
   def headers(): io.vertx.scala.core.MultiMap = {
     MultiMap.apply(_asJava.headers())
   }
 
-  /**
-    * The body of the message. Can be null.
+  /** The body of the message. Can be null.
+    *
     * @return the body, or null.
     */
   def body(): T = {
@@ -58,17 +56,17 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     RuntimeObjectConversion.asScala[T](_asJava.body())
   }
 
-  /**
-    * The reply address. Can be null.
+  /** The reply address. Can be null.
+    *
     * @return the reply address, or null, if message was sent without a reply handler.
     */
   def replyAddress(): String = {
     _asJava.replyAddress()
   }
 
-  /**
-    * The same as `reply(R message)` but you can specify handler for the reply - i.e.
+  /** The same as `reply(R message)` but you can specify handler for the reply - i.e.
     * to receive the reply to the reply.
+    *
     * @param message the message to reply with.
     * @return the reply handler for the reply.
     */
@@ -80,9 +78,9 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     promise.future
   }
 
-  /**
-    * The same as `reply(R message, DeliveryOptions)` but you can specify handler for the reply - i.e.
+  /** The same as `reply(R message, DeliveryOptions)` but you can specify handler for the reply - i.e.
     * to receive the reply to the reply.
+    *
     * @param message the reply message
     * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
     * @return the reply handler for the reply.
@@ -95,14 +93,13 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     promise.future
   }
 
-  /**
-    * Signal to the sender that processing of this message failed.
+  /** Signal to the sender that processing of this message failed.
     * 
     * If the message was sent specifying a result handler
     * the handler will be called with a failure corresponding to the failure code and message specified here.
+    *
     * @param failureCode A failure code to pass back to the sender
-    * @param message A message to pass back to the sender
-    */
+    * @param message A message to pass back to the sender/
   def fail(failureCode: Int, message: String): Unit = {
     _asJava.fail(failureCode, message)
   }

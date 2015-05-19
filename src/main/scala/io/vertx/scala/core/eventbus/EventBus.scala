@@ -20,8 +20,7 @@ import io.vertx.core.eventbus.DeliveryOptions
 import io.vertx.scala.core.metrics.Measured
 import io.vertx.core.Handler
 
-/**
-  * A Vert.x event-bus is a light-weight distributed messaging system which allows different parts of your application,
+/** A Vert.x event-bus is a light-weight distributed messaging system which allows different parts of your application,
   * or different applications and services to communicate with each in a loosely coupled way.
   * 
   * An event-bus supports publish-subscribe messaging, point-to-point messaging and request-response messaging.
@@ -35,17 +34,17 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Whether the metrics are enabled for this measured object
+  /** Whether the metrics are enabled for this measured object
+    *
     * @return true if the metrics are enabled
     */
   def isMetricsEnabled(): Boolean = {
     _asJava.isMetricsEnabled()
   }
 
-  /**
-    * Like [[io.vertx.scala.core.eventbus.EventBus#send]] but specifying a `replyHandler` that will be called if the recipient
+  /** Like [[io.vertx.scala.core.eventbus.EventBus#send]] but specifying a `replyHandler` that will be called if the recipient
     * subsequently replies to the message.
+    *
     * @param address the address to send it to
     * @param message the message, may be {@code null}
     * @return reply handler will be called when any reply from the recipient is received, may be {@code null}
@@ -58,9 +57,9 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     promise.future
   }
 
-  /**
-    * Like [[io.vertx.scala.core.eventbus.EventBus#send]] but specifying a `replyHandler` that will be called if the recipient
+  /** Like [[io.vertx.scala.core.eventbus.EventBus#send]] but specifying a `replyHandler` that will be called if the recipient
     * subsequently replies to the message.
+    *
     * @param address the address to send it to
     * @param message the message, may be {@code null}
     * @param options delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
@@ -74,9 +73,9 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     promise.future
   }
 
-  /**
-    * Publish a message.
+  /** Publish a message.
     * The message will be delivered to all handlers registered to the address.
+    *
     * @param address the address to publish it to
     * @param message the message, may be {@code null}
     * @return a reference to this, so the API can be used fluently
@@ -87,8 +86,8 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     this
   }
 
-  /**
-    * Like [[io.vertx.scala.core.eventbus.EventBus#publish]] but specifying `options` that can be used to configure the delivery.
+  /** Like [[io.vertx.scala.core.eventbus.EventBus#publish]] but specifying `options` that can be used to configure the delivery.
+    *
     * @param address the address to publish it to
     * @param message the message, may be {@code null}
     * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
@@ -100,12 +99,12 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     this
   }
 
-  /**
-    * Create a message consumer against the specified address.
+  /** Create a message consumer against the specified address.
     * 
     * The returned consumer is not yet registered
     * at the address, registration will be effective when [[io.vertx.scala.core.eventbus.MessageConsumer#handler]]
     * is called.
+    *
     * @param address the address that it will register it at
     * @return the event bus message consumer
     */
@@ -113,8 +112,8 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageConsumer.apply[T](_asJava.consumer(address))
   }
 
-  /**
-    * Create a consumer and register it against the specified address.
+  /** Create a consumer and register it against the specified address.
+    *
     * @param address the address that will register it at
     * @param handler the handler that will process the received messages
     * @return the event bus message consumer
@@ -124,8 +123,8 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageConsumer.apply[T](_asJava.consumer(address, funcToMappedHandler(Message.apply[T])(handler)))
   }
 
-  /**
-    * Like [[io.vertx.scala.core.eventbus.EventBus#consumer]] but the address won't be propagated across the cluster.
+  /** Like [[io.vertx.scala.core.eventbus.EventBus#consumer]] but the address won't be propagated across the cluster.
+    *
     * @param address the address to register it at
     * @return the event bus message consumer
     */
@@ -133,8 +132,8 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageConsumer.apply[T](_asJava.localConsumer(address))
   }
 
-  /**
-    * Like [[io.vertx.scala.core.eventbus.EventBus#consumer]] but the address won't be propagated across the cluster.
+  /** Like [[io.vertx.scala.core.eventbus.EventBus#consumer]] but the address won't be propagated across the cluster.
+    *
     * @param address the address that will register it at
     * @param handler the handler that will process the received messages
     * @return the event bus message consumer
@@ -144,12 +143,12 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageConsumer.apply[T](_asJava.localConsumer(address, funcToMappedHandler(Message.apply[T])(handler)))
   }
 
-  /**
-    * Create a message sender against the specified address.
+  /** Create a message sender against the specified address.
     * 
     * The returned sender will invoke the [[io.vertx.scala.core.eventbus.EventBus#send]]
     * method when the stream [[io.vertx.scala.core.streams.WriteStream#write]] method is called with the sender
     * address and the provided data.
+    *
     * @param address the address to send it to
     * @return The sender
     */
@@ -157,9 +156,9 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageProducer.apply[T](_asJava.sender(address))
   }
 
-  /**
-    * Like [[io.vertx.scala.core.eventbus.EventBus#sender]] but specifying delivery options that will be used for configuring the delivery of
+  /** Like [[io.vertx.scala.core.eventbus.EventBus#sender]] but specifying delivery options that will be used for configuring the delivery of
     * the message.
+    *
     * @param address the address to send it to
     * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
     * @return The sender
@@ -168,12 +167,12 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageProducer.apply[T](_asJava.sender(address, options))
   }
 
-  /**
-    * Create a message publisher against the specified address.
+  /** Create a message publisher against the specified address.
     * 
     * The returned publisher will invoke the [[io.vertx.scala.core.eventbus.EventBus#publish]]
     * method when the stream [[io.vertx.scala.core.streams.WriteStream#write]] method is called with the publisher
     * address and the provided data.
+    *
     * @param address The address to publish it to
     * @return The publisher
     */
@@ -181,9 +180,9 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageProducer.apply[T](_asJava.publisher(address))
   }
 
-  /**
-    * Like [[io.vertx.scala.core.eventbus.EventBus#publisher]] but specifying delivery options that will be used for configuring the delivery of
+  /** Like [[io.vertx.scala.core.eventbus.EventBus#publisher]] but specifying delivery options that will be used for configuring the delivery of
     * the message.
+    *
     * @param address the address to publish it to
     * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
     * @return The publisher
@@ -192,8 +191,8 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     MessageProducer.apply[T](_asJava.publisher(address, options))
   }
 
-  /**
-    * Close the event bus and release any resources held
+  /** Close the event bus and release any resources held
+    *
     * @return may be {@code null}
     */
   def close(): scala.concurrent.Future[Unit] = {

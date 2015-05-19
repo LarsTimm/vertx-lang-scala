@@ -21,8 +21,7 @@ import io.vertx.scala.core.streams.WriteStream
 import io.vertx.scala.core.streams.ReadStream
 import io.vertx.core.Handler
 
-/**
-  * Represents a socket-like interface to a TCP connection on either the
+/** Represents a socket-like interface to a TCP connection on either the
   * client or the server side.
   * 
   * Instances of this class are created on the client side by an [[io.vertx.scala.core.net.NetClient]]
@@ -38,8 +37,8 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.net.NetSocket#setWriteQueueMaxSize]]
+  /** This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.net.NetSocket#setWriteQueueMaxSize]]
+    *
     * @return true if write queue is full
     */
   def writeQueueFull(): Boolean = {
@@ -90,21 +89,21 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     this
   }
 
-  /**
-    * When a `NetSocket` is created it automatically registers an event handler with the event bus, the ID of that
+  /** When a `NetSocket` is created it automatically registers an event handler with the event bus, the ID of that
     * handler is given by `writeHandlerID`.
     * 
     * Given this ID, a different event loop can send a buffer to that event handler using the event bus and
     * that buffer will be received by this instance in its own event loop and written to the underlying connection. This
     * allows you to write data to other connections which are owned by different event loops.
+    *
     * @return the write handler ID
     */
   def writeHandlerID(): String = {
     _asJava.writeHandlerID()
   }
 
-  /**
-    * Write a  to the connection, encoded in UTF-8.
+  /** Write a  to the connection, encoded in UTF-8.
+    *
     * @param str the string to write
     * @return a reference to this, so the API can be used fluently
     */
@@ -113,8 +112,8 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     this
   }
 
-  /**
-    * Write a  to the connection, encoded using the encoding `enc`.
+  /** Write a  to the connection, encoded using the encoding `enc`.
+    *
     * @param str the string to write
     * @param enc the encoding to use
     * @return a reference to this, so the API can be used fluently
@@ -124,9 +123,9 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     this
   }
 
-  /**
-    * Same as [[io.vertx.scala.core.net.NetSocket#sendFile]] but also takes a handler that will be called when the send has completed or
+  /** Same as [[io.vertx.scala.core.net.NetSocket#sendFile]] but also takes a handler that will be called when the send has completed or
     * a failure has occurred
+    *
     * @param filename file name of the file to send
     * @return handler
     */
@@ -137,29 +136,26 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     promise.future
   }
 
-  /**
-    * @return the remote address for this socket
+  /** @return the remote address for this socket
     */
   def remoteAddress(): io.vertx.scala.core.net.SocketAddress = {
     SocketAddress.apply(_asJava.remoteAddress())
   }
 
-  /**
-    * @return the local address for this socket
+  /** @return the local address for this socket
     */
   def localAddress(): io.vertx.scala.core.net.SocketAddress = {
     SocketAddress.apply(_asJava.localAddress())
   }
 
-  /**
-    * Close the NetSocket
+  /** Close the NetSocket
     */
   def close(): Unit = {
     _asJava.close()
   }
 
-  /**
-    * Set a handler that will be called when the NetSocket is closed
+  /** Set a handler that will be called when the NetSocket is closed
+    *
     * @param handler the handler
     * @return a reference to this, so the API can be used fluently
     */
@@ -169,8 +165,8 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     this
   }
 
-  /**
-    * Upgrade channel to use SSL/TLS. Be aware that for this to work SSL must be configured.
+  /** Upgrade channel to use SSL/TLS. Be aware that for this to work SSL must be configured.
+    *
     * @param handler the handler will be notified when it's upgraded
     * @return a reference to this, so the API can be used fluently
     */
@@ -180,8 +176,7 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     this
   }
 
-  /**
-    * @return true if this [[io.vertx.scala.core.net.NetSocket]] is encrypted via SSL/TLS.
+  /** @return true if this [[io.vertx.scala.core.net.NetSocket]] is encrypted via SSL/TLS.
     */
   def isSsl(): Boolean = {
     _asJava.isSsl()

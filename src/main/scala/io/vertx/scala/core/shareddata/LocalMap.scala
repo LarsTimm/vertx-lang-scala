@@ -17,8 +17,7 @@
 package io.vertx.scala.core.shareddata;
 
 
-/**
-  * Local maps can be used to share data safely in a single Vert.x instance.
+/** Local maps can be used to share data safely in a single Vert.x instance.
   * 
   * The map only allows immutable keys and values in the map, OR certain mutable objects such as [[io.vertx.scala.core.buffer.Buffer]]
   * instances which will be copied when they are added to the map.
@@ -30,8 +29,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Get a value from the map
+  /** Get a value from the map
+    *
     * @param key the key
     * @return the value, or null if none
     */
@@ -40,8 +39,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     RuntimeObjectConversion.asScala[V](_asJava.get(key))
   }
 
-  /**
-    * Put an entry in the map
+  /** Put an entry in the map
+    *
     * @param key the key
     * @param value the value
     * @return return the old value, or null if none
@@ -51,8 +50,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     RuntimeObjectConversion.asScala[V](_asJava.put(key, value))
   }
 
-  /**
-    * Remove an entry from the map
+  /** Remove an entry from the map
+    *
     * @param key the key
     * @return the old value
     */
@@ -61,30 +60,28 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     RuntimeObjectConversion.asScala[V](_asJava.remove(key))
   }
 
-  /**
-    * Clear all entries in the map
+  /** Clear all entries in the map
     */
   def clear(): Unit = {
     _asJava.clear()
   }
 
-  /**
-    * Get the size of the map
+  /** Get the size of the map
+    *
     * @return the number of entries in the map
     */
   def size(): Int = {
     _asJava.size()
   }
 
-  /**
-    * @return true if there are zero entries in the map
+  /** @return true if there are zero entries in the map
     */
   def isEmpty(): Boolean = {
     _asJava.isEmpty()
   }
 
-  /**
-    * Put the entry only if there is no existing entry for that key
+  /** Put the entry only if there is no existing entry for that key
+    *
     * @param key the key
     * @param value the value
     * @return the old value or null, if none
@@ -94,8 +91,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     RuntimeObjectConversion.asScala[V](_asJava.putIfAbsent(key, value))
   }
 
-  /**
-    * Remove the entry only if there is an entry with the specified key and value
+  /** Remove the entry only if there is an entry with the specified key and value
+    *
     * @param key the key
     * @param value the value
     * @return true if removed
@@ -104,8 +101,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     _asJava.removeIfPresent(key, value)
   }
 
-  /**
-    * Replace the entry only if there is an existing entry with the specified key and value
+  /** Replace the entry only if there is an existing entry with the specified key and value
+    *
     * @param key the key
     * @param oldValue the old value
     * @param newValue the new value
@@ -115,8 +112,8 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     _asJava.replaceIfPresent(key, oldValue, newValue)
   }
 
-  /**
-    * Replace the entry only if there is an existing entry with the key
+  /** Replace the entry only if there is an existing entry with the key
+    *
     * @param key the key
     * @param value the new value
     * @return the old value
@@ -126,8 +123,7 @@ class LocalMap[K, V](private val _asJava: io.vertx.core.shareddata.LocalMap[K, V
     RuntimeObjectConversion.asScala[V](_asJava.replace(key, value))
   }
 
-  /**
-    * Close and release the map
+  /** Close and release the map
     */
   def close(): Unit = {
     _asJava.close()

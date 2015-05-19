@@ -18,16 +18,15 @@ package io.vertx.scala.core.shareddata;
 
 import io.vertx.core.Handler
 
-/**
-  * An asynchronous counter that can be used to across the cluster to maintain a consistent count.
+/** An asynchronous counter that can be used to across the cluster to maintain a consistent count.
   * 
   */
 class Counter(private val _asJava: io.vertx.core.shareddata.Counter) {
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Get the current value of the counter
+  /** Get the current value of the counter
+    *
     * @return handler which will be passed the value
     */
   def get(): scala.concurrent.Future[Long] = {
@@ -37,8 +36,8 @@ class Counter(private val _asJava: io.vertx.core.shareddata.Counter) {
     promise.future
   }
 
-  /**
-    * Increment the counter atomically and return the new count
+  /** Increment the counter atomically and return the new count
+    *
     * @return handler which will be passed the value
     */
   def incrementAndGet(): scala.concurrent.Future[Long] = {
@@ -48,8 +47,8 @@ class Counter(private val _asJava: io.vertx.core.shareddata.Counter) {
     promise.future
   }
 
-  /**
-    * Increment the counter atomically and return the value before the increment.
+  /** Increment the counter atomically and return the value before the increment.
+    *
     * @return handler which will be passed the value
     */
   def getAndIncrement(): scala.concurrent.Future[Long] = {
@@ -59,8 +58,8 @@ class Counter(private val _asJava: io.vertx.core.shareddata.Counter) {
     promise.future
   }
 
-  /**
-    * Decrement the counter atomically and return the new count
+  /** Decrement the counter atomically and return the new count
+    *
     * @return handler which will be passed the value
     */
   def decrementAndGet(): scala.concurrent.Future[Long] = {
@@ -70,8 +69,8 @@ class Counter(private val _asJava: io.vertx.core.shareddata.Counter) {
     promise.future
   }
 
-  /**
-    * Add the value to the counter atomically and return the new count
+  /** Add the value to the counter atomically and return the new count
+    *
     * @param value the value to add
     * @return handler which will be passed the value
     */
@@ -82,8 +81,8 @@ class Counter(private val _asJava: io.vertx.core.shareddata.Counter) {
     promise.future
   }
 
-  /**
-    * Add the value to the counter atomically and return the value before the add
+  /** Add the value to the counter atomically and return the value before the add
+    *
     * @param value the value to add
     * @return handler which will be passed the value
     */
@@ -94,9 +93,9 @@ class Counter(private val _asJava: io.vertx.core.shareddata.Counter) {
     promise.future
   }
 
-  /**
-    * Set the counter to the specified value only if the current value is the expectec value. This happens
+  /** Set the counter to the specified value only if the current value is the expectec value. This happens
     * atomically.
+    *
     * @param expected the expected value
     * @param value the new value
     * @return the handler will be passed true on success

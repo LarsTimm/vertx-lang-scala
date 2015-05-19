@@ -22,8 +22,7 @@ import io.vertx.scala.core.streams.ReadStream
 import io.vertx.core.Handler
 import io.vertx.scala.core.net.SocketAddress
 
-/**
-  * A datagram socket can be used to send [[io.vertx.scala.core.datagram.DatagramPacket]]'s to remote datagram servers
+/** A datagram socket can be used to send [[io.vertx.scala.core.datagram.DatagramPacket]]'s to remote datagram servers
   * and receive [[io.vertx.scala.core.datagram.DatagramPacket]]s .
   * 
   * Usually you use a datagram socket to send UDP over the wire. UDP is connection-less which means you are not connected
@@ -40,17 +39,17 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * Whether the metrics are enabled for this measured object
+  /** Whether the metrics are enabled for this measured object
+    *
     * @return true if the metrics are enabled
     */
   def isMetricsEnabled(): Boolean = {
     _asJava.isMetricsEnabled()
   }
 
-  /**
-    * Write the given [[io.vertx.scala.core.buffer.Buffer]] to the [[io.vertx.scala.core.net.SocketAddress]].
+  /** Write the given [[io.vertx.scala.core.buffer.Buffer]] to the [[io.vertx.scala.core.net.SocketAddress]].
     * The [[io.vertx.core.Handler]] will be notified once the write completes.
+    *
     * @param packet the [[io.vertx.scala.core.buffer.Buffer]] to write
     * @param port the host port of the remote peer
     * @param host the host address of the remote peer
@@ -63,9 +62,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Returns a [[io.vertx.scala.core.datagram.PacketWritestream]] able to send  to the
+  /** Returns a [[io.vertx.scala.core.datagram.PacketWritestream]] able to send  to the
     * [[io.vertx.scala.core.net.SocketAddress]].
+    *
     * @param port the port of the remote peer
     * @param host the host address of the remote peer
     * @return the write stream for sending packets
@@ -74,9 +73,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     PacketWritestream.apply(_asJava.sender(port, host))
   }
 
-  /**
-    * Write the given  to the [[io.vertx.scala.core.net.SocketAddress]] using UTF8 encoding.
+  /** Write the given  to the [[io.vertx.scala.core.net.SocketAddress]] using UTF8 encoding.
     * The  will be notified once the write completes.
+    *
     * @param str the [[String]] to write
     * @param port the host port of the remote peer
     * @param host the host address of the remote peer
@@ -89,9 +88,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Write the given  to the [[io.vertx.scala.core.net.SocketAddress]] using the given encoding.
+  /** Write the given  to the [[io.vertx.scala.core.net.SocketAddress]] using the given encoding.
     * The  will be notified once the write completes.
+    *
     * @param str the [[String]] to write
     * @param enc the charset used for encoding
     * @param port the host port of the remote peer
@@ -105,9 +104,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Closes the [[io.vertx.scala.core.datagram.DatagramSocket]] implementation asynchronous
+  /** Closes the [[io.vertx.scala.core.datagram.DatagramSocket]] implementation asynchronous
     * and notifies the handler once done.
+    *
     * @return the handler to notify once complete
     */
   def close(): scala.concurrent.Future[Unit] = {
@@ -117,18 +116,18 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Return the [[io.vertx.scala.core.net.SocketAddress]] to which
+  /** Return the [[io.vertx.scala.core.net.SocketAddress]] to which
     * this [[io.vertx.scala.core.datagram.DatagramSocket]] is bound.
+    *
     * @return the socket address
     */
   def localAddress(): io.vertx.scala.core.net.SocketAddress = {
     SocketAddress.apply(_asJava.localAddress())
   }
 
-  /**
-    * Joins a multicast group and listens for packets send to it.
+  /** Joins a multicast group and listens for packets send to it.
     * The  is notified once the operation completes.
+    *
     * @param multicastAddress the address of the multicast group to join
     * @return then handler to notify once the operation completes
     */
@@ -139,9 +138,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Joins a multicast group and listens for packets send to it on the given network interface.
+  /** Joins a multicast group and listens for packets send to it on the given network interface.
     * The  is notified once the operation completes.
+    *
     * @param multicastAddress the address of the multicast group to join
     * @param networkInterface the network interface on which to listen for packets.
     * @param source the address of the source for which we will listen for multicast packets
@@ -154,9 +153,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Leaves a multicast group and stops listening for packets send to it.
+  /** Leaves a multicast group and stops listening for packets send to it.
     * The  is notified once the operation completes.
+    *
     * @param multicastAddress the address of the multicast group to leave
     * @return then handler to notify once the operation completes
     */
@@ -167,9 +166,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Leaves a multicast group and stops listening for packets send to it on the given network interface.
+  /** Leaves a multicast group and stops listening for packets send to it on the given network interface.
     * The  is notified once the operation completes.
+    *
     * @param multicastAddress the address of the multicast group to join
     * @param networkInterface the network interface on which to listen for packets.
     * @param source the address of the source for which we will listen for multicast packets
@@ -182,9 +181,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Block the given address for the given multicast address and notifies the  once
+  /** Block the given address for the given multicast address and notifies the  once
     * the operation completes.
+    *
     * @param multicastAddress the address for which you want to block the source address
     * @param sourceToBlock the source address which should be blocked. You will not receive an multicast packets for it anymore.
     * @return the handler to notify once the operation completes
@@ -196,9 +195,9 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Block the given address for the given multicast address on the given network interface and notifies
+  /** Block the given address for the given multicast address on the given network interface and notifies
     * the  once the operation completes.
+    *
     * @param multicastAddress the address for which you want to block the source address
     * @param networkInterface the network interface on which the blocking should occur.
     * @param sourceToBlock the source address which should be blocked. You will not receive an multicast packets for it anymore.
@@ -211,8 +210,8 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /**
-    * Start listening on the given port and host. The handler will be called when the socket is listening.
+  /** Start listening on the given port and host. The handler will be called when the socket is listening.
+    *
     * @param port the port to listen on
     * @param host the host to listen on
     * @return the handler will be called when listening

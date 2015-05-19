@@ -19,8 +19,7 @@ package io.vertx.scala.core;
 import io.vertx.scala.core.streams.ReadStream
 import io.vertx.core.Handler
 
-/**
-  * A timeout stream is triggered by a timer, the [[io.vertx.core.Handler]] will be call when the timer is fired,
+/** A timeout stream is triggered by a timer, the [[io.vertx.core.Handler]] will be call when the timer is fired,
   * it can be once or several times depending on the nature of the timer related to this stream. The
   *  will be called after the timer handler has been called.
   * 
@@ -60,8 +59,7 @@ class TimeoutStream(private val _asJava: io.vertx.core.TimeoutStream)
     this
   }
 
-  /**
-    * Cancels the timeout. Note this has the same effect as calling [[io.vertx.scala.core.TimeoutStream#handler]] with a null
+  /** Cancels the timeout. Note this has the same effect as calling [[io.vertx.scala.core.TimeoutStream#handler]] with a null
     * argument.
     */
   def cancel(): Unit = {

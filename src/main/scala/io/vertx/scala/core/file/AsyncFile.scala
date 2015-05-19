@@ -21,8 +21,7 @@ import io.vertx.scala.core.streams.WriteStream
 import io.vertx.scala.core.streams.ReadStream
 import io.vertx.core.Handler
 
-/**
-  * Represents a file on the file-system which can be read from, or written to asynchronously.
+/** Represents a file on the file-system which can be read from, or written to asynchronously.
   * 
   * This class also implements [[io.vertx.scala.core.streams.ReadStream]] and
   * [[io.vertx.scala.core.streams.WriteStream]]. This allows the data to be pumped to and from
@@ -35,8 +34,8 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
 
   def asJava: java.lang.Object = _asJava
 
-  /**
-    * This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.file.AsyncFile#setWriteQueueMaxSize]]
+  /** This will return `true` if there are more bytes in the write queue than the value set using [[io.vertx.scala.core.file.AsyncFile#setWriteQueueMaxSize]]
+    *
     * @return true if write queue is full
     */
   def writeQueueFull(): Boolean = {
@@ -87,9 +86,9 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     this
   }
 
-  /**
-    * Close the file. The actual close happens asynchronously.
+  /** Close the file. The actual close happens asynchronously.
     * The handler will be called when the close is complete, or an error occurs.
+    *
     * @return the handler
     */
   def close(): scala.concurrent.Future[Unit] = {
@@ -99,8 +98,7 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     promise.future
   }
 
-  /**
-    * Write a [[io.vertx.scala.core.buffer.Buffer]] to the file at position `position` in the file, asynchronously.
+  /** Write a [[io.vertx.scala.core.buffer.Buffer]] to the file at position `position` in the file, asynchronously.
     * 
     * If `position` lies outside of the current size
     * of the file, the file will be enlarged to encompass it.
@@ -109,6 +107,7 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     * there are no guarantees as to order in which those writes actually occur
     * 
     * The handler will be called when the write is complete, or if an error occurs.
+    *
     * @param buffer the buffer to write
     * @param position the position in the file to write it at
     * @return the handler to call when the write is complete
@@ -120,8 +119,7 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     promise.future
   }
 
-  /**
-    * Reads `length` bytes of data from the file at position `position` in the file, asynchronously.
+  /** Reads `length` bytes of data from the file at position `position` in the file, asynchronously.
     * 
     * The read data will be written into the specified `Buffer buffer` at position `offset`.
     * 
@@ -129,6 +127,7 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     * When multiple reads are invoked on the same file there are no guarantees as to order in which those reads actually occur.
     * 
     * The handler will be called when the close is complete, or if an error occurs.
+    *
     * @param buffer the buffer to read into
     * @param offset the offset into the buffer where the data will be read
     * @param position the position in the file where to start reading
@@ -142,8 +141,7 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     promise.future
   }
 
-  /**
-    * Same as [[io.vertx.scala.core.file.AsyncFile#flush]] but the handler will be called when the flush is complete or if an error occurs
+  /** Same as [[io.vertx.scala.core.file.AsyncFile#flush]] but the handler will be called when the flush is complete or if an error occurs
     */
   def flush(): scala.concurrent.Future[Unit] = {
     import io.vertx.lang.scala.HandlerOps._
@@ -152,8 +150,8 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     promise.future
   }
 
-  /**
-    * Sets the position from which data will be read from when using the file as a [[io.vertx.scala.core.streams.ReadStream]].
+  /** Sets the position from which data will be read from when using the file as a [[io.vertx.scala.core.streams.ReadStream]].
+    *
     * @param readPos the position in the file
     * @return a reference to this, so the API can be used fluently
     */
@@ -162,8 +160,8 @@ class AsyncFile(private val _asJava: io.vertx.core.file.AsyncFile)
     this
   }
 
-  /**
-    * Sets the position from which data will be written when using the file as a [[io.vertx.scala.core.streams.WriteStream]].
+  /** Sets the position from which data will be written when using the file as a [[io.vertx.scala.core.streams.WriteStream]].
+    *
     * @param writePos the position in the file
     * @return a reference to this, so the API can be used fluently
     */
