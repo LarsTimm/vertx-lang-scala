@@ -12,7 +12,7 @@
 
       doc += indentation;
       doc += "/**";
-      doc += renderDoc(commentedIndentation, method.doc, renderDocLink);
+      doc += renderDoc(commentedIndentation, method.doc, renderDocLink, "\n");
       doc += commentedIndentation;
       var returnParamWritten = false;
       for (param : method.params) {
@@ -22,7 +22,7 @@
             doc += "\n";
             doc += commentedIndentation;
             doc += " @param " + param.name + " ";
-            doc += convertLink(param.description);
+            doc += renderDoc("", param.description, renderDocLink, "");
             if (param.type.kind == CLASS_DATA_OBJECT) {
               doc += "see " + renderDataObjectHtmlLink(param.type);
             }
@@ -40,7 +40,7 @@
           doc += "\n";
           doc += commentedIndentation;
           doc += " @return ";
-          doc += convertLink(returnDescription);
+          doc += renderDoc("", returnDescription, renderDocLink, "");
           if (returnType.kind == CLASS_DATA_OBJECT) {
             doc += "see " + renderDataObjectHtmlLink(returnType);
           }
@@ -63,23 +63,6 @@
     
     link.append("../../../cheatsheet/").append(dataObjectType.simpleName).append(".html");
     return "<a href=\"" + link + "\">" + dataObjectType.simpleName + "</a>";;
-  }
-
-  def convertLink(doc) {
-    var linkText = "{@link";
-    var transformedDoc = '';
-    
-    var start = 0;
-    var index = doc.indexOf(linkText);
-    while (index >= 0) {
-       var end = doc.indexOf("}", index);
-       transformedDoc += doc.substring(start, index) + toScalaDocType(doc.substring(index + 1 + linkText.length(), end));
-       start = end + 1;
-       index = doc.indexOf(linkText, start);
-    }
-    
-    transformedDoc += doc.substring(start, doc.length());
-    return transformedDoc;
   }
 
   def toScalaDocType(type) {
@@ -138,7 +121,8 @@
         }
         return renderDataObjectHtmlLink(rawType);
       } else if (type.kind == CLASS_API &&
-                 type.name != 'io.vertx.core.Handler') {
+                 rawType.name != 'io.vertx.core.Handler' &&
+                 rawType.name != 'io.vertx.core.AsyncResult') {
         var elt = link.targetElement;
         var eltKind = elt.getKind().name();
         var ret = "[[" + rawType.translateName("scala");
@@ -150,14 +134,12 @@
         }
         ret += "]]";
         return ret;
-      } else {
-        return toScalaDocType(rawType.name);
       }
     }
-    return null;
+    return toScalaDocType(rawType.name);
   }
   
-  def renderDoc(margin, doc, renderDocLink) {
+  def renderDoc(margin, doc, renderDocLink, lineSep) {
     var need = false;
     var output = new StringBuilder();
     for (token : doc.tokens) {
@@ -166,7 +148,7 @@
         need = false;
       }
       if (token.lineBreak) {
-        output.append("\n");
+        output.append(lineSep);
         need = true;
       } else {
         if (token.text) {
@@ -174,22 +156,18 @@
         } else {
           var tag = token.tag;
           if (tag instanceof io.vertx.codegen.doc.Tag$Link) {
-            var outputLink = renderDocLink(tag);
-            if (outputLink == null || outputLink.trim().empty) {
-              outputLink = tag.label;
-            }
-            if (outputLink == null || outputLink.trim().empty) {
-              outputLink = tag.targetElement.simpleName;
-            }
-            output.append(outputLink);
+            output.append(renderDocLink(tag));
           } else if (tag.name == "code") {
             output.append("`").append(tag.value.trim()).append("`");
+          } else { 
+
+            output.append(toScalaDocType(tag.value.trim()));
           }
         }
       }
     }
     if (!need) {
-      output.append("\n");
+      output.append(lineSep);
     }
     return output.toString().replace("<p>", "");
   }

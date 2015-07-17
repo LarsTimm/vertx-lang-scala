@@ -28,7 +28,7 @@ import io.vertx.core.Handler
   * when a connection to a server is made, or on the server side by a [[io.vertx.scala.core.net.NetServer]]
   * when a server accepts a connection.
   * 
-  * It implements both  and  so it can be used with
+  * It implements both [[ReadStream]] and [[WriteStream]] so it can be used with
   * [[io.vertx.scala.core.streams.Pump]] to pump data with flow control.
   */
 class NetSocket(private val _asJava: io.vertx.core.net.NetSocket) 
@@ -102,7 +102,7 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     _asJava.writeHandlerID()
   }
 
-  /** Write a  to the connection, encoded in UTF-8.
+  /** Write a [[String]] to the connection, encoded in UTF-8.
     *
     * @param str the string to write
     * @return a reference to this, so the API can be used fluently
@@ -112,7 +112,7 @@ class NetSocket(private val _asJava: io.vertx.core.net.NetSocket)
     this
   }
 
-  /** Write a  to the connection, encoded using the encoding `enc`.
+  /** Write a [[String]] to the connection, encoded using the encoding `enc`.
     *
     * @param str the string to write
     * @param enc the encoding to use

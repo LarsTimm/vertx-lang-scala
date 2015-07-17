@@ -48,7 +48,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
   }
 
   /** Write the given [[io.vertx.scala.core.buffer.Buffer]] to the [[io.vertx.scala.core.net.SocketAddress]].
-    * The [[io.vertx.core.Handler]] will be notified once the write completes.
+    * The function will be notified once the write completes.
     *
     * @param packet the [[io.vertx.scala.core.buffer.Buffer]] to write
     * @param port the host port of the remote peer
@@ -62,7 +62,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /** Returns a [[io.vertx.scala.core.datagram.PacketWritestream]] able to send  to the
+  /** Returns a [[io.vertx.scala.core.datagram.PacketWritestream]] able to send [[Buffer]] to the
     * [[io.vertx.scala.core.net.SocketAddress]].
     *
     * @param port the port of the remote peer
@@ -73,8 +73,8 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     PacketWritestream.apply(_asJava.sender(port, host))
   }
 
-  /** Write the given  to the [[io.vertx.scala.core.net.SocketAddress]] using UTF8 encoding.
-    * The  will be notified once the write completes.
+  /** Write the given [[String]] to the [[io.vertx.scala.core.net.SocketAddress]] using UTF8 encoding.
+    * The function will be notified once the write completes.
     *
     * @param str the [[String]] to write
     * @param port the host port of the remote peer
@@ -88,8 +88,8 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /** Write the given  to the [[io.vertx.scala.core.net.SocketAddress]] using the given encoding.
-    * The  will be notified once the write completes.
+  /** Write the given [[String]] to the [[io.vertx.scala.core.net.SocketAddress]] using the given encoding.
+    * The function will be notified once the write completes.
     *
     * @param str the [[String]] to write
     * @param enc the charset used for encoding
@@ -126,7 +126,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
   }
 
   /** Joins a multicast group and listens for packets send to it.
-    * The  is notified once the operation completes.
+    * The function is notified once the operation completes.
     *
     * @param multicastAddress the address of the multicast group to join
     * @return then handler to notify once the operation completes
@@ -139,7 +139,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
   }
 
   /** Joins a multicast group and listens for packets send to it on the given network interface.
-    * The  is notified once the operation completes.
+    * The function is notified once the operation completes.
     *
     * @param multicastAddress the address of the multicast group to join
     * @param networkInterface the network interface on which to listen for packets.
@@ -154,7 +154,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
   }
 
   /** Leaves a multicast group and stops listening for packets send to it.
-    * The  is notified once the operation completes.
+    * The function is notified once the operation completes.
     *
     * @param multicastAddress the address of the multicast group to leave
     * @return then handler to notify once the operation completes
@@ -167,7 +167,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
   }
 
   /** Leaves a multicast group and stops listening for packets send to it on the given network interface.
-    * The  is notified once the operation completes.
+    * The function is notified once the operation completes.
     *
     * @param multicastAddress the address of the multicast group to join
     * @param networkInterface the network interface on which to listen for packets.
@@ -181,7 +181,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
     promise.future
   }
 
-  /** Block the given address for the given multicast address and notifies the  once
+  /** Block the given address for the given multicast address and notifies the function once
     * the operation completes.
     *
     * @param multicastAddress the address for which you want to block the source address
@@ -196,7 +196,7 @@ class DatagramSocket(private val _asJava: io.vertx.core.datagram.DatagramSocket)
   }
 
   /** Block the given address for the given multicast address on the given network interface and notifies
-    * the  once the operation completes.
+    * the function once the operation completes.
     *
     * @param multicastAddress the address for which you want to block the source address
     * @param networkInterface the network interface on which the blocking should occur.

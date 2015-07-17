@@ -1,7 +1,7 @@
 package io.vertx.lang.scala
 
 import io.vertx.core.logging.Logger
-import io.vertx.core.logging.impl.LoggerFactory;
+import io.vertx.core.logging.LoggerFactory;
 
 import scala.concurrent.ExecutionContext
 

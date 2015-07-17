@@ -20,6 +20,7 @@ import io.vertx.scala.core.buffer.Buffer
 import io.vertx.scala.core.streams.WriteStream
 import io.vertx.scala.core.MultiMap
 import io.vertx.core.Handler
+import io.vertx.scala.core.Future
 
 /** Represents a server-side HTTP response.
   * 
@@ -178,7 +179,7 @@ class HttpServerResponse(private val _asJava: io.vertx.core.http.HttpServerRespo
     this
   }
 
-  /** Write a  to the response body, encoded using the encoding `enc`.
+  /** Write a [[String]] to the response body, encoded using the encoding `enc`.
     *
     * @param chunk the string to write
     * @param enc the encoding to use
@@ -189,13 +190,23 @@ class HttpServerResponse(private val _asJava: io.vertx.core.http.HttpServerRespo
     this
   }
 
-  /** Write a  to the response body, encoded in UTF-8.
+  /** Write a [[String]] to the response body, encoded in UTF-8.
     *
     * @param chunk the string to write
     * @return a reference to this, so the API can be used fluently
     */
   def write(chunk: String): io.vertx.scala.core.http.HttpServerResponse = {
     _asJava.write(chunk)
+    this
+  }
+
+  /** Used to write an interim 100 Continue response to signify that the client should send the rest of the request.
+    * Must only be used if the request contains an "Expect:100-Continue" header
+    *
+    * @return a reference to this, so the API can be used fluently
+    */
+  def writeContinue(): io.vertx.scala.core.http.HttpServerResponse = {
+    _asJava.writeContinue()
     this
   }
 
@@ -267,13 +278,15 @@ class HttpServerResponse(private val _asJava: io.vertx.core.http.HttpServerRespo
 
   /** Provide a handler that will be called just before the headers are written to the wire.
     * This provides a hook allowing you to add any more headers or do any more operations before this occurs.
+    * The handler will be passed a future, when you've completed the work you want to do you should complete (or fail)
+    * the future. This can be done after the handler has returned.
     *
     * @param handler the handler
     * @return a reference to this, so the API can be used fluently
     */
-  def headersEndHandler(handler: => Unit): io.vertx.scala.core.http.HttpServerResponse = {
+  def headersEndHandler(handler: io.vertx.scala.core.Future[_] => Unit): io.vertx.scala.core.http.HttpServerResponse = {
     import io.vertx.lang.scala.HandlerOps._
-    _asJava.headersEndHandler(funcToMappedHandler[java.lang.Void, Unit](x => x.asInstanceOf[Unit])(_ =>handler))
+    _asJava.headersEndHandler(new Handler[io.vertx.core.Future[_]]() { override def handle(event: io.vertx.core.Future[_]): Unit = handler(Future.apply(event)) })
     this
   }
 

@@ -277,7 +277,7 @@ Codetrans not implemented
 ----
 
 WARNING: Make sure you check the filename in a production system to avoid malicious clients uploading files
-to arbitrary places on your filesystem. See <<security_notes, security notes>> for more information.
+to arbitrary places on your filesystem. See <<Security notes, security notes>> for more information.
 
 === Sending back responses
 
@@ -445,7 +445,7 @@ directly from disk to socket it doesn't give us an opportunity to apply any encr
 
 WARNING: If you're going to write web servers directly using Vert.x be careful that users cannot exploit the
 path to access files outside the directory from which you want to serve them. It may be safer instead to use
-Vert.x Apex.
+Vert.x Web.
 
 ==== Pumping responses
 
@@ -562,7 +562,7 @@ These methods don't send the request immediately, but instead return an instance
 which can be used to write to the request body or write headers.
 
 Here are some examples of writing a POST request with a body:
-
+m
 [source,scala]
 ----
 Codetrans not implemented
@@ -586,7 +586,7 @@ Codetrans not implemented
 When you're writing to a request, the first call to `write` will result in the request headers being written
 out to the wire.
 
-The actual write is asychronous and might not occur until some time after the call has returned.
+The actual write is asynchronous and might not occur until some time after the call has returned.
 
 Non-chunked HTTP requests with a request body require a `Content-Length` header to be provided.
 
@@ -669,17 +669,23 @@ If the request does not return any data within the timeout period an exception w
 
 ==== Handling exceptions
 
-You can handle exceptions corresponding to a request by setting an exception handler on the `link:scaladocs/io/vertx/scala/core/http/HttpClientRequest.html[HttpClientRequest]`
-instance:
+You can handle exceptions corresponding to a request by setting an exception handler on the
+`link:scaladocs/io/vertx/scala/core/http/HttpClientRequest.html[HttpClientRequest]` instance:
 
 [source,scala]
 ----
 Codetrans not implemented
 ----
 
-TODO - what about exceptions in the getNow methods where no exception handler can be provided??
+This does not handle non _2xx_ response that need to be handled in the
+`link:scaladocs/io/vertx/scala/core/http/HttpClientResponse.html[HttpClientResponse]` code:
 
-Maybe need a catch all exception handler??
+[source, scala]
+----
+Codetrans not implemented
+----
+
+IMPORTANT: `XXXNow` methods cannot receive an exception handler.
 
 ==== Specifying a handler on the client request
 
@@ -808,6 +814,17 @@ Here's an example:
 Codetrans not implemented
 ----
 
+On the server side a Vert.x http server can be configured to automatically send back 100 Continue interim responses
+when it receives an `Expect: 100-Continue` header.
+This is done by setting the option `link:../cheatsheet/HttpServerOptions.html#handle100ContinueAutomatically[handle100ContinueAutomatically]`.
+
+If you'd prefer to decide whether to send back continue responses manually, then this property should be set to
+`false` (the default), then you can inspect the headers and call `link:scaladocs/io/vertx/scala/core/http/HttpServerResponse.html#writeContinue()[writeContinue]`
+if you wish the client to continue sending the body or you can reject the request by sending back a failure status code
+if you don't want it to send the body. For example:
+
+
+
 === Enabling compression on the client
 
 The http client comes with support for HTTP Compression out of the box.
@@ -876,14 +893,50 @@ responses have returned and there are no outstanding pending requests to write.
 
 === Server sharing
 
-TODO
-round robin requests etc
+When several HTTP servers listen on the same port, vert.x orchestrates the request handling using a
+round-robin strategy.
+
+Let's take a verticle creating a HTTP server such as:
+
+.io.vertx.examples.http.sharing.HttpServerVerticle
+[source,scala]
+----
+Codetrans not implemented
+----
+
+This service is listening on the port 8080. So, when this verticle is instantiated multiple times as with:
+`vertx run io.vertx.examples.http.sharing.HttpServerVerticle -instances 2`, what's happening ? If both
+verticles would bind to the same port, you would receive a socket exception. Fortunately, vert.x is handling
+this case for you. When you deploy another server on the same host and port as an existing server it doesn't
+actually try and create a new server listening on the same host/port. It binds only once to the socket. When
+receiving a request it calls the server handlers following a round robin strategy.
+
+Let's now imagine a client such as:
+[source,scala]
+----
+Codetrans not implemented
+----
+
+Vert.x delegates the requests to one of the server sequentially:
+
+[source]
+----
+Hello from i.v.e.h.s.HttpServerVerticle@1
+Hello from i.v.e.h.s.HttpServerVerticle@2
+Hello from i.v.e.h.s.HttpServerVerticle@1
+Hello from i.v.e.h.s.HttpServerVerticle@2
+...
+----
+
+Consequently the servers can scale over available cores while each Vert.x verticle instance remains strictly
+single threaded, and you don't have to do any special tricks like writing load-balancers in order to scale your
+server on your multi-core machine.
 
 === Using HTTPS with Vert.x
 
 Vert.x http servers and clients can be configured to use HTTPS in exactly the same way as net servers.
 
-Please see <<netserver_ssl, configuring net servers to use SSL>> for more information.
+Please see <<ssl, configuring net servers to use SSL>> for more information.
 
 === WebSockets
 
@@ -948,22 +1001,22 @@ Codetrans not implemented
 
 ==== Writing messages to WebSockets
 
-If you wish to write a single binary WebSocket message containing a single WebSocket frame to the WebSocket (a
-common case) the simplest way to do this is to use `link:scaladocs/io/vertx/scala/core/http/WebSocket.html#writeMessage(io.vertx.core.buffer.Buffer)[writeMessage]`:
+If you wish to write a single binary WebSocket message to the WebSocket you can do this with
+`link:scaladocs/io/vertx/scala/core/http/WebSocket.html#writeBinaryMessage(io.vertx.core.buffer.Buffer)[writeBinaryMessage]`:
 
 [source,scala]
 ----
 Codetrans not implemented
 ----
 
-If the websocket message is larger than the maximum websocket frame size as configured with
+If the WebSocket message is larger than the maximum websocket frame size as configured with
 `link:../cheatsheet/HttpClientOptions.html#maxWebsocketFrameSize[maxWebsocketFrameSize]`
 then Vert.x will split it into multiple WebSocket frames before sending it on the wire.
 
 ==== Writing frames to WebSockets
 
 A WebSocket message can be composed of multiple frames. In this case the first frame is either a _binary_ or _text_ frame
-followed by one or more _continuation_ frames.
+followed by zero or more _continuation_ frames.
 
 The last frame in the message is marked as _final_.
 
@@ -974,6 +1027,17 @@ To send a message consisting of multiple frames you create frames using
 to the WebSocket using `link:scaladocs/io/vertx/scala/core/http/WebSocket.html#writeFrame(io.vertx.core.http.WebSocketFrame)[writeFrame]`.
 
 Here's an example for binary frames:
+
+[source,scala]
+----
+Codetrans not implemented
+----
+
+In many cases you just want to send a websocket message that consists of a single final frame, so we provide a couple
+of shortcut methods to do that with `link:scaladocs/io/vertx/scala/core/http/WebSocket.html#writeFinalBinaryFrame(io.vertx.core.buffer.Buffer)[writeFinalBinaryFrame]`
+and `link:scaladocs/io/vertx/scala/core/http/WebSocket.html#writeFinalTextFrame(java.lang.String)[writeFinalTextFrame]`.
+
+Here's an example:
 
 [source,scala]
 ----

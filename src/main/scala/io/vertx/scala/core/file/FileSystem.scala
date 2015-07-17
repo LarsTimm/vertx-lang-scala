@@ -502,7 +502,7 @@ class FileSystem(private val _asJava: io.vertx.core.file.FileSystem) {
     _asJava.readDirBlocking(path, filter).asScala.map(x => x:String).toList
   }
 
-  /** Reads the entire file as represented by the path `path` as a , asynchronously.
+  /** Reads the entire file as represented by the path `path` as a [[Buffer]], asynchronously.
     * 
     * Do not user this method to read very large files or you risk running out of available RAM.
     *

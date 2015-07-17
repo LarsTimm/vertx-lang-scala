@@ -31,7 +31,7 @@ class MultiMap(private val _asJava: io.vertx.core.MultiMap) {
     * more than one values for the specified name, the first value is returned.
     *
     * @param name The name of the header to search
-    * @return The first header value or {@code null} if there is no such entry
+    * @return The first header value or `null` if there is no such entry
     */
   def get(name: String): String = {
     _asJava.get(name)
@@ -62,7 +62,7 @@ class MultiMap(private val _asJava: io.vertx.core.MultiMap) {
     _asJava.isEmpty()
   }
 
-  /** Gets a immutable Set of all names
+  /** Gets a immutable [[scala.collection.immutable.Set]] of all names
     *
     * @return A [[scala.collection.immutable.Set]] of all names
     */
@@ -144,4 +144,12 @@ object MultiMap {
 
   def apply(_asJava: io.vertx.core.MultiMap): io.vertx.scala.core.MultiMap =
     new io.vertx.scala.core.MultiMap(_asJava)
+
+  /** Create a multi-map implementation with case insensitive keys, for instance it can be used to hold some HTTP headers.
+    *
+    * @return the multi-map
+    */
+  def caseInsensitiveMultiMap(): io.vertx.scala.core.MultiMap = {
+    MultiMap.apply(io.vertx.core.MultiMap.caseInsensitiveMultiMap())
+  }
 }

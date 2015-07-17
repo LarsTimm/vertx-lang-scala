@@ -36,7 +36,7 @@ class NetServer(private val _asJava: io.vertx.core.net.NetServer)
 
   /** Return the connect stream for this server. The server can only have at most one handler at any one time.
     * As the server accepts TCP or SSL connections it creates an instance of [[io.vertx.scala.core.net.NetSocket]] and passes it to the
-    * connect stream .
+    * connect stream [[ReadStream#handler(io.vertx.scala.core.Handler)]].
     *
     * @return the connect stream
     */

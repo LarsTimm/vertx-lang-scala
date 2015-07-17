@@ -19,7 +19,7 @@ package io.vertx.scala.core;
 import io.vertx.core.json.JsonObject
 import io.vertx.core.Handler
 
-/** The execution context of a [[io.vertx.core.Handler]] execution.
+/** The execution context of a function execution.
   * 
   * When Vert.x provides an event to a handler or calls the start or stop methods of a [[io.vertx.core.Verticle]],
   * the execution is associated with a `Context`.
@@ -90,7 +90,7 @@ class Context(private val _asJava: io.vertx.core.Context) {
   /** Is the current context an event loop context?
     * 
     * NOTE! when running blocking code using [[io.vertx.scala.core.Vertx#executeBlocking]] from a
-    * standard (not worker) verticle, the context will still an event loop context and this 
+    * standard (not worker) verticle, the context will still an event loop context and this [[this#isEventLoopContext()]]
     * will return true.
     *
     * @return true if false otherwise
@@ -102,7 +102,7 @@ class Context(private val _asJava: io.vertx.core.Context) {
   /** Is the current context a worker context?
     * 
     * NOTE! when running blocking code using [[io.vertx.scala.core.Vertx#executeBlocking]] from a
-    * standard (not worker) verticle, the context will still an event loop context and this 
+    * standard (not worker) verticle, the context will still an event loop context and this [[this#isWorkerContext()]]
     * will return false.
     *
     * @return true if the current context is a worker context, false otherwise
@@ -154,6 +154,13 @@ class Context(private val _asJava: io.vertx.core.Context) {
     */
   def owner(): io.vertx.scala.core.Vertx = {
     Vertx.apply(_asJava.owner())
+  }
+
+  /** @return  the number of instances of the verticle that were deployed in the deployment (if any) related
+    * to this context
+    */
+  def getInstanceCount(): Int = {
+    _asJava.getInstanceCount()
   }
 
 }

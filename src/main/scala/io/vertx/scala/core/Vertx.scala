@@ -210,7 +210,7 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
   }
 
   /** Returns a one-shot timer as a read stream. The timer will be fired after `delay` milliseconds after
-    * the  has been called.
+    * the [[ReadStream#handler]] has been called.
     *
     * @param delay the delay in milliseconds, after which the timer will fire
     * @return the timer stream
@@ -232,7 +232,7 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
   }
 
   /** Returns a periodic timer as a read stream. The timer will be fired every `delay` milliseconds after
-    * the  has been called.
+    * the [[ReadStream#handler]] has been called.
     *
     * @param delay the delay in milliseconds, after which the timer will fire
     * @return the periodic stream
@@ -343,7 +343,17 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     * method if it failed.
     *
     * @param blockingCodeHandler handler representing the blocking code to run
+    * @param ordered if true then if executeBlocking is called several times on the same context, the executions for that context will be executed serially, not in parallel. if false then they will be no ordering guarantees
     * @return handler that will be called when the blocking code is complete
+    */
+  def executeBlocking[T](blockingCodeHandler: io.vertx.scala.core.Future[T] => Unit, ordered: Boolean): scala.concurrent.Future[T] = {
+    import io.vertx.lang.scala.HandlerOps._
+    val promise = scala.concurrent.Promise[T]()
+    _asJava.executeBlocking(funcToMappedHandler(Future.apply[T])(blockingCodeHandler), ordered, promiseToAsyncResultHandler(promise))
+    promise.future
+  }
+
+  /** Like [[io.vertx.scala.core.Vertx#executeBlocking]] called with ordered = true.
     */
   def executeBlocking[T](blockingCodeHandler: io.vertx.scala.core.Future[T] => Unit): scala.concurrent.Future[T] = {
     import io.vertx.lang.scala.HandlerOps._

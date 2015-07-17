@@ -41,10 +41,22 @@ class Buffer(private val _asJava: io.vertx.core.buffer.Buffer) {
     _asJava.getByte(pos)
   }
 
+  /** Returns the unsigned `byte` at position `pos` in the Buffer, as a `short`.
+    */
+  def getUnsignedByte(pos: Int): Short = {
+    _asJava.getUnsignedByte(pos)
+  }
+
   /** Returns the `int` at position `pos` in the Buffer.
     */
   def getInt(pos: Int): Int = {
     _asJava.getInt(pos)
+  }
+
+  /** Returns the unsigned `int` at position `pos` in the Buffer, as a `long`.
+    */
+  def getUnsignedInt(pos: Int): Long = {
+    _asJava.getUnsignedInt(pos)
   }
 
   /** Returns the `long` at position `pos` in the Buffer.
@@ -69,6 +81,12 @@ class Buffer(private val _asJava: io.vertx.core.buffer.Buffer) {
     */
   def getShort(pos: Int): Short = {
     _asJava.getShort(pos)
+  }
+
+  /** Returns the unsigned `short` at position `pos` in the Buffer, as an `int`.
+    */
+  def getUnsignedShort(pos: Int): Int = {
+    _asJava.getUnsignedShort(pos)
   }
 
   /** Returns a copy of a sub-sequence the Buffer as a [[io.vertx.scala.core.buffer.Buffer]] starting at position `start`
@@ -118,11 +136,27 @@ class Buffer(private val _asJava: io.vertx.core.buffer.Buffer) {
     this
   }
 
+  /** Appends the specified unsigned `byte` to the end of the Buffer. The buffer will expand as necessary to accommodate any bytes written.
+    * Returns a reference to `this` so multiple operations can be appended together.
+    */
+  def appendUnsignedByte(b: Short): io.vertx.scala.core.buffer.Buffer = {
+    _asJava.appendUnsignedByte(b)
+    this
+  }
+
   /** Appends the specified `int` to the end of the Buffer. The buffer will expand as necessary to accommodate any bytes written.
     * Returns a reference to `this` so multiple operations can be appended together.
     */
   def appendInt(i: Int): io.vertx.scala.core.buffer.Buffer = {
     _asJava.appendInt(i)
+    this
+  }
+
+  /** Appends the specified unsigned `int` to the end of the Buffer. The buffer will expand as necessary to accommodate any bytes written.
+    * Returns a reference to `this` so multiple operations can be appended together.
+    */
+  def appendUnsignedInt(i: Long): io.vertx.scala.core.buffer.Buffer = {
+    _asJava.appendUnsignedInt(i)
     this
   }
 
@@ -139,6 +173,14 @@ class Buffer(private val _asJava: io.vertx.core.buffer.Buffer) {
     */
   def appendShort(s: Short): io.vertx.scala.core.buffer.Buffer = {
     _asJava.appendShort(s)
+    this
+  }
+
+  /** Appends the specified unsigned `short` to the end of the Buffer.The buffer will expand as necessary to accommodate any bytes written.
+    * Returns a reference to `this` so multiple operations can be appended together.
+    */
+  def appendUnsignedShort(s: Int): io.vertx.scala.core.buffer.Buffer = {
+    _asJava.appendUnsignedShort(s)
     this
   }
 
@@ -184,11 +226,26 @@ class Buffer(private val _asJava: io.vertx.core.buffer.Buffer) {
     this
   }
 
+  /** Sets the unsigned `byte` at position `pos` in the Buffer to the value `b`.
+    * The buffer will expand as necessary to accommodate any value written.
+    */
+  def setUnsignedByte(pos: Int, b: Short): io.vertx.scala.core.buffer.Buffer = {
+    Buffer.apply(_asJava.setUnsignedByte(pos, b))
+  }
+
   /** Sets the `int` at position `pos` in the Buffer to the value `i`.
     * The buffer will expand as necessary to accommodate any value written.
     */
   def setInt(pos: Int, i: Int): io.vertx.scala.core.buffer.Buffer = {
     _asJava.setInt(pos, i)
+    this
+  }
+
+  /** Sets the unsigned `int` at position `pos` in the Buffer to the value `i`.
+    * The buffer will expand as necessary to accommodate any value written.
+    */
+  def setUnsignedInt(pos: Int, i: Long): io.vertx.scala.core.buffer.Buffer = {
+    _asJava.setUnsignedInt(pos, i)
     this
   }
 
@@ -221,6 +278,14 @@ class Buffer(private val _asJava: io.vertx.core.buffer.Buffer) {
     */
   def setShort(pos: Int, s: Short): io.vertx.scala.core.buffer.Buffer = {
     _asJava.setShort(pos, s)
+    this
+  }
+
+  /** Sets the unsigned `short` at position `pos` in the Buffer to the value `s`.
+    * The buffer will expand as necessary to accommodate any value written.
+    */
+  def setUnsignedShort(pos: Int, s: Int): io.vertx.scala.core.buffer.Buffer = {
+    _asJava.setUnsignedShort(pos, s)
     this
   }
 

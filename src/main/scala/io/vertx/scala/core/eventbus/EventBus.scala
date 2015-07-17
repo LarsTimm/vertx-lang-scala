@@ -46,8 +46,8 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * subsequently replies to the message.
     *
     * @param address the address to send it to
-    * @param message the message, may be {@code null}
-    * @return reply handler will be called when any reply from the recipient is received, may be {@code null}
+    * @param message the message, may be `null`
+    * @return reply handler will be called when any reply from the recipient is received, may be `null`
     */
   def send[T](address: String, message: Any): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
     import io.vertx.lang.scala.HandlerOps._
@@ -61,9 +61,9 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * subsequently replies to the message.
     *
     * @param address the address to send it to
-    * @param message the message, may be {@code null}
+    * @param message the message, may be `null`
     * @param options delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
-    * @return reply handler will be called when any reply from the recipient is received, may be {@code null}
+    * @return reply handler will be called when any reply from the recipient is received, may be `null`
     */
   def send[T](address: String, message: Any, options: io.vertx.core.eventbus.DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
     import io.vertx.lang.scala.HandlerOps._
@@ -77,7 +77,7 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * The message will be delivered to all handlers registered to the address.
     *
     * @param address the address to publish it to
-    * @param message the message, may be {@code null}
+    * @param message the message, may be `null`
     * @return a reference to this, so the API can be used fluently
     */
   def publish(address: String, message: Any): io.vertx.scala.core.eventbus.EventBus = {
@@ -89,7 +89,7 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
   /** Like [[io.vertx.scala.core.eventbus.EventBus#publish]] but specifying `options` that can be used to configure the delivery.
     *
     * @param address the address to publish it to
-    * @param message the message, may be {@code null}
+    * @param message the message, may be `null`
     * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
     * @return a reference to this, so the API can be used fluently
     */
@@ -193,7 +193,7 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
 
   /** Close the event bus and release any resources held
     *
-    * @return may be {@code null}
+    * @return may be `null`
     */
   def close(): scala.concurrent.Future[Unit] = {
     import io.vertx.lang.scala.HandlerOps._

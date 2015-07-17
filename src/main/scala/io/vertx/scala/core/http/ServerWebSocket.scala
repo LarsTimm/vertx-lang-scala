@@ -130,8 +130,18 @@ class ServerWebSocket(private val _asJava: io.vertx.core.http.ServerWebSocket)
     this
   }
 
-  def writeMessage(data: io.vertx.scala.core.buffer.Buffer): io.vertx.scala.core.http.ServerWebSocket = {
-    _asJava.writeMessage(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
+  def writeFinalTextFrame(text: String): io.vertx.scala.core.http.ServerWebSocket = {
+    _asJava.writeFinalTextFrame(text)
+    this
+  }
+
+  def writeFinalBinaryFrame(data: io.vertx.scala.core.buffer.Buffer): io.vertx.scala.core.http.ServerWebSocket = {
+    _asJava.writeFinalBinaryFrame(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
+    this
+  }
+
+  def writeBinaryMessage(data: io.vertx.scala.core.buffer.Buffer): io.vertx.scala.core.http.ServerWebSocket = {
+    _asJava.writeBinaryMessage(data.asJava.asInstanceOf[io.vertx.core.buffer.Buffer])
     this
   }
 
