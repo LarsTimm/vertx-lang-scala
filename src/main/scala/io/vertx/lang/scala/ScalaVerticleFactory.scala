@@ -14,7 +14,7 @@ import scala.tools.nsc.Settings
 import scala.util.matching.Regex
 
 import io.vertx.core.logging.Logger
-import io.vertx.core.logging.impl.LoggerFactory
+import io.vertx.core.logging.LoggerFactory
 import io.vertx.lang.scala.interpreter.{ClassLoaders, ScalaInterpreter}
 import java.net.URL
 import java.security.{PrivilegedAction, AccessController}

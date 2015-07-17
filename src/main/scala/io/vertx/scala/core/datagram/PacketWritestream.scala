@@ -22,7 +22,7 @@ import io.vertx.core.Handler
 
 /**
   * A [[io.vertx.scala.core.streams.WriteStream]] for sending packets to a [[io.vertx.scala.core.net.SocketAddress]].
-  * The stream  is called when the write fails.
+  * The stream [[WriteStream#exceptionHandler]] is called when the write fails.
   */
 class PacketWritestream(private val _asJava: io.vertx.core.datagram.PacketWritestream) 
     extends io.vertx.scala.core.streams.WriteStream[io.vertx.scala.core.buffer.Buffer] {

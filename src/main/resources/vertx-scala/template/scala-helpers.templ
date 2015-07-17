@@ -5,6 +5,8 @@
       return 'Unit';
     } else if (type.name == 'Object' || type.name == 'java.lang.Object') {
       return 'Any';
+    } else if (type.name == '?') {
+      return '_';
     } else if (type.kind == CLASS_THROWABLE) {
       return 'Throwable';
     } else if (type.kind == CLASS_STRING) {
@@ -102,8 +104,7 @@
   }
 
   def isParamHandler(param) {
-    return (param.type.kind == CLASS_HANDLER && param.type.args[0].kind != CLASS_ASYNC_RESULT) &&
-      !param.type.name.contains("io.vertx.core.Future");
+    return (param.type.kind == CLASS_HANDLER && param.type.args[0].kind != CLASS_ASYNC_RESULT);
   }
 
   def isMethodHandler(method) {
@@ -201,7 +202,7 @@
                listType.kind == CLASS_JSON_ARRAY) {
       invocation += method + '[' + toJavaType(type) + ', ' + toScalaType(type) + '](x => x.asScala';
     } else {
-      invocation += 'TODO';
+      invocation += method + '[' + toJavaType(type) + ', ' + toScalaType(type) + '](x => x.asScala';
     }
     
     if (type.kind == CLASS_LIST) {
@@ -217,7 +218,15 @@
     var invocation = '';
   
     if (type.kind == CLASS_API) {
-      invocation += mappedFunc + '(' + toScalaApply(type.getSimpleName()) + ')(';
+      if (!type.name.contains("io.vertx.core.Future")) {
+        invocation += mappedFunc + '(' + toScalaApply(type.getSimpleName()) + ')(';
+      } else {
+        if (type.args[0].name != '?') {
+          invocation += mappedFunc + '(' + toScalaApply(type.getSimpleName()) + ')(';
+        } else {
+          invocation += 'new Handler[io.vertx.core.Future[_]]() { override def handle(event: io.vertx.core.Future[_]): Unit = '
+        }
+      }
     } else if (type.kind == CLASS_LIST ||
                type.kind == CLASS_SET) {
       invocation += methodInvocationHandlerCollection(type, mappedFunc);
@@ -325,7 +334,12 @@
         invocation += toJavaType(param.type);
         invocation += ']';
       } else if (param.type.kind == CLASS_HANDLER) {
-        invocation += ')';
+        var handlerType = param.type.args[0]; 
+        if (handlerType.name.contains("io.vertx.core.Future") && handlerType.args[0].name == '?') {
+          invocation += '(Future.apply(event)) }'
+        } else {
+          invocation += ')';
+        }
       }
     }
     if (wrap) {

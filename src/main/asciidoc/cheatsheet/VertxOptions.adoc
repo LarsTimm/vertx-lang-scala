@@ -45,7 +45,7 @@ Set the value of cluster ping interval, in ms.+++
 |+++
 Set the value of cluster ping reply interval, in ms.+++
 
-|[[blockedThreadCheckPeriod]]`blockedThreadCheckPeriod`
+|[[blockedThreadCheckInterval]]`blockedThreadCheckInterval`
 |`Number`
 |+++
 Sets the value of blocked thread check period, in ms.+++
@@ -84,4 +84,9 @@ Set the HA group to be used when HA is enabled.+++
 |`link:MetricsOptions.html[MetricsOptions]`
 |+++
 Set the metrics options+++
+
+|[[warningExceptionTime]]`warningExceptionTime`
+|`Number`
+|+++
+Set the threshold value above this, the blocked warning contains a stack trace.+++
 |===

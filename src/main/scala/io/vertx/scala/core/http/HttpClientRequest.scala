@@ -161,7 +161,7 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
   }
 
   /**
-    * Write a  to the request body, encoded as UTF-8.
+    * Write a [[String]] to the request body, encoded as UTF-8.
     * @return @return a reference to this, so the API can be used fluently
     */
   def write(chunk: String): io.vertx.scala.core.http.HttpClientRequest = {
@@ -170,7 +170,7 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
   }
 
   /**
-    * Write a  to the request body, encoded using the encoding `enc`.
+    * Write a [[String]] to the request body, encoded using the encoding `enc`.
     * @return @return a reference to this, so the API can be used fluently
     */
   def write(chunk: String, enc: String): io.vertx.scala.core.http.HttpClientRequest = {
@@ -239,7 +239,7 @@ class HttpClientRequest(private val _asJava: io.vertx.core.http.HttpClientReques
   }
 
   /**
-    * Set's the amount of time after which if a response is not received TimeoutException
+    * Set's the amount of time after which if a response is not received [[java.util.concurrent.TimeoutException]]
     * will be sent to the exception handler of this request.
     * 
     *  Calling this method more than once
