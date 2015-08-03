@@ -5,8 +5,6 @@
       return 'Unit';
     } else if (type.name == 'Object' || type.name == 'java.lang.Object') {
       return 'Any';
-    } else if (type.name == '?') {
-      return '_';
     } else if (type.kind == CLASS_THROWABLE) {
       return 'Throwable';
     } else if (type.kind == CLASS_STRING) {
@@ -59,7 +57,11 @@
           } else {
             retVal += ', ';
           }
-          retVal += toScalaType(arg);
+          if (arg.kind == CLASS_VOID) {
+          	retVal += arg.simpleName;
+          } else {
+            retVal += toScalaType(arg);
+          }
         }
         retVal += ']';
       } 
@@ -218,15 +220,7 @@
     var invocation = '';
   
     if (type.kind == CLASS_API) {
-      if (!type.name.contains("io.vertx.core.Future")) {
-        invocation += mappedFunc + '(' + toScalaApply(type.getSimpleName()) + ')(';
-      } else {
-        if (type.args[0].name != '?') {
-          invocation += mappedFunc + '(' + toScalaApply(type.getSimpleName()) + ')(';
-        } else {
-          invocation += 'new Handler[io.vertx.core.Future[_]]() { override def handle(event: io.vertx.core.Future[_]): Unit = '
-        }
-      }
+      invocation += mappedFunc + '(' + toScalaApply(type.getSimpleName()) + ')(';
     } else if (type.kind == CLASS_LIST ||
                type.kind == CLASS_SET) {
       invocation += methodInvocationHandlerCollection(type, mappedFunc);
@@ -334,12 +328,7 @@
         invocation += toJavaType(param.type);
         invocation += ']';
       } else if (param.type.kind == CLASS_HANDLER) {
-        var handlerType = param.type.args[0]; 
-        if (handlerType.name.contains("io.vertx.core.Future") && handlerType.args[0].name == '?') {
-          invocation += '(Future.apply(event)) }'
-        } else {
-          invocation += ')';
-        }
+        invocation += ')';
       }
     }
     if (wrap) {

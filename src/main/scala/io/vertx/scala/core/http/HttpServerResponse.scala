@@ -284,9 +284,9 @@ class HttpServerResponse(private val _asJava: io.vertx.core.http.HttpServerRespo
     * @param handler the handler
     * @return a reference to this, so the API can be used fluently
     */
-  def headersEndHandler(handler: io.vertx.scala.core.Future[_] => Unit): io.vertx.scala.core.http.HttpServerResponse = {
+  def headersEndHandler(handler: io.vertx.scala.core.Future[Void] => Unit): io.vertx.scala.core.http.HttpServerResponse = {
     import io.vertx.lang.scala.HandlerOps._
-    _asJava.headersEndHandler(new Handler[io.vertx.core.Future[_]]() { override def handle(event: io.vertx.core.Future[_]): Unit = handler(Future.apply(event)) })
+    _asJava.headersEndHandler(funcToMappedHandler(Future.apply[Void])(handler))
     this
   }
 
