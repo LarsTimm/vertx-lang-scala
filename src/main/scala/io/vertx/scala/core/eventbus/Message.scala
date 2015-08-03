@@ -16,7 +16,6 @@
 
 package io.vertx.scala.core.eventbus;
 
-import io.vertx.core.eventbus.DeliveryOptions
 import io.vertx.scala.core.MultiMap
 import io.vertx.core.Handler
 
@@ -82,14 +81,14 @@ class Message[T](private val _asJava: io.vertx.core.eventbus.Message[T]) {
     * to receive the reply to the reply.
     *
     * @param message the reply message
-    * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
+    * @param options the delivery options
     * @return the reply handler for the reply.
     */
-  def reply[R](message: Any, options: io.vertx.core.eventbus.DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[R]] = {
+  def reply[R](message: Any, options: DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[R]] = {
     import io.vertx.lang.scala.HandlerOps._
     import io.vertx.lang.scala.RuntimeObjectConversion
     val promise = scala.concurrent.Promise[io.vertx.scala.core.eventbus.Message[R]]()
-    _asJava.reply(RuntimeObjectConversion.asJava(message), options, promiseToMappedAsyncResultHandler(Message.apply[R])(promise))
+    _asJava.reply(RuntimeObjectConversion.asJava(message), options.asJava, promiseToMappedAsyncResultHandler(Message.apply[R])(promise))
     promise.future
   }
 

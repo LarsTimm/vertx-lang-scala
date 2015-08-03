@@ -23,9 +23,6 @@
             doc += commentedIndentation;
             doc += " @param " + param.name + " ";
             doc += renderDoc("", param.description, renderDocLink, "");
-            if (param.type.kind == CLASS_DATA_OBJECT) {
-              doc += "see " + renderDataObjectHtmlLink(param.type);
-            }
           }
          } else {
            /* TODO: Consider writing a common description for metods returning a future,
@@ -41,9 +38,6 @@
           doc += commentedIndentation;
           doc += " @return ";
           doc += renderDoc("", returnDescription, renderDocLink, "");
-          if (returnType.kind == CLASS_DATA_OBJECT) {
-            doc += "see " + renderDataObjectHtmlLink(returnType);
-          }
         }
       }
       if (returnParamWritten) {
@@ -53,16 +47,6 @@
       doc += "/\n";
     }
     doc;
-  }
-
-  def renderDataObjectHtmlLink(dataObjectType) {
-    var link = new StringBuilder();
-    for (name : CASE_QUALIFIED.parse(type.raw.getPackageName())) {
-      link.append("../");
-    }
-    
-    link.append("../../../cheatsheet/").append(dataObjectType.simpleName).append(".html");
-    return "<a href=\"" + link + "\">" + dataObjectType.simpleName + "</a>";;
   }
 
   def toScalaDocType(type) {
@@ -115,17 +99,13 @@
     var rawType = link.targetType.raw;
     if (rawType.module != null) {
       var label = link.label.trim();
-      if (rawType.kind == CLASS_DATA_OBJECT) {
-        if (label.length() == 0) {
-          label = rawType.simpleName;
-        }
-        return renderDataObjectHtmlLink(rawType);
-      } else if (type.kind == CLASS_API &&
-                 rawType.name != 'io.vertx.core.Handler' &&
-                 rawType.name != 'io.vertx.core.AsyncResult') {
+      if (type.kind == CLASS_DATA_OBJECT ||
+          (type.kind == CLASS_API &&
+           rawType.name != 'io.vertx.core.Handler' &&
+           rawType.name != 'io.vertx.core.AsyncResult')) {
         var elt = link.targetElement;
         var eltKind = elt.getKind().name();
-        var ret = "[[" + rawType.translateName("scala");
+        var ret = "[[" + rawType.module.translateQualifiedName(rawType.name, "scala");
         if (eltKind == "METHOD") {
           ret += "#" + elt.getSimpleName().toString();
         }

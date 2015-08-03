@@ -32,14 +32,18 @@ package @{type.raw.translatePackageName("scala")};\n
 @foreach{importedType : importedTypes}
 	@if{importedType.kind == CLASS_API}
 		@if{!ifacePackageName.equals(importedType.packageName)}
-import @{importedType.raw.translateName("scala")}\n
+			import @{importedType.raw.translateName("scala")}\n
+		@end{}
+	@else{importedType.kind == CLASS_DATA_OBJECT}
+		@if{!ifacePackageName.equals(importedType.packageName)}
+			import @{importedType.getName().replace('io.vertx', 'io.vertx.scala')}\n
 		@end{}
 	@else{importedType.kind != CLASS_ASYNC_RESULT &&
 	      !importedType.packageName.equals("java.lang") &&
         importedType.kind != CLASS_LIST &&
         importedType.kind != CLASS_SET &&
         importedType.kind != CLASS_MAP}
-import @{importedType}\n
+		import @{importedType}\n
 	@end{}
 @end{}
 \n

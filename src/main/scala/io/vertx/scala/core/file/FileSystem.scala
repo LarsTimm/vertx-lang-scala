@@ -17,7 +17,6 @@
 package io.vertx.scala.core.file;
 
 import io.vertx.scala.core.buffer.Buffer
-import io.vertx.core.file.OpenOptions
 import io.vertx.core.Handler
 
 /** Contains a broad set of operations for manipulating files on the file system.
@@ -547,19 +546,19 @@ class FileSystem(private val _asJava: io.vertx.core.file.FileSystem) {
     * The file is opened for both reading and writing. If the file does not already exist it will be created.
     *
     * @param path path to the file
-    * @param options options describing how the file should be openedsee <a href="../../../../../../../cheatsheet/OpenOptions.html">OpenOptions</a>
+    * @param options options describing how the file should be opened
     */
-  def open(path: String, options: io.vertx.core.file.OpenOptions): scala.concurrent.Future[io.vertx.scala.core.file.AsyncFile] = {
+  def open(path: String, options: OpenOptions): scala.concurrent.Future[io.vertx.scala.core.file.AsyncFile] = {
     import io.vertx.lang.scala.HandlerOps._
     val promise = scala.concurrent.Promise[io.vertx.scala.core.file.AsyncFile]()
-    _asJava.open(path, options, promiseToMappedAsyncResultHandler(AsyncFile.apply)(promise))
+    _asJava.open(path, options.asJava, promiseToMappedAsyncResultHandler(AsyncFile.apply)(promise))
     promise.future
   }
 
   /** Blocking version of [[io.vertx.scala.core.file.FileSystem#open]]
     */
-  def openBlocking(path: String, options: io.vertx.core.file.OpenOptions): io.vertx.scala.core.file.AsyncFile = {
-    AsyncFile.apply(_asJava.openBlocking(path, options))
+  def openBlocking(path: String, options: OpenOptions): io.vertx.scala.core.file.AsyncFile = {
+    AsyncFile.apply(_asJava.openBlocking(path, options.asJava))
   }
 
   /** Creates an empty file with the specified `path`, asynchronously.

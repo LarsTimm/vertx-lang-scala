@@ -21,7 +21,7 @@ import io.vertx.core.Handler
 
 /** The execution context of a function execution.
   * 
-  * When Vert.x provides an event to a handler or calls the start or stop methods of a [[io.vertx.core.Verticle]],
+  * When Vert.x provides an event to a handler or calls the start or stop methods of a [[io.vertx.scala.core.Verticle]],
   * the execution is associated with a `Context`.
   * 
   * Usually a context is an *event-loop context* and is tied to a specific event loop thread. So executions for that

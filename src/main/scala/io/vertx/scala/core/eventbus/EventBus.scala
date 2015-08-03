@@ -16,7 +16,6 @@
 
 package io.vertx.scala.core.eventbus;
 
-import io.vertx.core.eventbus.DeliveryOptions
 import io.vertx.scala.core.metrics.Measured
 import io.vertx.core.Handler
 
@@ -62,14 +61,14 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     *
     * @param address the address to send it to
     * @param message the message, may be `null`
-    * @param options delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
+    * @param options delivery options
     * @return reply handler will be called when any reply from the recipient is received, may be `null`
     */
-  def send[T](address: String, message: Any, options: io.vertx.core.eventbus.DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
+  def send[T](address: String, message: Any, options: DeliveryOptions): scala.concurrent.Future[io.vertx.scala.core.eventbus.Message[T]] = {
     import io.vertx.lang.scala.HandlerOps._
     import io.vertx.lang.scala.RuntimeObjectConversion
     val promise = scala.concurrent.Promise[io.vertx.scala.core.eventbus.Message[T]]()
-    _asJava.send(address, RuntimeObjectConversion.asJava(message), options, promiseToMappedAsyncResultHandler(Message.apply[T])(promise))
+    _asJava.send(address, RuntimeObjectConversion.asJava(message), options.asJava, promiseToMappedAsyncResultHandler(Message.apply[T])(promise))
     promise.future
   }
 
@@ -90,12 +89,12 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     *
     * @param address the address to publish it to
     * @param message the message, may be `null`
-    * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
+    * @param options the delivery options
     * @return a reference to this, so the API can be used fluently
     */
-  def publish(address: String, message: Any, options: io.vertx.core.eventbus.DeliveryOptions): io.vertx.scala.core.eventbus.EventBus = {
+  def publish(address: String, message: Any, options: DeliveryOptions): io.vertx.scala.core.eventbus.EventBus = {
     import io.vertx.lang.scala.RuntimeObjectConversion
-    _asJava.publish(address, RuntimeObjectConversion.asJava(message), options)
+    _asJava.publish(address, RuntimeObjectConversion.asJava(message), options.asJava)
     this
   }
 
@@ -160,11 +159,11 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * the message.
     *
     * @param address the address to send it to
-    * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
+    * @param options the delivery options
     * @return The sender
     */
-  def sender[T](address: String, options: io.vertx.core.eventbus.DeliveryOptions): io.vertx.scala.core.eventbus.MessageProducer[T] = {
-    MessageProducer.apply[T](_asJava.sender(address, options))
+  def sender[T](address: String, options: DeliveryOptions): io.vertx.scala.core.eventbus.MessageProducer[T] = {
+    MessageProducer.apply[T](_asJava.sender(address, options.asJava))
   }
 
   /** Create a message publisher against the specified address.
@@ -184,11 +183,11 @@ class EventBus(private val _asJava: io.vertx.core.eventbus.EventBus)
     * the message.
     *
     * @param address the address to publish it to
-    * @param options the delivery optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
+    * @param options the delivery options
     * @return The publisher
     */
-  def publisher[T](address: String, options: io.vertx.core.eventbus.DeliveryOptions): io.vertx.scala.core.eventbus.MessageProducer[T] = {
-    MessageProducer.apply[T](_asJava.publisher(address, options))
+  def publisher[T](address: String, options: DeliveryOptions): io.vertx.scala.core.eventbus.MessageProducer[T] = {
+    MessageProducer.apply[T](_asJava.publisher(address, options.asJava))
   }
 
   /** Close the event bus and release any resources held

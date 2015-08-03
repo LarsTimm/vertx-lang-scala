@@ -16,7 +16,6 @@
 
 package io.vertx.scala.core.eventbus;
 
-import io.vertx.core.eventbus.DeliveryOptions
 import io.vertx.scala.core.streams.WriteStream
 import io.vertx.core.Handler
 
@@ -60,11 +59,11 @@ class MessageProducer[T](private val _asJava: io.vertx.core.eventbus.MessageProd
 
   /** Update the delivery options of this producer.
     *
-    * @param options the new optionssee <a href="../../../../../../../cheatsheet/DeliveryOptions.html">DeliveryOptions</a>
+    * @param options the new options
     * @return this producer object
     */
-  def deliveryOptions(options: io.vertx.core.eventbus.DeliveryOptions): io.vertx.scala.core.eventbus.MessageProducer[T] = {
-    _asJava.deliveryOptions(options)
+  def deliveryOptions(options: DeliveryOptions): io.vertx.scala.core.eventbus.MessageProducer[T] = {
+    _asJava.deliveryOptions(options.asJava)
     this
   }
 

@@ -1,0 +1,156 @@
+@comment{"# Template for Scala code generation"}
+
+@comment{"# Defines a few helper functions"}
+@includeNamed{'common.templ'}
+@includeNamed{'scala-helpers.templ'}
+@includeNamed{'scala-doc.templ'}
+
+@comment{
+	TODO: Avoid massively long class names, take advantage of imports
+}
+
+/*\n
+ * Copyright 2015 Red Hat, Inc.\n
+ *\n
+ * Red Hat licenses this file to you under the Apache License, version 2.0\n
+ * (the "License"); you may not use this file except in compliance with the\n
+ * License.  You may obtain a copy of the License at:\n
+ *\n
+ * http://www.apache.org/licenses/LICENSE-2.0\n
+ *\n
+ * Unless required by applicable law or agreed to in writing, software\n
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT\n
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the\n
+ * License for the specific language governing permissions and limitations\n
+ * under the License.\n
+ */\n\n
+
+@declare{'writeBody'}
+	@if{reader}
+		: @{toScalaType(property.type)}
+	@else{}
+		: Unit
+	@end{}
+
+	@if{concrete}
+		 = {\n
+		@if{property.array}
+	    import scala.collection.JavaConverters._\n
+		@end{}
+		@if{reader}
+			@if{property.type.kind == CLASS_API}
+		    @{helper.getNonGenericType(property.type.translateName("scala")) + '.apply' + getGenericType(property.type.name)}(asJava.@{property.readerMethod}()
+			@else{property.type.kind == CLASS_DATA_OBJECT}
+		    @{type.getModule().translateQualifiedName(property.type.name, "scala") + '.apply'}(asJava.@{property.readerMethod}()
+			@else{}
+		    asJava.@{property.readerMethod}(
+			@end{}
+		@else{}
+	    asJava.@{property.writerMethod}(x
+			@if{property.type.kind == CLASS_API}
+				.asJava.asInstanceOf[@{toJavaType(property.type)}]
+			@else{property.type.kind == CLASS_DATA_OBJECT}
+				.asJava
+			@else{!property.adder && property.array}
+				.asJava
+			@end{}
+		@end{}
+		)\n
+	  }\n
+	@else{}
+		\n
+	@end{\n}
+@end{}
+
+package @{type.getModule().translateQualifiedName(type.raw.packageName, "scala")};\n
+\n
+
+@comment{"# Generate the imports"}
+@foreach{importedType : importedTypes}
+	@if{importedType.kind == CLASS_API}
+		import @{importedType.raw.translateName("scala")}\n
+	@else{importedType.kind == CLASS_DATA_OBJECT}
+		import @{importedType.getName().replace('io.vertx', 'io.vertx.scala')}\n
+	@else{importedType.kind != CLASS_ASYNC_RESULT &&
+	      !importedType.packageName.equals("java.lang") &&
+        importedType.kind != CLASS_LIST &&
+        importedType.kind != CLASS_SET &&
+        importedType.kind != CLASS_MAP}
+		import @{importedType}\n
+	@end{}
+@end{}
+\n
+
+@if{doc != null}
+/**
+@{renderDoc("  *", doc, renderDocLink, "\n")}
+  */\n
+@end{}
+
+@if{concrete}
+	class @{type.raw.simpleName}(val asJava: @{toJavaType(type);})
+@else{}
+	trait @{type.raw.simpleName}
+@end{}
+
+@comment{"## Inheritance"}
+@if{abstractSuperTypes.size() > 0}
+	\n    extends @foreach{abstractSuperType : abstractSuperTypes}@{toScalaType(abstractSuperType);}@end{'\n    with '}
+@end{}
+
+{\n\n
+	@foreach{property : properties}
+		@if{property.doc != null}
+		  /**@{renderDoc('    *', property.doc, renderDocLink, "\n");}
+		    */\n
+		@end{}
+		@if{property.adder}
+		  def @{property.writerMethod}(x: @{toScalaType(property.type)})
+			@includeNamed{'writeBody';property=property;reader=false}
+		@else{}
+			@if{property.array}
+			  def @{property.name}_=(x: List[@{toScalaType(property.type)}])
+				@includeNamed{'writeBody';property=property;reader=false}
+			@else{}
+				@if{property.readerMethod != null}
+				  def @{property.name}_=(x: @{toScalaType(property.type)})
+					@includeNamed{'writeBody';property=property;reader=false}\n
+				  def @{property.name}
+					@includeNamed{'writeBody';property=property;reader=true}
+				@else{}
+				  def @{property.writerMethod}(x: @{toScalaType(property.type)})
+					@includeNamed{'writeBody';property=property;reader=false}
+				@end{}
+			@end{}
+		@end{}
+	@end{'\n'}
+\n}
+
+\n\n
+
+@if{concrete}
+	object @{type.raw.simpleName} {\n\n
+	  def apply(asJava: @{toJavaType(type);}): @{toScalaType(type);} =\n
+	    new @{toScalaType(type);}(asJava)\n
+		\n
+	  /** Default constructor\n
+	    */\n
+	  def apply() =\n
+	    new @{toScalaType(type);}(new @{toJavaType(type);})\n
+		\n
+	  /** Copy constructor\n
+	    *\n
+	    * @param other the instance to copy\n
+	    */\n
+	  def apply(other: @{type.raw.simpleName}) =\n
+	    new @{toScalaType(type);}(new @{toJavaType(type)}(other.asJava))\n
+		\n
+	  /** Constructor for creating a instance from JSON\n
+	    *\n
+	    * @param json the JSON\n
+	    */\n
+	  def apply(json: io.vertx.core.json.JsonObject) =\n
+	    new @{toScalaType(type);}(new @{toJavaType(type)}(json))\n
+		\n
+	}\n
+@end{}

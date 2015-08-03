@@ -20,18 +20,16 @@ import io.vertx.scala.core.datagram.DatagramSocket
 import io.vertx.scala.core.http.HttpServer
 import io.vertx.scala.core.shareddata.SharedData
 import io.vertx.scala.core.eventbus.EventBus
-import io.vertx.core.http.HttpClientOptions
-import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.scala.core.http.HttpClientOptions
+import io.vertx.scala.core.datagram.DatagramSocketOptions
 import io.vertx.scala.core.net.NetClient
-import io.vertx.core.VertxOptions
-import io.vertx.core.net.NetClientOptions
+import io.vertx.scala.core.net.NetClientOptions
 import io.vertx.scala.core.dns.DnsClient
-import io.vertx.core.net.NetServerOptions
+import io.vertx.scala.core.net.NetServerOptions
 import io.vertx.scala.core.metrics.Measured
 import io.vertx.scala.core.net.NetServer
-import io.vertx.core.DeploymentOptions
 import io.vertx.scala.core.file.FileSystem
-import io.vertx.core.http.HttpServerOptions
+import io.vertx.scala.core.http.HttpServerOptions
 import io.vertx.core.Handler
 import io.vertx.scala.core.http.HttpClient
 
@@ -80,11 +78,11 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
 
   /** Create a TCP/SSL server using the specified options
     *
-    * @param options the options to usesee <a href="../../../../../../cheatsheet/NetServerOptions.html">NetServerOptions</a>
+    * @param options the options to use
     * @return the server
     */
-  def createNetServer(options: io.vertx.core.net.NetServerOptions): io.vertx.scala.core.net.NetServer = {
-    NetServer.apply(_asJava.createNetServer(options))
+  def createNetServer(options: NetServerOptions): io.vertx.scala.core.net.NetServer = {
+    NetServer.apply(_asJava.createNetServer(options.asJava))
   }
 
   /** Create a TCP/SSL server using default options
@@ -97,11 +95,11 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
 
   /** Create a TCP/SSL client using the specified options
     *
-    * @param options the options to usesee <a href="../../../../../../cheatsheet/NetClientOptions.html">NetClientOptions</a>
+    * @param options the options to use
     * @return the client
     */
-  def createNetClient(options: io.vertx.core.net.NetClientOptions): io.vertx.scala.core.net.NetClient = {
-    NetClient.apply(_asJava.createNetClient(options))
+  def createNetClient(options: NetClientOptions): io.vertx.scala.core.net.NetClient = {
+    NetClient.apply(_asJava.createNetClient(options.asJava))
   }
 
   /** Create a TCP/SSL client using default options
@@ -114,11 +112,11 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
 
   /** Create an HTTP/HTTPS server using the specified options
     *
-    * @param options the options to usesee <a href="../../../../../../cheatsheet/HttpServerOptions.html">HttpServerOptions</a>
+    * @param options the options to use
     * @return the server
     */
-  def createHttpServer(options: io.vertx.core.http.HttpServerOptions): io.vertx.scala.core.http.HttpServer = {
-    HttpServer.apply(_asJava.createHttpServer(options))
+  def createHttpServer(options: HttpServerOptions): io.vertx.scala.core.http.HttpServer = {
+    HttpServer.apply(_asJava.createHttpServer(options.asJava))
   }
 
   /** Create an HTTP/HTTPS server using default options
@@ -131,11 +129,11 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
 
   /** Create a HTTP/HTTPS client using the specified options
     *
-    * @param options the options to usesee <a href="../../../../../../cheatsheet/HttpClientOptions.html">HttpClientOptions</a>
+    * @param options the options to use
     * @return the client
     */
-  def createHttpClient(options: io.vertx.core.http.HttpClientOptions): io.vertx.scala.core.http.HttpClient = {
-    HttpClient.apply(_asJava.createHttpClient(options))
+  def createHttpClient(options: HttpClientOptions): io.vertx.scala.core.http.HttpClient = {
+    HttpClient.apply(_asJava.createHttpClient(options.asJava))
   }
 
   /** Create a HTTP/HTTPS client using default options
@@ -148,11 +146,11 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
 
   /** Create a datagram socket using the specified options
     *
-    * @param options the options to usesee <a href="../../../../../../cheatsheet/DatagramSocketOptions.html">DatagramSocketOptions</a>
+    * @param options the options to use
     * @return the socket
     */
-  def createDatagramSocket(options: io.vertx.core.datagram.DatagramSocketOptions): io.vertx.scala.core.datagram.DatagramSocket = {
-    DatagramSocket.apply(_asJava.createDatagramSocket(options))
+  def createDatagramSocket(options: DatagramSocketOptions): io.vertx.scala.core.datagram.DatagramSocket = {
+    DatagramSocket.apply(_asJava.createDatagramSocket(options.asJava))
   }
 
   /** Create a datagram socket using default options
@@ -288,17 +286,17 @@ class Vertx(private val _asJava: io.vertx.core.Vertx)
     promise.future
   }
 
-  /** Like [[io.vertx.scala.core.Vertx#deployVerticle]] but <a href="../../../../../../cheatsheet/DeploymentOptions.html">DeploymentOptions</a> are provided to configure the
+  /** Like [[io.vertx.scala.core.Vertx#deployVerticle]] but [[io.vertx.scala.core.DeploymentOptions]] are provided to configure the
     * deployment.
     *
     * @param name the name
-    * @param options the deployment options.see <a href="../../../../../../cheatsheet/DeploymentOptions.html">DeploymentOptions</a>
+    * @param options the deployment options.
     * @return a handler which will be notified when the deployment is complete
     */
-  def deployVerticle(name: String, options: io.vertx.core.DeploymentOptions): scala.concurrent.Future[String] = {
+  def deployVerticle(name: String, options: DeploymentOptions): scala.concurrent.Future[String] = {
     import io.vertx.lang.scala.HandlerOps._
     val promise = scala.concurrent.Promise[String]()
-    _asJava.deployVerticle(name, options, promiseToAsyncResultHandler[java.lang.String](promise))
+    _asJava.deployVerticle(name, options.asJava, promiseToAsyncResultHandler[java.lang.String](promise))
     promise.future
   }
 
@@ -379,24 +377,24 @@ object Vertx {
 
   /** Creates a non clustered instance using the specified options
     *
-    * @param options the options to usesee <a href="../../../../../../cheatsheet/VertxOptions.html">VertxOptions</a>
+    * @param options the options to use
     * @return the instance
     */
-  def vertx(options: io.vertx.core.VertxOptions): io.vertx.scala.core.Vertx = {
-    Vertx.apply(io.vertx.core.Vertx.vertx(options))
+  def vertx(options: VertxOptions): io.vertx.scala.core.Vertx = {
+    Vertx.apply(io.vertx.core.Vertx.vertx(options.asJava))
   }
 
   /** Creates a clustered instance using the specified options.
     * 
     * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
     *
-    * @param options the options to usesee <a href="../../../../../../cheatsheet/VertxOptions.html">VertxOptions</a>
+    * @param options the options to use
     * @return the result handler that will receive the result
     */
-  def clusteredVertx(options: io.vertx.core.VertxOptions): scala.concurrent.Future[io.vertx.scala.core.Vertx] = {
+  def clusteredVertx(options: VertxOptions): scala.concurrent.Future[io.vertx.scala.core.Vertx] = {
     import io.vertx.lang.scala.HandlerOps._
     val promise = scala.concurrent.Promise[io.vertx.scala.core.Vertx]()
-    io.vertx.core.Vertx.clusteredVertx(options, promiseToMappedAsyncResultHandler(Vertx.apply)(promise))
+    io.vertx.core.Vertx.clusteredVertx(options.asJava, promiseToMappedAsyncResultHandler(Vertx.apply)(promise))
     promise.future
   }
 
