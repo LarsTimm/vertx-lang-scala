@@ -1,11 +1,6 @@
 @declare{'writeMethodParams'}
 	@foreach{param : params}
-		@if{param.name.equals("type")}
-			`@{param.name}`: @{toScalaType(param.type)}
-		@end{}
-		@if{!param.name.equals("type")}
-			@{param.name}: @{toScalaType(param.type)}
-		@end{}
+		@{reservedName(param.name)}: @{toScalaType(param.type)}
 	@end{', '}
 @end{}
 

@@ -48,9 +48,17 @@
 		@else{}
 	    asJava.@{property.writerMethod}(x
 			@if{property.type.kind == CLASS_API}
-				.asJava.asInstanceOf[@{toJavaType(property.type)}]
+				@if{!property.adder && property.array}
+					.map(x => x.asJava.asInstanceOf[@{toJavaType(property.type)}]).asJava
+				@else{}
+					.asJava.asInstanceOf[@{toJavaType(property.type)}]
+				@end{}
 			@else{property.type.kind == CLASS_DATA_OBJECT}
-				.asJava
+				@if{!property.adder && property.array}
+					.map(x => x.asJava).asJava
+				@else{}
+					.asJava
+				@end{}
 			@else{!property.adder && property.array}
 				.asJava
 			@end{}
@@ -105,20 +113,20 @@ package @{type.getModule().translateQualifiedName(type.raw.packageName, "scala")
 		    */\n
 		@end{}
 		@if{property.adder}
-		  def @{property.writerMethod}(x: @{toScalaType(property.type)})
+		  def @{reservedName(property.writerMethod)}(x: @{toScalaType(property.type)})
 			@includeNamed{'writeBody';property=property;reader=false}
 		@else{}
 			@if{property.array}
-			  def @{property.name}_=(x: List[@{toScalaType(property.type)}])
+			  def @{reservedName(property.name)}_=(x: List[@{toScalaType(property.type)}])
 				@includeNamed{'writeBody';property=property;reader=false}
 			@else{}
 				@if{property.readerMethod != null}
-				  def @{property.name}_=(x: @{toScalaType(property.type)})
+				  def @{reservedName(property.name + '_=')}(x: @{toScalaType(property.type)})
 					@includeNamed{'writeBody';property=property;reader=false}\n
-				  def @{property.name}
+				  def @{reservedName(property.name)}
 					@includeNamed{'writeBody';property=property;reader=true}
 				@else{}
-				  def @{property.writerMethod}(x: @{toScalaType(property.type)})
+				  def @{reservedName(property.writerMethod)}(x: @{toScalaType(property.type)})
 					@includeNamed{'writeBody';property=property;reader=false}
 				@end{}
 			@end{}
